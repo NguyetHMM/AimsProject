@@ -13,10 +13,14 @@ class CreateDistrictsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('districts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->string('name');
+            $table->unsignedInteger('cityID');
+            $table->foreign('cityID')->references('id')->on('cities')->onUpdate('cascade')->onDelete('cascade');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -26,6 +30,8 @@ class CreateDistrictsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('districts');
+        Schema::enableForeignKeyConstraints();
     }
 }
