@@ -13,4 +13,11 @@
 
 Route::prefix('account')->group(function() {
     Route::get('/', 'AccountController@index');
+
+    Route::get('/register', 'AccountController@register')->name('register');
+    Route::post('/register', 'AccountController@storeUser');
+
+    Route::get('/login', 'AccountController@login')->name('login');
+    Route::post('/login', 'AccountController@authenticate');
+
 });
