@@ -11,9 +11,8 @@
 
     </head>
     <body>
+       
         @yield('content')
 
-        {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/account.js') }}"></script> --}}
     </body>
 </html>
