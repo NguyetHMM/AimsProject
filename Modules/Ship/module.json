@@ -1,0 +1,13 @@
+{
+    "name": "Ship",
+    "alias": "ship",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Ship\\Providers\\ShipServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

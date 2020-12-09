@@ -1,0 +1,7 @@
+{
+    "Account": true,
+    "Product": true,
+    "Order": true,
+    "Payment": true,
+    "Ship": true
+}
