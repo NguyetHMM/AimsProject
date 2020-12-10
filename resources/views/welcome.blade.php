@@ -164,7 +164,7 @@
                                 <div class="row">
                                     <div class="col-md-10 col-lg-8 col-md-offset-2 col-lg-offset-4 col-sm-12 col-xs-12">
                                         <div class="slider__inner">
-                                            <h1 style="color: white">New Product <span class="text--theme">Collection</span></h1>
+                                            <h1 style="color: white">New CD-DVD <span class="text--theme">Collection</span></h1>
                                             <div class="slider__btn">
                                                 <a class="htc__btn" href="cart.html" style="color: white">shop now</a>
                                             </div>
@@ -175,12 +175,12 @@
                         </div>
                         <!-- End Single Slide -->
                         <!-- Start Single Slide -->
-                        <div class="slide slider__full--screen slider-height-inherit  slider-text-left" style="background: rgba(0, 0, 0, 0) url(images/slider/bg/2.png) no-repeat scroll center center / cover ;">
+                        <div class="slide slider__full--screen slider-height-inherit  slider-text-left" style="background: rgba(0, 0, 0, 0) url(images/slider/bg/bg3.jpeg) no-repeat scroll center center / cover ;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
                                         <div class="slider__inner">
-                                            <h1>New Product <span class="text--theme">Collection</span></h1>
+                                            <h1>New Book <span class="text--theme">Collection</span></h1>
                                             <div class="slider__btn">
                                                 <a class="htc__btn" href="cart.html">shop now</a>
                                             </div>
@@ -202,7 +202,7 @@
                     <div class="category-menu-list">
                         <ul>
                             <li>
-                                <a href="#"><img alt="" src="images/icons/thum2.png"> Women’s Clothing <i class="zmdi zmdi-chevron-right"></i></a>
+                                <a href="#"><img alt="" src="images/icons/thum2.png"> Books <i class="zmdi zmdi-chevron-right"></i></a>
                                 <div class="category-menu-dropdown">
                                     <div class="category-part-1 category-common mb--30">
                                         <h4 class="categories-subtitle"> Jewelry & Watches</h4>
@@ -215,26 +215,6 @@
                                         </ul>
                                     </div>
                                     <div class="category-part-2 category-common mb--30">
-                                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                        <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
-                                            <li><a href="#"> Computer & Office</a></li>
-                                            <li><a href="#"> Jewelry & Watches</a></li>
-                                            <li><a href="#"> Bags & Shoes</a></li>
-                                            <li><a href="#"> Phones & Accessories</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category-part-3 category-common">
-                                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                        <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
-                                            <li><a href="#"> Computer & Office</a></li>
-                                            <li><a href="#"> Jewelry & Watches</a></li>
-                                            <li><a href="#"> Bags & Shoes</a></li>
-                                            <li><a href="#"> Phones & Accessories</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category-part-4 category-common">
                                         <h4 class="categories-subtitle"> Jewelry & Watches</h4>
                                         <ul>
                                             <li><a href="#"> Men’s Clothing</a></li>
