@@ -34,6 +34,33 @@
 </head>
 
 <body>
+    <style>
+        ::placeholder {
+            color: white !important;
+        }
+
+        :-ms-input-placeholder {
+            color: white !important
+        }
+
+        ::-ms-input-placeholder {
+            color: white !important; 
+        }
+
+        .login input {
+            border-color: white;
+            color: white !important;
+        }
+
+        .login__register__menu li a {
+            color: gray !important;
+        }
+
+        .login__register__menu li.active a {
+            color: white !important;
+        }
+
+    </style>
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->  
