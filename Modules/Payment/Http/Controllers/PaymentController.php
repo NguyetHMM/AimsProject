@@ -41,9 +41,10 @@ class PaymentController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show()
     {
-        return view('payment::show');
+        return view('payment::checkout')->with('products', $data_product);
+        /*return view('payment::show');*/
     }
 
     /**
