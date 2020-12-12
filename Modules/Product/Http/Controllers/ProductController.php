@@ -5,6 +5,7 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use PhpParser\Node\Expr\FuncCall;
 
 class ProductController extends Controller
 {
@@ -17,6 +18,9 @@ class ProductController extends Controller
         return view('product::index');
     }
 
+    public function productDetail(){
+        return view('product::productDetail');
+    }
     /**
      * Show the form for creating a new resource.
      * @return Renderable
