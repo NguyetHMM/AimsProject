@@ -48,6 +48,7 @@
                     <li><a href="#"><img src="images/sidebar-img/7.jpg" alt="sidebar images"></a></li>
                     <li><a href="#"><img src="images/sidebar-img/8.jpg" alt="sidebar images"></a></li>
                 </ul>
+                <!-- herg-->
                 <div class="offset__widget">
                     <div class="offset__single">
                         <h4 class="offset__title">Language</h4>
