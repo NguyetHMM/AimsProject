@@ -4,7 +4,7 @@
     <div class="body__overlay"></div>
 <!--
     <<<<<<< HEAD
-    <!-- Start Offset Wrapper -->
+     Start Offset Wrapper -->
     <div class="offset__wrapper">
         <!-- Start Search Popap 
         <div class="search__area">
