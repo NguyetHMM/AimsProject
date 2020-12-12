@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{route('welcome')}}">
                             <img src="{{asset('images/logo/logo.png')}}" alt="logo">
                         </a>
                     </div>
@@ -24,7 +24,12 @@
                 <div class="col-md-2 col-sm-4 col-xs-3">  
                     <ul class="menu-extra">
                         <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
-                        <li><a href="{{route('login')}}"><span class="ti-user"></span></a></li>
+                        @if (Auth::user())
+                        <li><a href="{{route('userProfile')}}"></a><p>HELLO{{ Auth::user()->name }}</p></li>                       
+                        @else
+                        <li><a href="{{route('login')}}"><span class="ti-user"></span></a></li> 
+                        @endif
+                        {{-- <li><a href="{{route('login')}}"><span class="ti-user"></span></a></li> --}}
                         <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
                     </ul>
                 </div>
