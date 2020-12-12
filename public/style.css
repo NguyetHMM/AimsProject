@@ -792,13 +792,13 @@
     margin-top: 40px;
 }
 
-.tabs__checkbox span.forget a {
+#login .tabs__checkbox span.forget a {
     float: right;
     color: #a7a7a7;
     font-size: 12px;
 }
 
-.tabs__checkbox label {
+#login .tabs__checkbox label {
     bottom: 2px;
     color: #999;
     font-size: 15px;
@@ -809,12 +809,18 @@
     cursor: pointer;
 }
 
-.tabs__checkbox {
+#login .login .tabs__checkbox {
     margin-bottom: 20px;
 }
 
 .tabs__checkbox span {
     color: #686868;
+    text-transform: capitalize;
+    padding-left: 5px;
+}
+
+#login .login .tabs__checkbox span {
+    color: #fff;
     text-transform: capitalize;
     padding-left: 5px;
 }
