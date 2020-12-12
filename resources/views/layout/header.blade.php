@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
                     <div class="logo">
-                        <a href="{{ route('welcome') }}">
-                            <img src="{{ asset('images/logo/logo.png') }}" alt="logo">
+                        <a href="{{Route('welcome')}}">
+                            <img src="{{asset('images/logo/logo.png')}}" alt="logo">
                         </a>
                     </div>
                 </div>
@@ -14,8 +14,8 @@
                 <div class="col-md-8 col-lg-8 col-sm-6 col-xs-6">
                     <nav class="mainmenu__nav hidden-xs hidden-sm">
                         <ul class="main__menu">
-                            <li><a href="{{ route('welcome') }}">Home</a></li>
-                            <li><a href="{{ route('welcome') }}">Shop</a></li>
+                            <li><a href="{{route('home')}}">Home</a></li>
+                            <li><a href="{{route('home')}}">Shop</a></li>
                             <li><a href="">contact</a></li>
                             <li></li>
                             <li></li>
@@ -38,6 +38,25 @@
                     </ul>
                 </div>
             </div>
+            <!-- Start Search Popap -->
+            <div class="search__area">
+                <div class="container" >
+                    <div class="row" >
+                        <div class="col-md-12" >
+                            <div class="search__inner">
+                                <form action="#" method="get">
+                                    <input placeholder="Search here... " type="text">
+                                    <button type="submit"></button>
+                                </form>
+                                <div class="search__close__btn">
+                                    <span class="search__close__btn_icon"><i class="zmdi zmdi-close"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Search Popap -->
         </div>
     </div>
     <!-- End Mainmenu Area -->

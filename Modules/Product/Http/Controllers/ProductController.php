@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -20,6 +21,10 @@ class ProductController extends Controller
 
     public function productDetail(){
         return view('product::productDetail');
+    }
+
+    public function home(){
+        return view('welcome');
     }
     /**
      * Show the form for creating a new resource.
@@ -45,9 +50,14 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function showBook()
     {
-        return view('product::show');
+        $books = DB::table('products')
+        ->join('product_categories','products.productCategoryID','=','product_categories.id')
+        ->where('product_categories.id',3)
+        ->get();
+        // dd($books);
+        return view('product::showBook')->with('Books',$books);
     }
 
     /**

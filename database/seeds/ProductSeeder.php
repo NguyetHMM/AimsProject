@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
             $products[] = [
                 'productCategoryID' => rand(1,3),
                 'productTypeID' => rand(1,2),
-                'title' => $faker->name(),
+                'title' => $faker->name(10),
                 'value' => $value,
                 'price' => rand($value*0.3, $value*1.5),
                 'language' => $languages[$lgRandom],
