@@ -18,7 +18,18 @@ class DatabaseSeeder extends Seeder
             ProductCategoriesSeeder::class,
             ProductTypesSeeder::class,
             CoversSeeder::class,
-            
+            PromotionsSeeder::class,
+            ProductSeeder::class,
+            CDS_LPSSeeder::class,
+            TracksSeeder::class,
+            DVDSSeeder::class,
+            BookSeeder::class,
+            PhysicalProductSeeder::class,
+            OnlineProductSeeder::class,
+            CitiesSeeder::class,
+            DistrictsSeeder::class,
+            AddressSeeder::class,
+            Product_KindSeeder::class
         ]);
     }
 }

@@ -13,10 +13,10 @@ class CoversSeeder extends Seeder
     {
         $covers = [];
         $covers[0] = [
-            'name' => "admin"
+            'name' => "paperback"
         ];
         $covers[1] = [
-            'name' => "user"
+            'name' => "hardcover"
         ];
         
         DB::table('covers')->insert($covers);
