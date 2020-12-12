@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
-use Illuminate\Support\Str;
 
 class UsersSeeder extends Seeder
 {
@@ -16,7 +15,7 @@ class UsersSeeder extends Seeder
     {
         $faker =  Faker::create();
         $users = [];
-        foreach(range(1,10) as $index){
+        for($index=0;$index<10;$index++){
             $users[] = [
                 'name' => $faker->name,
                 'email' => "Trung$index@gmail.com",

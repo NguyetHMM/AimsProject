@@ -23,6 +23,6 @@ class ProductCategoriesSeeder extends Seeder
             'name' => "books"
         ];
         
-        DB::table('categories')->insert($categories);
+        DB::table('product_categories')->insert($categories);
     }
 }
