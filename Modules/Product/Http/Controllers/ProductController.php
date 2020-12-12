@@ -21,6 +21,10 @@ class ProductController extends Controller
     public function productDetail(){
         return view('product::productDetail');
     }
+
+    public function home(){
+        return view('product::home');
+    }
     /**
      * Show the form for creating a new resource.
      * @return Renderable
