@@ -14,7 +14,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('payment::index');
+        return view('payment::checkout');
     }
 
     /**
@@ -43,7 +43,7 @@ class PaymentController extends Controller
      */
     public function show()
     {
-        return view('payment::checkout')->with('products', $data_product);
+        return view('payment::checkout');//->with('products', $data_product);
         /*return view('payment::show');*/
     }
 
