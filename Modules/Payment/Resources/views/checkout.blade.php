@@ -1,3 +1,6 @@
+@extends('layout.main')
+
+<!--@section('content')-->
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
