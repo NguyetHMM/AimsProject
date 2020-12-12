@@ -2,29 +2,7 @@
 
 @section('content')
 <div class="body__overlay"></div>
-<!-- Start Offset Wrapper -->
-<div class="offset__wrapper">
-    <!-- Start Search Popap -->
-    <div class="search__area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="search__inner">
-                        <form action="#" method="get">
-                            <input placeholder="Search here... " type="text">
-                            <button type="submit"></button>
-                        </form>
-                        <div class="search__close__btn">
-                            <span class="search__close__btn_icon"><i class="zmdi zmdi-close"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Search Popap -->
-</div>
-<!-- End Offset Wrapper -->
+
 <!-- Start Feature Product -->
 <section class="categories-slider-area bg__white">
     <div class="container">
@@ -78,7 +56,8 @@
                     <div class="category-menu-list">
                         <ul>
                             <li>
-                                <a href="#"><img alt="" src="images/icons/thum2.png"> Books <i class="zmdi zmdi-chevron-right"></i></a>
+                                <form>
+                                    <a href="{{Route('showBook')}}"><img alt="" src="images/icons/thum2.png"> Books <i class="zmdi zmdi-chevron-right"></i></a>
                                 <div class="category-menu-dropdown">
                                     <div class="category-part-1 category-common mb--30">
                                         <h4 class="categories-subtitle"> Books</h4>
@@ -94,6 +73,8 @@
                                         <h4 class="categories-subtitle"> E-books</h4>
                                     </div>
                                 </div>
+                                </form>
+                                
                             </li>
                             <li>
                                 <a href="#"><img alt="" src="images/icons/thum3.png"> CDs <i class="zmdi zmdi-chevron-right"></i></a>

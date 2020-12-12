@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
                     <div class="logo">
-                        <a href="{{Route('home')}}">
+                        <a href="{{Route('welcome')}}">
                             <img src="{{asset('images/logo/logo.png')}}" alt="logo">
                         </a>
                     </div>
@@ -38,6 +38,25 @@
                     </ul>
                 </div>
             </div>
+            <!-- Start Search Popap -->
+            <div class="search__area">
+                <div class="container" >
+                    <div class="row" >
+                        <div class="col-md-12" >
+                            <div class="search__inner">
+                                <form action="#" method="get">
+                                    <input placeholder="Search here... " type="text">
+                                    <button type="submit"></button>
+                                </form>
+                                <div class="search__close__btn">
+                                    <span class="search__close__btn_icon"><i class="zmdi zmdi-close"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Search Popap -->
         </div>
     </div>
     <!-- End Mainmenu Area -->
