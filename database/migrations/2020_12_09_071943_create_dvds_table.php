@@ -21,7 +21,7 @@ class CreateDvdsTable extends Migration
             $table->string('videoKind');
             $table->string('studio');
             $table->string('subtitles');
-            $table->time('runtime');
+            $table->integer('runtime');
 
             $table->foreign('productID')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->primary('productID');

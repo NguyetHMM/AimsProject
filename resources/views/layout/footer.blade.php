@@ -17,7 +17,7 @@
                                         <i class="zmdi zmdi-pin"></i>
                                     </div>
                                     <div class="address-text">
-                                        <p>194 Main Rd T, FS Rayed <br> VIC 3057, USA</p>
+                                        <p>Hanoi University of Science and Technology <br> Hai Ba Trung dist, Hanoi, Vietnam</p>
                                     </div>
                                 </li>
                                 <li>
@@ -25,7 +25,7 @@
                                         <i class="zmdi zmdi-email"></i>
                                     </div>
                                     <div class="address-text">
-                                        <a href="#"> info@example.com</a>
+                                        <a href="#"> entitititeam@gmail.com</a>
                                     </div>
                                 </li>
                                 <li>
@@ -52,12 +52,10 @@
                     <div class="ft__widget">
                         <h2 class="ft__title">Categories</h2>
                         <ul class="footer-categories">
-                            <li><a href="shop-sidebar.html">Men</a></li>
-                            <li><a href="shop-sidebar.html">Women</a></li>
-                            <li><a href="shop-sidebar.html">Accessories</a></li>
-                            <li><a href="shop-sidebar.html">Shoes</a></li>
-                            <li><a href="shop-sidebar.html">Dress</a></li>
-                            <li><a href="shop-sidebar.html">Denim</a></li>
+                            <li><a href="shop-sidebar.html">Books</a></li>
+                            <li><a href="shop-sidebar.html">CDs</a></li>
+                            <li><a href="shop-sidebar.html">DVDs</a></li>
+                            <li><a href="shop-sidebar.html">Long Player</a></li>
                         </ul>
                     </div>
                 </div>
@@ -68,7 +66,6 @@
                         <ul class="footer-categories">
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
                             <li><a href="#">Returns & Exchanges</a></li>
                             <li><a href="#">Shipping & Delivery</a></li>
                             <li><a href="#">Privacy Policy</a></li>

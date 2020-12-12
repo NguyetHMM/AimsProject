@@ -22,6 +22,7 @@ class CreateBooksTable extends Migration
             $table->date('publicationDate');
             $table->date('releaseDate');
             $table->integer('pages');
+            $table->string('category');
             
             $table->foreign('productID')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('coverID')->references('id')->on('covers')->onUpdate('cascade')->onDelete('cascade');

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="body__overlay"></div>
+<<<<<<< HEAD
     <!-- Start Offset Wrapper -->
     <div class="offset__wrapper">
         <!-- Start Search Popap -->
@@ -73,80 +74,19 @@
                         <li><a class="bg--twitter" href="#" title="Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
 
                         <li><a class="bg--instagram" href="#" title="Instagram"><i class="zmdi zmdi-instagram"></i></a></li>
+=======
+>>>>>>> bae164012bf1fb0429aa2f1a35630e5d06d5e630
 
-                        <li><a class="bg--facebook" href="#" title="Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
-
-                        <li><a class="bg--googleplus" href="#" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a>
-                        </li>
-
-                        <li><a class="bg--google" href="#" title="Google"><i class="zmdi zmdi-google"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- End Offset MEnu -->
-        <!-- Start Cart Panel -->
-        <div class="shopping__cart">
-            <div class="shopping__cart__inner">
-                <div class="offsetmenu__close__btn">
-                    <a href="#"><i class="zmdi zmdi-close"></i></a>
-                </div>
-                <div class="shp__cart__wrap">
-                    <div class="shp__single__product">
-                        <div class="shp__pro__thumb">
-                            <a href="#">
-                                <img src="images/product/sm-img/1.jpg" alt="product images">
-                            </a>
-                        </div>
-                        <div class="shp__pro__details">
-                            <h2><a href="product-details.html">BO&Play Wireless Speaker</a></h2>
-                            <span class="quantity">QTY: 1</span>
-                            <span class="shp__price">$105.00</span>
-                        </div>
-                        <div class="remove__btn">
-                            <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                        </div>
-                    </div>
-                    <div class="shp__single__product">
-                        <div class="shp__pro__thumb">
-                            <a href="#">
-                                <img src="images/product/sm-img/2.jpg" alt="product images">
-                            </a>
-                        </div>
-                        <div class="shp__pro__details">
-                            <h2><a href="product-details.html">Brone Candle</a></h2>
-                            <span class="quantity">QTY: 1</span>
-                            <span class="shp__price">$25.00</span>
-                        </div>
-                        <div class="remove__btn">
-                            <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <ul class="shoping__total">
-                    <li class="subtotal">Subtotal:</li>
-                    <li class="total__price">$130.00</li>
-                </ul>
-                <ul class="shopping__btn">
-                    <li><a href="cart.html">View Cart</a></li>
-                    <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- End Cart Panel -->
-    </div>
-    <!-- End Offset Wrapper -->
     <!-- Start Login Register Area -->
     <div class="htc__login__register bg__white ptb--130"
-        style="background: rgba(0, 0, 0, 0) url({{asset('images/bg/5.jpg')}}) no-repeat scroll center center / cover ;">
+        style="background: rgba(0, 0, 0, 0) url({{ asset('images/bg/5.jpg') }}) no-repeat scroll center center / cover ;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <ul class="login__register__menu" role="tablist">
-                        <li role="presentation" class="login active"><a href="#login" role="tab" data-toggle="tab">Login</a>
+                        <li role="presentation" class="login active"><a href="{{ route('login') }}">Login</a>
                         </li>
-                        <li role="presentation" class="register" ><a href="#register" role="tab"
-                                data-toggle="tab">Register</a></li>
+                        <li role="presentation" class="register"><a href="{{ route('register') }}">Register</a></li>
                     </ul>
                 </div>
             </div>
@@ -156,43 +96,36 @@
                     <div class="htc__login__register__wrap">
                         <!-- Start Single Content -->
                         <div id="login" role="tabpanel" class="single__tabs__panel tab-pane fade in active">
-                            <form class="login" method="post">
-                                <input type="text" placeholder="User Name*">
-                                <input type="password" placeholder="Password*">
+                            @if (session()->has('error'))
+                                <div class="alert alert-danger">
+                                    {{ session()->get('error') }}
+                                </div>
+                            @endif
+                            <form class="login" method="post" action="{{ route('login') }}">
+                                @csrf
+                                <input type="email" placeholder="Email*" class=" @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input type="password" placeholder="Password*"
+                                    class=" @error('password') is-invalid @enderror" name="password" required
+                                    autocomplete="current-password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <br>
+                                <br>
+                                <div class="htc__login__btn mt--30">
+                                    <button type="submit">
+                                        <a>Login</a>
+                                    </button>
+                                </div>
                             </form>
-                            <div class="tabs__checkbox">
-                                <input type="checkbox">
-                                <span style="color: white"> Remember me</span>
-                                <span class="forget" style="color: "><a href="#" style="color: white">Forget Pasword?</a></span>
-                            </div>
-                            <div class="htc__login__btn mt--30">
-                                <a href="#" style="color: white" >Login</a>
-                            </div>
-                        </div>
-                        <!-- End Single Content -->
-                        <!-- Start Single Content -->
-                        <div id="register" role="tabpanel" class="single__tabs__panel tab-pane fade">
-                            <form class="login" method="post">
-                                <input type="text" placeholder="Name*">
-                                <input type="email" placeholder="Email*">
-                                <input type="password" placeholder="Password*">
-                            </form>
-                            <div class="tabs__checkbox">
-                                <input type="checkbox">
-                                <span> Remember me</span>
-                            </div>
-                            <div class="htc__login__btn">
-                                <a href="#">register</a>
-                            </div>
-                            <div class="htc__social__connect">
-                                <h2>Or Login With</h2>
-                                <ul class="htc__soaial__list">
-                                    <li><a class="bg--twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-                                    <li><a class="bg--instagram" href="#"><i class="zmdi zmdi-instagram"></i></a></li>
-                                    <li><a class="bg--facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                    <li><a class="bg--googleplus" href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
                         <!-- End Single Content -->
                     </div>
