@@ -27,13 +27,24 @@
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
     <!-- User style -->
     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
-
-
     <!-- Modernizr JS -->
     <script src="{{asset('js/vendor/modernizr-2.8.3.min.js')}}"></script>
 </head>
 
 <body>
+     <!-- jquery latest version -->
+     <script src="{{asset('js/vendor/jquery-1.12.0.min.js')}}"></script>
+     <!-- Bootstrap framework js -->
+     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+     <!-- All js plugins included in this file. -->
+     <script src="{{asset('js/plugins.js')}}"></script>
+     <script src="{{asset('js/slick.min.js')}}"></script>
+     <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+     <!-- Waypoints.min.js. -->
+     <script src="{{asset('js/waypoints.min.js')}}"></script>
+     <!-- Main js file that contents all jQuery plugins activation. -->
+     <script src="{{asset('js/main.js')}}"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <style>
         ::placeholder {
             color: white !important;
@@ -76,21 +87,6 @@
         <!-- End Footer Area -->
     </div>
     <!-- Body main wrapper end -->
-
-    <!-- Placed js at the end of the document so the pages load faster -->
-
-    <!-- jquery latest version -->
-    <script src="{{asset('js/vendor/jquery-1.12.0.min.js')}}"></script>
-    <!-- Bootstrap framework js -->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <!-- All js plugins included in this file. -->
-    <script src="{{asset('js/plugins.js')}}"></script>
-    <script src="{{asset('js/slick.min.js')}}"></script>
-    <script src="{{asset('js/owl.carousel.min.js')}}"></script>
-    <!-- Waypoints.min.js. -->
-    <script src="{{asset('js/waypoints.min.js')}}"></script>
-    <!-- Main js file that contents all jQuery plugins activation. -->
-    <script src="{{asset('js/main.js')}}"></script>
 
 </body>
 
