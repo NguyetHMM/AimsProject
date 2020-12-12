@@ -17,14 +17,23 @@
                             <li><a href="{{route('home')}}">Home</a></li>
                             <li><a href="{{route('home')}}">Shop</a></li>
                             <li><a href="">contact</a></li>
+                            <li></li>
+                            <li></li>
                         </ul>
-                    </nav>                         
+                    </nav>
                 </div>
                 <!-- End MAinmenu Ares -->
-                <div class="col-md-2 col-sm-4 col-xs-3">  
+                <div class="col-md-2 col-sm-4 col-xs-3">
                     <ul class="menu-extra">
                         <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
-                        <li><a href="{{route('login')}}"><span class="ti-user"></span></a></li>
+                        @if (Auth::user())
+                            <li style="min-width: 150%; text-align:right" ><a href="{{ route('userProfile') }}">HELLO {{ Auth::user()->name }}</a></li>
+                            <li><a href="{{ route('logout') }}">Logout</a></li>
+                        @else
+                            <li><a href="{{ route('login') }}"><span class="ti-user"></span></a></li>
+                        @endif
+                        {{-- <li><a href="{{ route('login') }}"><span
+                                    class="ti-user"></span></a></li> --}}
                         <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
                     </ul>
                 </div>
