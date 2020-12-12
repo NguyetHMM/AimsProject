@@ -85,4 +85,8 @@ class AccountController extends Controller
 
         // return redirect(route('editUserInfor'))->with('error', 'Oppes! You have entered invalid credentials');
     }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('welcome');
+    }
 }

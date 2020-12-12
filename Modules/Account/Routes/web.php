@@ -20,7 +20,9 @@ Route::prefix('account')->group(function() {
     Route::get('/login', 'AccountController@login')->name('login');
     Route::post('/login', 'AccountController@authenticate');
 
-    Route::get('/userProfile', 'AccountModuleController@userProfile')->name('userProfile');
-    Route::post('/userProfile', 'AccountModuleController@storeUserProfile');
+    Route::get('/userProfile', 'AccountController@userProfile')->name('userProfile');
+    Route::post('/userProfile', 'AccountController@storeUserProfile');
+
+    Route::get('logout', 'AccountController@logout')->name('logout');
 
 });
