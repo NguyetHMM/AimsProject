@@ -2,10 +2,11 @@
 
 @section('content')
     <div class="body__overlay"></div>
-<<<<<<< HEAD
+<!--
+    <<<<<<< HEAD
     <!-- Start Offset Wrapper -->
     <div class="offset__wrapper">
-        <!-- Start Search Popap -->
+        <!-- Start Search Popap 
         <div class="search__area">
             <div class="container">
                 <div class="row">
@@ -23,8 +24,8 @@
                 </div>
             </div>
         </div>
-        <!-- End Search Popap -->
-        <!-- Start Offset MEnu -->
+         End Search Popap -->
+        <!-- Start Offset MEnu 
         <div class="offsetmenu">
             <div class="offsetmenu__inner">
                 <div class="offsetmenu__close__btn">
@@ -49,7 +50,7 @@
                     <li><a href="#"><img src="images/sidebar-img/7.jpg" alt="sidebar images"></a></li>
                     <li><a href="#"><img src="images/sidebar-img/8.jpg" alt="sidebar images"></a></li>
                 </ul>
-                <!-- herg-->
+                herg
                 <div class="offset__widget">
                     <div class="offset__single">
                         <h4 class="offset__title">Language</h4>
@@ -76,7 +77,7 @@
                         <li><a class="bg--instagram" href="#" title="Instagram"><i class="zmdi zmdi-instagram"></i></a></li>
 =======
 >>>>>>> bae164012bf1fb0429aa2f1a35630e5d06d5e630
-
+-->
     <!-- Start Login Register Area -->
     <div class="htc__login__register bg__white ptb--130"
         style="background: rgba(0, 0, 0, 0) url({{ asset('images/bg/5.jpg') }}) no-repeat scroll center center / cover ;">
