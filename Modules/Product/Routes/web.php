@@ -12,9 +12,13 @@
 */
 
 Route::prefix('product')->group(function() {
-    Route::get('/', 'ProductController@index')->name('index');
+    Route::get('/a', 'ProductController@index')->name('index');
     Route::get('/product-detail/{product_id}','ProductController@productDetail')->name('productDetail');
     // Route::get('/product-detail/{}','ProductController@processRequestDetail')->name('processRequestDetail');
     Route::get('/home','ProductController@home')->name('home');
     Route::get('show-book','ProductController@showBook')->name('showBook');
+
+
+    //Admin route
+    Route::get('/addbook','AdminController@add_book')->name('addbook');
 });

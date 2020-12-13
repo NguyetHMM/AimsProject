@@ -37,7 +37,15 @@
                             </div>					
                         </div>
                         @endforeach
-                    </div>		
+                    </div>
+                    <div class="row mt--60" style="text-align: center">
+                        <div class="col-md-12">
+                            {{-- <div class="htc__loadmore__btn"> --}}
+                                {{ $Books->links()}}	
+                            {{-- </div> --}}
+                        </div>
+                    </div>
+                 
                     
                 </div>
 		    </div>

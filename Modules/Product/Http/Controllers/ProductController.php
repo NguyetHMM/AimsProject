@@ -37,7 +37,7 @@ class ProductController extends Controller
         ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
         ->where('products.productCategoryID',2)
         ->select('products.id','products.title','products.price')
-        ->get();
+        ->paginate(12);
         // dd($books);
         return view('product::showBook')->with('Books',$books);
     }
