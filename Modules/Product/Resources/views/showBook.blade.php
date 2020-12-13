@@ -13,12 +13,13 @@
                 </div>
                 <div class="portfolio-style">
                 
-                    <div class="row-mb-5" sytle="float:left">
-                        @foreach ($Books as $key)
+                    <div class="row-mb-5">
+                        @foreach ($Books as $key => $book)
+                        {{-- @dd($key); --}}
                         <div class="col-md-3 col-sm-3 col-xs-6 grid-item cat2 cat3">
                             <div class="single-portfolio-card mb--30">
                                 <div class="portfolio-img">
-                                    <a href="{{Route('productDetail')}}">
+                                    <a href="">
                                         <img src="{{asset('images/portfolio/equal/1.jpg')}}" alt=""/>
                                     </a>
                                     <div class="portfolio-icon">
@@ -28,7 +29,9 @@
                                     </div>
                                 </div>
                                 <div class="portfolio-title portfolio-card-title text-center">
-                                    <h3><a href="{{Route('productDetail')}}">{{$key->title}}</a></h3>
+                                    
+                                        <h3><a href="{{URL::to('product/product-detail/'.$book->id)}}">{{$book->title}}</a></h3>
+                                    
                                     {{-- <span>Design</span> --}}
                                 </div>				
                             </div>					

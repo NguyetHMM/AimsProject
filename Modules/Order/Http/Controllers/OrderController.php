@@ -6,9 +6,9 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 
 use Auth;
+
 
 class OrderController extends Controller
 {
@@ -20,7 +20,6 @@ class OrderController extends Controller
     {
         return view('order::index');
     }
-
     public function cart()
     {
         $product_details = DB::table('products')
@@ -33,4 +32,16 @@ class OrderController extends Controller
     {
         return view('order::cart');
     }
+
+    public function addToCart(Request $request){
+
+        $cart_detail =[
+            'userID' => 1,
+            'productID' =>($request->product_id),
+            'quantity' =>$request->qtybutton
+        ];
+        DB::table('cart_details')->insert($cart_detail);
+        return redirect()->action([OrderController::class, 'cart']);
+    }
 }
+
