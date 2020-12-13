@@ -77,7 +77,7 @@
                                 
                             </li>
                             <li>
-                                <a href="#"><img alt="" src="images/icons/thum3.png"> CDs <i class="zmdi zmdi-chevron-right"></i></a>
+                                <a href="{{Route('showCDs')}}"><img alt="" src="images/icons/thum3.png"> CDs <i class="zmdi zmdi-chevron-right"></i></a>
                                 <div class="category-menu-dropdown">
                                     <div class="category-part-1 category-common2 mb--30">
                                         <h4 class="categories-subtitle"> Music Categories</h4>
@@ -91,7 +91,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="#"><img alt="" src="images/icons/thum4.png"> DVDs <i class="zmdi zmdi-chevron-right"></i></a>
+                                <a href="{{Route('showDVDs')}}"><img alt="" src="images/icons/thum4.png"> DVDs <i class="zmdi zmdi-chevron-right"></i></a>
                                 <div class="category-menu-dropdown">
                                     <div class="category-menu-dropdown-top">
                                         <div class="category-part-1 category-common2 mb--30">
