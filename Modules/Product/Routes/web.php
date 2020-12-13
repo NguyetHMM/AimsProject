@@ -20,5 +20,6 @@ Route::prefix('product')->group(function() {
 
 
     //Admin route
-    Route::get('/addbook','AdminController@add_book')->name('addbook');
+    Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
+
 });
