@@ -55,21 +55,57 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Mục (VD: User, Product, ...)
+                Product Management
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addproduct-phy"
+                    aria-expanded="true" aria-controls="addproduct-phy">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Ex: Product, Category, Brand...</span>
+                    <span>Add physical type</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="addproduct-phy" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Ex: Product, Category, Brand...</h6>
-                        <a class="collapse-item" href="buttons.html">Ex: Add</a>
-                        <a class="collapse-item" href="cards.html">Ex: All</a>
+                        <h6 class="collapse-header">Add physical type</h6>
+                        <a class="collapse-item" href="buttons.html">Add Book</a>
+                        <a class="collapse-item" href="cards.html">Add CD</a>
+                        <a class="collapse-item" href="cards.html">Add DVD</a>
+                        <a class="collapse-item" href="cards.html">Add Long Player Record</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addproduct-on"
+                    aria-expanded="true" aria-controls="addproduct-on">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Add online type</span>
+                </a>
+                <div id="addproduct-on" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Add online type</h6>
+                        <a class="collapse-item" href="buttons.html">Add Book</a>
+                        <a class="collapse-item" href="cards.html">Add CD</a>
+                        <a class="collapse-item" href="cards.html">Add DVD</a>
+                        <a class="collapse-item" href="cards.html">Add Long Player Record</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#allproduct"
+                    aria-expanded="true" aria-controls="allproduct">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Show product</span>
+                </a>
+                <div id="allproduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Show product</h6>
+                        <a class="collapse-item" href="buttons.html">Show Book</a>
+                        <a class="collapse-item" href="cards.html">Show CD</a>
+                        <a class="collapse-item" href="cards.html">Show DVD</a>
+                        <a class="collapse-item" href="cards.html">Show Long Player Record</a>
                     </div>
                 </div>
             </li>
@@ -79,7 +115,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Mục (VD: User, Product, ...)
+                Quick Link
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
