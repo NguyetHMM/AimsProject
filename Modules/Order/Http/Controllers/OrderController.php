@@ -32,5 +32,16 @@ class OrderController extends Controller
     {
         return view('order::cart');
     }
+
+    public function addToCart(Request $request){
+
+        $cart_detail =[
+            'userID' => 1,
+            'productID' =>($request->product_id),
+            'quantity' =>$request->qtybutton
+        ];
+        DB::table('cart_details')->insert($cart_detail);
+        return redirect()->action([OrderController::class, 'cart']);
+    }
 }
 
