@@ -17,8 +17,8 @@ Route::prefix('product')->group(function() {
     // Route::get('/product-detail/{}','ProductController@processRequestDetail')->name('processRequestDetail');
     Route::get('/home','ProductController@home')->name('home');
     Route::get('show-book','ProductController@showBook')->name('showBook');
-
-
-    //Admin route
+    Route::get('show-cds','ProductController@showCDs')->name('showCDs');
+    Route::get('show-dvds','ProductController@showDVDs')->name('showDVDs');
     Route::get('/addbook','AdminController@add_book')->name('addbook');
+
 });
