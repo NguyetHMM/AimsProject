@@ -33,13 +33,35 @@ class ProductController extends Controller
 
     public function showBook()
     {
-        $books = DB::table('products')
+        $all_product_of_1category = DB::table('products')
+        ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
+        ->where('products.productCategoryID',3)
+        ->select('products.id','products.title','products.price')
+        ->paginate(12);
+        // dd($all_product_of_1category);
+        return view('product::showBook')->with('all_product_of_1category',$all_product_of_1category);
+    }
+
+    public function showCDs()
+    {
+        $all_product_of_1category = DB::table('products')
+        ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
+        ->where('products.productCategoryID',1)
+        ->select('products.id','products.title','products.price')
+        ->paginate(12);
+        // dd($all_product_of_1category);
+        return view('product::showBook')->with('all_product_of_1category',$all_product_of_1category);
+    }
+
+    public function showDVDs()
+    {
+        $all_product_of_1category = DB::table('products')
         ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
         ->where('products.productCategoryID',2)
         ->select('products.id','products.title','products.price')
         ->paginate(12);
-        // dd($books);
-        return view('product::showBook')->with('Books',$books);
+        // dd($all_product_of_1category);
+        return view('product::showBook')->with('all_product_of_1category',$all_product_of_1category);
     }
 
 }
