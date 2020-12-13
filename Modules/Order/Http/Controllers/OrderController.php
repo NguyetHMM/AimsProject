@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
+use Auth;
+
+
 class OrderController extends Controller
 {
     /**
@@ -17,24 +20,17 @@ class OrderController extends Controller
     {
         return view('order::index');
     }
-
-    public function showCart(){
-        $list_product_cart = DB::table('cart_details')
-        ->join('products','cart_details.productID','=','products.id')
-        ->select('productID','title','price')
+    public function cart()
+    {
+        $product_details = DB::table('products')
+        ->join('cart_details','products.id','=','cart_details.productID')
+        ->where('userID', 1)    // fake data
         ->get();
-        return view('order::showCart')->with('listProducts', $list_product_cart);
+        return view('order::cart', compact('product_details'));
     }
-    public function addToCart(Request $request){
-        
-        $cart_detail =[
-            'userID' => 1,
-            'productID' =>($request->product_id),
-            'quantity' =>$request->qtybutton
-        ];
-        DB::table('cart_details')->insert($cart_detail);
-        return redirect()->action([OrderController::class, 'showCart']);
+    public function storeCart()
+    {
+        return view('order::cart');
     }
-
-    
 }
+
