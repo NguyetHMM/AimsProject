@@ -1,9 +1,6 @@
-@extends('product::layouts.master')
-
-@section('content')
-    <h1>Hello World</h1>
-
-    <p>
-        This view is loaded from module: {!! config('product.name') !!}
-    </p>
+@extends('layout.admin')
+@section('admin-content')
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Welcome to Admin :)</h1>
+    </div>
 @endsection
