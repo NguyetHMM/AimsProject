@@ -19,6 +19,8 @@ Route::prefix('product')->group(function() {
     Route::get('show-book','ProductController@showBook')->name('showBook');
     Route::get('show-cds','ProductController@showCDs')->name('showCDs');
     Route::get('show-dvds','ProductController@showDVDs')->name('showDVDs');
-    Route::get('/addbook','AdminController@add_book')->name('addbook');
+    
+    //Admin route
+    Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
 
 });
