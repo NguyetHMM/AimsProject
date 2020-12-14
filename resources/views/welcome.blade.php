@@ -62,11 +62,11 @@
                                     <div class="category-part-1 category-common mb--30">
                                         <h4 class="categories-subtitle"> Books</h4>
                                         <ul>
-                                            <li><a href="#"> Picture Books</a></li>
-                                            <li><a href="#"> Comic Books</a></li>
+                                            <li><a href="{{Route('showPictureBook')}}"> Picture Books</a></li>
+                                            <li><a href="{{Route('showComic')}}"> Comic Books</a></li>
                                             <li><a href="#"> Economy Books</a></li>
                                             <li><a href="#"> Language Books</a></li>
-                                            <li><a href="#"> Technology Books</a></li>
+                                            <li><a href="{{Route('showTechnologyBook')}}"> Technology Books</a></li>
                                         </ul>
                                     </div>
                                     <div class="category-part-2 category-common mb--30">

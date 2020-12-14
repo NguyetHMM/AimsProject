@@ -24,7 +24,7 @@ class OrderController extends Controller
     {
         $product_details = DB::table('products')
         ->join('cart_details','products.id','=','cart_details.productID')
-        ->where('userID', 1)    // fake data
+        ->where('userID', Auth::user()->id)
         ->get();
         return view('order::cart', compact('product_details'));
     }
@@ -43,5 +43,11 @@ class OrderController extends Controller
         DB::table('cart_details')->insert($cart_detail);
         return redirect()->action([OrderController::class, 'cart']);
     }
+
+    public function deleteFromCart($productID){
+        DB::table('cart_details')->where('productID', $productID)->delete();
+        return \redirect()->action([OrderController::class, 'cart']);
+    }
+
 }
 
