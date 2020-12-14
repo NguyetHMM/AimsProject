@@ -24,7 +24,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <form action="#">
+                    <form action="{{route('cart')}}" method="POST">
+                        @csrf
                         <div class="table-content table-responsive">
                             <table>
                                 <thead>
@@ -43,6 +44,7 @@
                                     $countProduct = 0;
                                     $totalOrder = 0;
                                     ?>
+                                   
                                     @foreach ($product_details as $key => $item)
                                         <?php
                                         $countProduct += 1;
@@ -57,7 +59,8 @@
                                             <td class="product-price"><span class="amount"
                                                     id="{{ 'product-price' . $key }}">{{ $item->price }}</span></td>
                                             <td class="product-quantity"><input type="number" value="{{ $item->quantity }}"
-                                                    class="{{ 'number_select' . $key }}" min="0" /></td>
+                                                    class="{{ 'number_select' . $key }}" min="0" name="{{ 'number_select' . $key }}"/></td>
+                                            <input type="hidden" name="{{ 'hidden_product'.$key }}" value="{{$item->id}}">
                                             <td class="product-subtotal" id="{{ 'cost-product' . $key }}">{{ $total }}</td>
                                             <td class="product-remove">
                                                 <a onclick="return confirm('Bạn có muốn xóa sản phẩm này không?')"
@@ -67,6 +70,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    <input type="hidden" name="product_count" value="{{$countProduct}}">
                                 </tbody>
                             </table>
                         </div>
@@ -91,7 +95,7 @@
                                         </tbody>
                                     </table>
                                     <div class="wc-proceed-to-checkout">
-                                        <a href="checkout.html">Proceed to Checkout</a>
+                                        <button type="submit">Proceed to Checkout</button>
                                     </div>
                                 </div>
                             </div>

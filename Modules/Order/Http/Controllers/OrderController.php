@@ -28,9 +28,18 @@ class OrderController extends Controller
         ->get();
         return view('order::cart', compact('product_details'));
     }
-    public function storeCart()
+    public function storeCart(Request $request)
     {
-        return view('order::cart');
+        $data=array();
+        $product_count = $request->product_count;
+        for($i = 0; $i < $product_count; $i++){
+            $data['userID']= Auth::user()->id;
+            $data['productID']=$request['hidden_product'.$i];
+            $data['quantity']=$request['number_select'.$i];
+            DB::table('cart_details')->where(['productID' => $data['productID'],'userID' => $data['userID']])->update($data);
+        }
+        return redirect()->action([OrderController::class, 'cart']);
+
     }
 
     public function addToCart(Request $request){
