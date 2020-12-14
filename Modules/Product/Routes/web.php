@@ -24,8 +24,9 @@ Route::prefix('product')->group(function() {
     Route::get('/book/comic','ProductController@showComic')->name('showComic');
     Route::get('/book/technology-books','ProductController@showTechnologyBook')->name('showTechnologyBook');
     Route::get('/addbook','AdminController@add_book')->name('addbook');
-    
+    Route::post('/search','ProductController@search')->name('search');
     //Admin route
     Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
     Route::get('/allbook','AdminController@all_book')->name('allbook');
+
 });

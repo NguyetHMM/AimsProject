@@ -14,8 +14,8 @@
                 <div class="col-md-8 col-lg-8 col-sm-6 col-xs-6">
                     <nav class="mainmenu__nav hidden-xs hidden-sm">
                         <ul class="main__menu">
-                            <li><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="{{route('home')}}">Shop</a></li>
+                            <li><a href="{{route('welcome')}}">Home</a></li>
+                            <li><a href="{{route('welcome')}}">Shop</a></li>
                             <li><a href="">contact</a></li>
                             <li></li>
                             <li></li>
@@ -46,8 +46,9 @@
                     <div class="row" >
                         <div class="col-md-12" >
                             <div class="search__inner">
-                                <form action="#" method="get">
-                                    <input placeholder="Search here... " type="text">
+                                <form action="{{Route('search')}}" method="post">
+                                {{ csrf_field() }}
+                                    <input placeholder="Search here... " name="infoToSearch" type="text">
                                     <button type="submit"></button>
                                 </form>
                                 <div class="search__close__btn">
