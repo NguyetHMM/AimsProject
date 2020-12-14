@@ -60,12 +60,12 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addproduct-phy"
-                    aria-expanded="true" aria-controls="addproduct-phy">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addproduct"
+                    aria-expanded="true" aria-controls="addproduct">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Add product</span>
                 </a>
-                <div id="addproduct-phy" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="addproduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Add product</h6>
                         <div class="dropdown">
@@ -129,10 +129,10 @@
                 <div id="allproduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Show product</h6>
-                        <a class="collapse-item" href="buttons.html">Show Book</a>
-                        <a class="collapse-item" href="cards.html">Show CD</a>
-                        <a class="collapse-item" href="cards.html">Show DVD</a>
-                        <a class="collapse-item" href="cards.html">Show Long Player Record</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Show Book</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Show CD</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Show DVD</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Show Long Player Record</a>
                     </div>
                 </div>
             </li>
@@ -398,10 +398,13 @@
 
     <!-- Page level plugins -->
     <script src="{{asset('Admin/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('Admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('Admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
     <script src="{{asset('Admin/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('Admin/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('Admin/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 

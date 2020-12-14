@@ -11,13 +11,25 @@
                 <input type="text" class="form-control" id="exampleFormControlInput1">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
+                <label for="exampleFormControlInput1">Value</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Price</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Language</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1">
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Book kind</label>
                 <select class="form-control" id="exampleFormControlSelect1">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
-                    <option>5</option>
                 </select>
             </div>
             <div class="form-group">
