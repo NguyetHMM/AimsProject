@@ -98,4 +98,14 @@ class ProductController extends Controller
         return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
     }
 
+    public function search(Request $request)
+    {
+        $all_product_of_1category = DB::table('products')
+        ->where('title','like','%'.$request->infoToSearch.'%')
+        ->select('products.id','products.title','products.price')
+        ->paginate(8);
+        // dd($all_product_of_1category);
+        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+    }
+
 }

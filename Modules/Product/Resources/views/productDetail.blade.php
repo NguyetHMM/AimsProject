@@ -27,6 +27,7 @@
                             <div class="pro__detl__title">
                                 <h2>{{$key->title}}</h2>
                             </div>
+                            {{-- @yield('content') --}}
                             <div class="pro__details">
                                 <h3 class="title__6">Detail</h3>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod temf incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostr exercitation ullamco laboris nisi ut aliquip ex ea. </p>

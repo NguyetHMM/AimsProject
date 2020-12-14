@@ -23,5 +23,6 @@ Route::prefix('product')->group(function() {
     Route::get('/book/comic','ProductController@showComic')->name('showComic');
     Route::get('/book/technology-books','ProductController@showTechnologyBook')->name('showTechnologyBook');
     Route::get('/addbook','AdminController@add_book')->name('addbook');
+    Route::post('/search','ProductController@search')->name('search');
 
 });
