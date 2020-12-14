@@ -37,9 +37,9 @@ class ProductController extends Controller
         ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
         ->where('products.productCategoryID',3)
         ->select('products.id','products.title','products.price')
-        ->paginate(12);
+        ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showBook')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
     }
 
     public function showCDs()
@@ -48,9 +48,9 @@ class ProductController extends Controller
         ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
         ->where('products.productCategoryID',1)
         ->select('products.id','products.title','products.price')
-        ->paginate(12);
+        ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showBook')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
     }
 
     public function showDVDs()
@@ -59,9 +59,43 @@ class ProductController extends Controller
         ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
         ->where('products.productCategoryID',2)
         ->select('products.id','products.title','products.price')
-        ->paginate(12);
+        ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showBook')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+    }
+
+    public function showPictureBook()
+    {
+        $all_product_of_1category = DB::table('products')
+        ->where('products.productCategoryID',3)
+        ->join('books','products.id','=','books.productID')
+        ->where('books.category','photobook')
+        ->select('products.id','products.title','products.price')
+        ->paginate(8);
+        // dd($all_product_of_1category);
+        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+    }
+    public function showComic()
+    {
+        $all_product_of_1category = DB::table('products')
+        ->where('products.productCategoryID',3)
+        ->join('books','products.id','=','books.productID')
+        ->where('books.category','comic')
+        ->select('products.id','products.title','products.price')
+        ->paginate(8);
+        // dd($all_product_of_1category);
+        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+    }
+    public function showTechnologyBook()
+    {
+        $all_product_of_1category = DB::table('products')
+        ->where('products.productCategoryID',3)
+        ->join('books','products.id','=','books.productID')
+        ->where('books.category','story')
+        ->select('products.id','products.title','products.price')
+        ->paginate(8);
+        // dd($all_product_of_1category);
+        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
     }
 
 }

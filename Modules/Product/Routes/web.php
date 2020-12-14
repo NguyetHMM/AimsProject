@@ -16,11 +16,17 @@ Route::prefix('product')->group(function() {
     Route::get('/product-detail/{product_id}','ProductController@productDetail')->name('productDetail');
     // Route::get('/product-detail/{}','ProductController@processRequestDetail')->name('processRequestDetail');
     Route::get('/home','ProductController@home')->name('home');
-    Route::get('show-book','ProductController@showBook')->name('showBook');
-    Route::get('show-cds','ProductController@showCDs')->name('showCDs');
-    Route::get('show-dvds','ProductController@showDVDs')->name('showDVDs');
+    Route::get('/book','ProductController@showBook')->name('showBook');
+    Route::get('/cds','ProductController@showCDs')->name('showCDs');
+    Route::get('/dvds','ProductController@showDVDs')->name('showDVDs');
+    Route::get('/book/picture-books','ProductController@showPictureBook')->name('showPictureBook');
+    Route::get('/book/comic','ProductController@showComic')->name('showComic');
+    Route::get('/book/technology-books','ProductController@showTechnologyBook')->name('showTechnologyBook');
+    Route::get('/addbook','AdminController@add_book')->name('addbook');
+;
     
     //Admin route
     Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
+
 
 });
