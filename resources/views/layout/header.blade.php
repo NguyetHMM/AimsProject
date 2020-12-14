@@ -29,12 +29,14 @@
                         @if (Auth::user())
                             <li style="min-width: 150%; text-align:right" ><a href="{{ route('userProfile') }}">HELLO {{ Auth::user()->name }}</a></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
+                            <li class=""><a href="{{Route('cart')}}"><span class="ti-shopping-cart"></span></a></li>
                         @else
                             <li><a href="{{ route('login') }}"><span class="ti-user"></span></a></li>
+                            <li class=""><a href="{{Route('login')}}"><span class="ti-shopping-cart"></span></a></li>
                         @endif
                         {{-- <li><a href="{{ route('login') }}"><span
                                     class="ti-user"></span></a></li> --}}
-                        <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
+                        {{-- <li class=""><a href="{{Route('cart')}}"><span class="ti-shopping-cart"></span></a></li> --}}
                     </ul>
                 </div>
             </div>

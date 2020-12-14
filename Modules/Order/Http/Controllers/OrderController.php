@@ -24,7 +24,7 @@ class OrderController extends Controller
     {
         $product_details = DB::table('products')
         ->join('cart_details','products.id','=','cart_details.productID')
-        ->where('userID', 1)    // fake data
+        ->where('userID', Auth::user()->id)
         ->get();
         return view('order::cart', compact('product_details'));
     }
