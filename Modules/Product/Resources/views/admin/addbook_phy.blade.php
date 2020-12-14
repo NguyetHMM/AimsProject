@@ -5,7 +5,8 @@
 </div>
 <div class="container">
     <div class="col-10">
-        <form>
+        <form role="form" action="#" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleFormControlInput1">Title</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1">
@@ -36,6 +37,7 @@
                 <label for="exampleFormControlTextarea1">Example textarea</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
+            <button type="submit" name="add_product" class="btn btn-info">Add product</button>
         </form>
     </div>
 </div>
