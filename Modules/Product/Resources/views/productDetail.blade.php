@@ -62,7 +62,11 @@
                                     </div>
                                 </div>  
                                 <div class="pro__dtl__btn">
-                                    <button class="buy__now__btn" type="submit">Buy Now</button>
+                                    @if (Auth::user())
+                                        <button class="buy__now__btn" type="submit">Buy Now</button>
+                                    @else
+                                        <button class="buy__now__btn"><a href="{{Route('login')}}">Buy Now</a></button>
+                                    @endif
                                 </div>
                             </form>
                         @endforeach

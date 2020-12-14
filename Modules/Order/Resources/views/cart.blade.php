@@ -39,9 +39,9 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $total = 0;
-                                        $countProduct = 0;
-                                        $totalOrder = 0;
+                                    $total = 0;
+                                    $countProduct = 0;
+                                    $totalOrder = 0;
                                     ?>
                                     @foreach ($product_details as $key => $item)
                                         <?php
@@ -50,15 +50,21 @@
                                         $totalOrder += $total;
                                         ?>
                                         <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="{{asset('images/product/4.png')}}"
-                                                        alt="product img" /></a></td>
+                                            <td class="product-thumbnail"><a href="#"><img
+                                                        src="{{ asset('images/product/4.png') }}" alt="product img" /></a>
+                                            </td>
                                             <td class="product-name"><a href="#">{{ $item->title }}</a></td>
-                                            <td class="product-price"><span
-                                                    class="amount" id="{{ 'product-price' . $key }}">{{ $item->price }}</span></td>
+                                            <td class="product-price"><span class="amount"
+                                                    id="{{ 'product-price' . $key }}">{{ $item->price }}</span></td>
                                             <td class="product-quantity"><input type="number" value="{{ $item->quantity }}"
-                                                    class="{{ 'number_select' . $key }}" min="0"/></td>
+                                                    class="{{ 'number_select' . $key }}" min="0" /></td>
                                             <td class="product-subtotal" id="{{ 'cost-product' . $key }}">{{ $total }}</td>
-                                            <td class="product-remove"><a href="#">X</a></td>
+                                            <td class="product-remove">
+                                                <a onclick="return confirm('Bạn có muốn xóa sản phẩm này không?')"
+                                                    href="{{ URL::to('/order/deleteFromCart/' . $item->productID) }}"
+                                                    class="active" ui-toggle-class="">X
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -78,7 +84,8 @@
                                             <tr class="order-total">
                                                 <th>Subtotal</th>
                                                 <td>
-                                                    <strong><span class="amount total-order">{{$totalOrder}}</span></strong>
+                                                    <strong><span
+                                                            class="amount total-order">{{ $totalOrder }}</span></strong>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -102,10 +109,10 @@
                 for (var i = 0; i < product_number; i++) {
                     let price = parseInt($('.number_select' + i).val()) *
                         parseInt($('#product-price' + i).html());
-                    $('#cost-product' + i).html(numeral(price) .format ('0,0[.]00 $'));
+                    $('#cost-product' + i).html(numeral(price).format('0,0[.]00 $'));
                     totalOrder += price;
                 }
-                $('.total-order').html(numeral(totalOrder) .format ('0,0[.]00 $'));
+                $('.total-order').html(numeral(totalOrder).format('0,0[.]00 $'));
             });
         });
 

@@ -43,5 +43,11 @@ class OrderController extends Controller
         DB::table('cart_details')->insert($cart_detail);
         return redirect()->action([OrderController::class, 'cart']);
     }
+
+    public function deleteFromCart($productID){
+        DB::table('cart_details')->where('productID', $productID)->delete();
+        return \redirect()->action([OrderController::class, 'cart']);
+    }
+
 }
 
