@@ -16,6 +16,7 @@ Route::prefix('product')->group(function() {
     Route::get('/product-detail/{product_id}','ProductController@productDetail')->name('productDetail');
     // Route::get('/product-detail/{}','ProductController@processRequestDetail')->name('processRequestDetail');
     Route::get('/home','ProductController@home')->name('home');
+
     Route::get('/book','ProductController@showBook')->name('showBook');
     Route::get('/cds','ProductController@showCDs')->name('showCDs');
     Route::get('/dvds','ProductController@showDVDs')->name('showDVDs');
@@ -24,5 +25,8 @@ Route::prefix('product')->group(function() {
     Route::get('/book/technology-books','ProductController@showTechnologyBook')->name('showTechnologyBook');
     Route::get('/addbook','AdminController@add_book')->name('addbook');
     Route::post('/search','ProductController@search')->name('search');
+    //Admin route
+    Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
+    Route::get('/allbook','AdminController@all_book')->name('allbook');
 
 });

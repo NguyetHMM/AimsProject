@@ -60,35 +60,62 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addproduct-phy"
-                    aria-expanded="true" aria-controls="addproduct-phy">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addproduct"
+                    aria-expanded="true" aria-controls="addproduct">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Add physical type</span>
+                    <span>Add product</span>
                 </a>
-                <div id="addproduct-phy" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="addproduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Add physical type</h6>
-                        <a class="collapse-item" href="buttons.html">Add Book</a>
-                        <a class="collapse-item" href="cards.html">Add CD</a>
-                        <a class="collapse-item" href="cards.html">Add DVD</a>
-                        <a class="collapse-item" href="cards.html">Add Long Player Record</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addproduct-on"
-                    aria-expanded="true" aria-controls="addproduct-on">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Add online type</span>
-                </a>
-                <div id="addproduct-on" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Add online type</h6>
-                        <a class="collapse-item" href="buttons.html">Add Book</a>
-                        <a class="collapse-item" href="cards.html">Add CD</a>
-                        <a class="collapse-item" href="cards.html">Add DVD</a>
-                        <a class="collapse-item" href="cards.html">Add Long Player Record</a>
+                        <h6 class="collapse-header">Add product</h6>
+                        <div class="dropdown">
+                            <a class="collapse-item dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Add Book
+                            </a>
+                            <div class="dropdown-menu animated--fade-in"
+                                aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Physical type</a>
+                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Online type</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <a class="collapse-item dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Add CD
+                            </a>
+                            <div class="dropdown-menu animated--fade-in"
+                                aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Physical type</a>
+                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Online type</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <a class="collapse-item dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Add DVD
+                            </a>
+                            <div class="dropdown-menu animated--fade-in"
+                                aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Physical type</a>
+                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Online type</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <a class="collapse-item dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Add Long Player Record
+                            </a>
+                            <div class="dropdown-menu animated--fade-in"
+                                aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Physical type</a>
+                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Online type</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </li>
@@ -102,10 +129,10 @@
                 <div id="allproduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Show product</h6>
-                        <a class="collapse-item" href="buttons.html">Show Book</a>
-                        <a class="collapse-item" href="cards.html">Show CD</a>
-                        <a class="collapse-item" href="cards.html">Show DVD</a>
-                        <a class="collapse-item" href="cards.html">Show Long Player Record</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Show Book</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Show CD</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Show DVD</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Show Long Player Record</a>
                     </div>
                 </div>
             </li>
@@ -371,10 +398,13 @@
 
     <!-- Page level plugins -->
     <script src="{{asset('Admin/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('Admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('Admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
     <script src="{{asset('Admin/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('Admin/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('Admin/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 

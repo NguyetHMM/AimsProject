@@ -24,7 +24,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <form action="#">
+                    <form action="{{route('cart')}}" method="POST">
+                        @csrf
                         <div class="table-content table-responsive">
                             <table>
                                 <thead>
@@ -39,10 +40,11 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $total = 0;
-                                        $countProduct = 0;
-                                        $totalOrder = 0;
+                                    $total = 0;
+                                    $countProduct = 0;
+                                    $totalOrder = 0;
                                     ?>
+                                   
                                     @foreach ($product_details as $key => $item)
                                         <?php
                                         $countProduct += 1;
@@ -50,17 +52,25 @@
                                         $totalOrder += $total;
                                         ?>
                                         <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="{{asset('images/product/4.png')}}"
-                                                        alt="product img" /></a></td>
+                                            <td class="product-thumbnail"><a href="#"><img
+                                                        src="{{ asset('images/product/4.png') }}" alt="product img" /></a>
+                                            </td>
                                             <td class="product-name"><a href="#">{{ $item->title }}</a></td>
-                                            <td class="product-price"><span
-                                                    class="amount" id="{{ 'product-price' . $key }}">{{ $item->price }}</span></td>
+                                            <td class="product-price"><span class="amount"
+                                                    id="{{ 'product-price' . $key }}">{{ $item->price }}</span></td>
                                             <td class="product-quantity"><input type="number" value="{{ $item->quantity }}"
-                                                    class="{{ 'number_select' . $key }}" min="0"/></td>
+                                                    class="{{ 'number_select' . $key }}" min="0" name="{{ 'number_select' . $key }}"/></td>
+                                            <input type="hidden" name="{{ 'hidden_product'.$key }}" value="{{$item->id}}">
                                             <td class="product-subtotal" id="{{ 'cost-product' . $key }}">{{ $total }}</td>
-                                            <td class="product-remove"><a href="#">X</a></td>
+                                            <td class="product-remove">
+                                                <a onclick="return confirm('Bạn có muốn xóa sản phẩm này không?')"
+                                                    href="{{ URL::to('/order/deleteFromCart/' . $item->productID) }}"
+                                                    class="active" ui-toggle-class="">X
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
+                                    <input type="hidden" name="product_count" value="{{$countProduct}}">
                                 </tbody>
                             </table>
                         </div>
@@ -78,13 +88,14 @@
                                             <tr class="order-total">
                                                 <th>Subtotal</th>
                                                 <td>
-                                                    <strong><span class="amount total-order">{{$totalOrder}}</span></strong>
+                                                    <strong><span
+                                                            class="amount total-order">{{ $totalOrder }}</span></strong>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="wc-proceed-to-checkout">
-                                        <a href="checkout.html">Proceed to Checkout</a>
+                                        <button type="submit">Proceed to Checkout</button>
                                     </div>
                                 </div>
                             </div>
@@ -102,10 +113,10 @@
                 for (var i = 0; i < product_number; i++) {
                     let price = parseInt($('.number_select' + i).val()) *
                         parseInt($('#product-price' + i).html());
-                    $('#cost-product' + i).html(numeral(price) .format ('0,0[.]00 $'));
+                    $('#cost-product' + i).html(numeral(price).format('0,0[.]00 $'));
                     totalOrder += price;
                 }
-                $('.total-order').html(numeral(totalOrder) .format ('0,0[.]00 $'));
+                $('.total-order').html(numeral(totalOrder).format('0,0[.]00 $'));
             });
         });
 
