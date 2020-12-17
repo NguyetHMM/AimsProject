@@ -26,13 +26,25 @@ Route::prefix('product')->group(function() {
     Route::get('/addbook','AdminController@add_book')->name('addbook');
     Route::post('/search','ProductController@search')->name('search');
     //Admin route
+    //Add route
     Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
     Route::post('/savebook-phy','AdminController@save_book_phy')->name('savebook-phy');
+    
+    Route::get('/addbook-on','AdminController@add_book_on')->name('addbook-on');
+    Route::post('/savebook-on','AdminController@save_book_on')->name('savebook-on');
+    
+    Route::get('/adddvd-phy','AdminController@add_dvd_phy')->name('adddvd-phy');
+    Route::post('/savedvd-phy','AdminController@save_dvd_phy')->name('savedvd-phy');
 
+    Route::get('/adddvd-on','AdminController@add_dvd_on')->name('adddvd-on');
+    Route::post('/savedvd-on','AdminController@save_dvd_on')->name('savedvd-on');
 
+    //Show route
     Route::get('/all-product','AdminController@all_product')->name('allproduct');
     Route::get('/all-book','AdminController@all_book')->name('allbook');
     Route::get('/all-dvd','AdminController@all_dvd')->name('alldvd');
     Route::get('/all-cd-lp','AdminController@all_cd_lp')->name('allcdlp');
+
+    Route::get('/test','AdminController@showa');
 
 });

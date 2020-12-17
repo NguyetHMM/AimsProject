@@ -1,11 +1,11 @@
 @extends('layout.admin')
 @section('admin-content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800 ml-5">Add Book - physical type</h1>
+    <h1 class="h3 mb-0 text-gray-800 ml-5">Add Book - online type</h1>
 </div>
 <div class="container" style="margin-left: 10%">
     <div class="col-10">
-        <form role="form" action="{{route('savebook-phy')}}" method="post" enctype="multipart/form-data" 
+        <form role="form" action="{{route('savebook-on')}}" method="post" enctype="multipart/form-data" 
         name="addbook" onsubmit="return(checkValue());">
             {{ csrf_field() }}
             <div class="form-group">
@@ -68,38 +68,8 @@
             </div>
 
             <div class="form-group">
-                <label">Barcode</label>
-                <input type="text" name="barcode" class="form-control" id="barcode" required>
-            </div>
-
-            <div class="form-group">
-                <label>Description</label>
-                <textarea class="form-control" name="description" id="description" rows="4" style="resize: none" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label">Quantity</label>
-                <input type="number" min="1" name="quantity" class="form-control" id="quantity" required>
-            </div>
-
-            <div class="form-group">
-                <label">Length</label>
-                <input type="number" step="0.01" min="0" name="length" class="form-control" id="length" required>
-            </div>
-
-            <div class="form-group">
-                <label">Width</label>
-                <input type="numbet" step="0.01" min="0" name="width" class="form-control" id="width" required>
-            </div>
-
-            <div class="form-group">
-                <label">Heigth</label>
-                <input type="number" step="0.01" min="0" name="heigth" class="form-control" id="heigth" required>
-            </div>
-
-            <div class="form-group">
-                <label">Weigh</label>
-                <input type="number" step="0.01" min="0" name="weigh" class="form-control" id="weigh" required>
+                <label>Content</label>
+                <textarea class="form-control" name="content" id="content" rows="4" style="resize: none" required></textarea>
             </div>
 
             <button type="submit" name="add_book_phy" id="add" class="btn btn-info">Add product</button>

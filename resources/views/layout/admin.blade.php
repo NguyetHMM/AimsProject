@@ -77,7 +77,7 @@
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="{{route('addbook-phy')}}">Physical type</a>
-                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Online type</a>
+                                <a class="dropdown-item" href="{{route('addbook-on')}}">Online type</a>
                             </div>
                         </div>
                         <div class="dropdown">
@@ -100,8 +100,8 @@
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Physical type</a>
-                                <a class="dropdown-item" href="{{route('addbook-phy')}}">Online type</a>
+                                <a class="dropdown-item" href="{{route('adddvd-phy')}}">Physical type</a>
+                                <a class="dropdown-item" href="{{route('adddvd-on')}}">Online type</a>
                             </div>
                         </div>
                         <div class="dropdown">
