@@ -18,16 +18,17 @@ class DVDSSeeder extends Seeder
         $languges = ["Vietnamese", "Enlish", "Korea language"];
         $kindDVDs = ["Blu-ray", "HD-DVD", "Full-HD-DVD"];
         $kindVideos = ["Odd movie", "Series movie", "TV series"];
-        for($index = 0; $index < 100; $index ++){
+        for($index = 0; $index < 25; $index ++){
             $rd = rand(0,2);
             $dvds[] = [
-                'productID' => $index+1,
+                'productID' => $index+26,
                 'director' => $faker->name(),
                 'dvdKind' => $kindDVDs[$rd],
                 'videoKind' => $kindVideos[$rd],
                 'studio' => $faker->name(),
                 'subtitles' => $languges[$rd],
-                'runtime' => rand(360, 5000)
+                'runtime' => rand(360, 5000),
+                'releaseDate' => now()
             ];
 
         }

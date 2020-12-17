@@ -16,7 +16,7 @@ class BookSeeder extends Seeder
         $faker =  Faker::create();
         $books = [];
         $bookcategory = ["comic", "photobook", "story"];
-        for($index = 0; $index < 100; $index ++){
+        for($index = 0; $index < 25; $index ++){
             $lgRandom = rand(0,2);
             $books[] = [
                 'productID' => $index +1,
@@ -24,7 +24,6 @@ class BookSeeder extends Seeder
                 'author' => $faker->name(),
                 'publisher' => $faker->name(),
                 'publicationDate' => now(),
-                'releaseDate' => now(),
                 'pages' => rand(50,1000),
                 'category' => $bookcategory[$lgRandom]
             ];

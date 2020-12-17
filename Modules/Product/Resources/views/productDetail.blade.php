@@ -39,7 +39,7 @@
                                     <span>
                                     <script>
                                         function number(n) {
-                                            return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + ' vnđ';
+                                            return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + ' $';
                                         }                               
                                         document.write(number({{$key->price}}));
                                     </script>
@@ -54,19 +54,17 @@
                                     <div class="product-quantity">
                                         
                                             <div class="product-quantity">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="01">
-                                                    <input type="hidden" name="product_id" value="{{$key->id}}">
-                                                </div>
+                                                <input class="cart-plus-minus-box" type="number" min="1" name="qtybutton" value="1">
+                                                <input type="hidden" name="product_id" value="{{$key->id}}">
                                             </div>
                                         
                                     </div>
                                 </div>  
                                 <div class="pro__dtl__btn">
                                     @if (Auth::user())
-                                        <button class="buy__now__btn" type="submit">Buy Now</button>
+                                        <button class="btn btn-primary btn-lg" type="submit">Buy Now</button>
                                     @else
-                                        <button class="buy__now__btn"><a href="{{Route('login')}}">Buy Now</a></button>
+                                        <button class="btn btn-primary btn-lg"><a href="{{Route('login')}}">Buy Now</a></button>
                                     @endif
                                 </div>
                             </form>
