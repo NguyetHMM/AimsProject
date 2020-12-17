@@ -17,11 +17,11 @@ class CDS_LPSSeeder extends Seeder
         $faker =  Faker::create();
         $cds_lps = [];
         $musicType = ["POPs", "Ballad", "RAP"];
-        for ($index =0; $index < 10; $index++){
+        for ($index =0; $index < 50; $index++){
             $lgRandom = rand(0,2);
             $cds_lps[] = [
                 'musicType' => $musicType[$lgRandom],
-                'productID' => $index+1,
+                'productID' => $index+51,
                 'artists' => $faker->name(),
                 'recordLabel' => $faker->name(),
                 'releaseDate' => $faker->date('Y-m-d', $unixTimestamp)

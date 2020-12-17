@@ -16,17 +16,49 @@ class ProductSeeder extends Seeder
         $faker =  Faker::create();
         $products = [];
         $languages = ["Vietnamese", "English", "Korea language"];
-        for($index = 0; $index < 100; $index ++){
-            $value = rand(200000,500000);
+        for($index = 0; $index < 25; $index ++){
+            $value = rand(1,500);
             $lgRandom = rand(0,2);
             $products[] = [
-                'productCategoryID' => rand(1,3),
+                'productCategoryID' => 3,
                 'productTypeID' => rand(1,2),
                 'title' => $faker->name(10),
                 'value' => $value,
                 'price' => rand($value*0.3, $value*1.5),
                 'language' => $languages[$lgRandom],
-                'promotionID' => rand(1,10)
+                
+            ];
+
+        }
+
+        for($index = 25; $index < 50; $index ++){
+            $value = rand(1,500);
+            $lgRandom = rand(0,2);
+            $products[] = [
+                'productCategoryID' => 2,
+                'productTypeID' => rand(1,2),
+                'title' => $faker->name(10),
+                'value' => $value,
+                'price' => rand($value*0.3, $value*1.5),
+                'language' => $languages[$lgRandom],
+                
+            ];
+
+        }
+        
+        $cd_lp = [1,4];
+        for($index = 50; $index < 100; $index ++){
+            $a = rand(0,1);
+            $value = rand(1,500);
+            $lgRandom = rand(0,2);
+            $products[] = [
+                'productCategoryID' => $cd_lp[$a],
+                'productTypeID' => rand(1,2),
+                'title' => $faker->name(10),
+                'value' => $value,
+                'price' => rand($value*0.3, $value*1.5),
+                'language' => $languages[$lgRandom],
+                
             ];
 
         }

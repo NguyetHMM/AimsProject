@@ -14,7 +14,7 @@ class ProductCategoriesSeeder extends Seeder
     {
         $categories = [];
         $categories[0] = [
-            'name' => "cds_lps"
+            'name' => "cds"
         ];
         $categories[1] = [
             'name' => "dvds"
@@ -22,7 +22,9 @@ class ProductCategoriesSeeder extends Seeder
         $categories[2] = [
             'name' => "books"
         ];
-        
+        $categories[3] = [
+            'name' => "lps"            
+        ];
         DB::table('product_categories')->insert($categories);
     }
 }
