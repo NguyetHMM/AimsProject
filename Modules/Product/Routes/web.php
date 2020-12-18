@@ -26,6 +26,7 @@ Route::prefix('product')->group(function() {
     Route::get('/addbook','AdminController@add_book')->name('addbook');
     Route::post('/search','ProductController@search')->name('search');
     //Admin route
+    
     //Add route
     Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
     Route::post('/savebook-phy','AdminController@save_book_phy')->name('savebook-phy');
@@ -44,7 +45,5 @@ Route::prefix('product')->group(function() {
     Route::get('/all-book','AdminController@all_book')->name('allbook');
     Route::get('/all-dvd','AdminController@all_dvd')->name('alldvd');
     Route::get('/all-cd-lp','AdminController@all_cd_lp')->name('allcdlp');
-
-    Route::get('/test','AdminController@showa');
 
 });
