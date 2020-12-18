@@ -30,12 +30,12 @@
                             </div>
                             <div class="portfolio-title portfolio-card-title text-center">
 
-                                <h3><a href="{{URL::to('product/product-detail/'.$product->id)}}">{{$product->title}}</a></h3>
+                                <h4><a href="{{URL::to('product/product-detail/'.$product->id)}}">{{$product->title}}</a></h4>
                                 <span>Price :</span>
                                     <span>
                                     <script>
                                         function number(n) {
-                                            return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + ' vnđ';
+                                            return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + ' $';
                                         }                               
                                         document.write(number({{$product->price}}));
                                     </script>

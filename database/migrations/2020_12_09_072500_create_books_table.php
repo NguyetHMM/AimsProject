@@ -20,7 +20,6 @@ class CreateBooksTable extends Migration
             $table->string('author');
             $table->string('publisher');
             $table->date('publicationDate');
-            $table->date('releaseDate');
             $table->integer('pages');
             $table->string('category');
             
