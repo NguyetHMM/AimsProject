@@ -343,17 +343,14 @@
                                     </div>
                                     <div class="single-checkout-box select-option mt--40">
                                         <select>
-                                            <option>Country*</option>
-                                            <option>Bangladesh</option>
-                                            <option>Bangladesh</option>
-                                            <option>Bangladesh</option>
-                                            <option>Bangladesh</option>
+                                            <option>City/Province*</option>
+                                            
                                         </select>
-                                        <input type="text" placeholder="Company Name*">
+                                        <input type="text" placeholder="District*">
                                     </div>
                                     <div class="single-checkout-box">
-                                        <input type="email" placeholder="State*">
-                                        <input type="text" placeholder="Zip Code*">
+                                        <input type="text" placeholder="Commune*">
+                                        <input type="text" placeholder="Specific address*">
                                     </div>
                                     <!--<div class="single-checkout-box checkbox">
                                         <input id="remind-me" type="checkbox">
@@ -407,10 +404,10 @@
                                     <li><a href="#"><i class="zmdi zmdi-caret-right-circle"></i>Lorem ipsum dolor sit amet</a></li>
                                 </ul>
                             </div>
-                            <div class="puick-contact-area mt--60">
+                            <!--<div class="puick-contact-area mt--60">
                                 <h2 class="section-title-3">Quick Contract</h2>
                                 <a href="phone:+8801722889963">+012 345 678 102 </a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
