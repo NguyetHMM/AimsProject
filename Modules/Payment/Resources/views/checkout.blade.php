@@ -1,6 +1,3 @@
-@extends('layout.main')
-
-<!--@section('content')-->
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -162,14 +159,7 @@
                             </div>                         
                         </div>
                         <!-- End MAinmenu Ares -->
-                        <div class="col-md-2 col-sm-4 col-xs-3">  
-                            <ul class="menu-extra">
-                                <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
-                                <li><a href="login-register.html"><span class="ti-user"></span></a></li>
-                                <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
-                                <li class="toggle__menu hidden-xs hidden-sm"><span class="ti-menu"></span></li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     <div class="mobile-menu-area"></div>
                 </div>
@@ -345,7 +335,7 @@
                                         <input type="text" placeholder="Last Name*">
                                     </div>
                                     <div class="single-checkout-box">
-                                        <input type="email" placeholder="Emil*">
+                                        <input type="email" placeholder="Email*">
                                         <input type="text" placeholder="Phone*">
                                     </div>
                                     <div class="single-checkout-box">
@@ -365,17 +355,17 @@
                                         <input type="email" placeholder="State*">
                                         <input type="text" placeholder="Zip Code*">
                                     </div>
-                                    <div class="single-checkout-box checkbox">
+                                    <!--<div class="single-checkout-box checkbox">
                                         <input id="remind-me" type="checkbox">
                                         <label for="remind-me"><span></span>Create a Account ?</label>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <!-- End Checkbox Area -->
                             <!-- Start Payment Box -->
                             <div class="payment-form">
                                 <h2 class="section-title-3">payment details</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur kgjhyt</p>
+                                <!--<p>Lorem ipsum dolor sit amet, consectetur kgjhyt</p>-->
                                 <div class="payment-form-inner">
                                     <div class="single-checkout-box">
                                         <input type="text" placeholder="Name on Card*">
@@ -396,14 +386,7 @@
                             <!-- End Payment Box -->
                             <!-- Start Payment Way -->
                             <div class="our-payment-sestem">
-                                <h2 class="section-title-3">We  Accept :</h2>
-                                <ul class="payment-menu">
-                                    <li><a href="#"><img src="images/payment/1.jpg" alt="payment-img"></a></li>
-                                    <li><a href="#"><img src="images/payment/2.jpg" alt="payment-img"></a></li>
-                                    <li><a href="#"><img src="images/payment/3.jpg" alt="payment-img"></a></li>
-                                    <li><a href="#"><img src="images/payment/4.jpg" alt="payment-img"></a></li>
-                                    <li><a href="#"><img src="images/payment/5.jpg" alt="payment-img"></a></li>
-                                </ul>
+                                
                                 <div class="checkout-btn">
                                     <a class="ts-btn btn-light btn-large hover-theme" href="#">CONFIRM & BUY NOW</a>
                                 </div>    
