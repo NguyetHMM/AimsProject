@@ -116,9 +116,10 @@ class AdminController extends Controller
     }
 
     public function add_dvd_phy(){ //done
-        $dvd_kind = DB::table('product_kinds')->where('productCategoryID',3)->get();
-        // dd($book_kind);
-        return view('product::admin.adddvd_phy')->with('kind',$dvd_kind)->with('cover',$book_cover);
+        $dvd_kind = DB::table('product_kinds')->where('productCategoryID',2)->get();
+        $physical = DB::table('physical_products')->select('barcode')->get();
+        // dd($physical);
+        return view('product::admin.adddvd_phy')->with('kind',$dvd_kind)->with('barcode', $physical);
     }
 
     public function save_dvd_phy(Request $request){ //done
@@ -127,16 +128,16 @@ class AdminController extends Controller
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
-        $product['productCategoryID'] = 3;
+        $product['productCategoryID'] =2;
         $product['productTypeID'] = 2;
-        // DB::table('products')->insert($product);
+        DB::table('products')->insert($product);
 
         $product_id = DB::table('products')->select('id')->get()->last();
 
         $products_product_kinds = array();
         $products_product_kinds['productID'] = $product_id->id;
         $products_product_kinds['productKindID'] = $request->kind;
-        // DB::table('products_product_kinds')->insert($products_product_kinds);
+        DB::table('products_product_kinds')->insert($products_product_kinds);
 
         $physical_products = array();
         $physical_products['productID'] = $product_id->id;
@@ -148,22 +149,58 @@ class AdminController extends Controller
         $physical_products['heigth'] = $request->heigth;
         $physical_products['weigh'] = $request->weigh;
         $physical_products['inputDay'] = date("Y-m-d");
-        // DB::table('physical_products')->insert($physical_products);
+        DB::table('physical_products')->insert($physical_products);
 
-        $books = array();
-        $books['productID'] = $product_id->id;
-        $books['coverID'] = $request->cover_type;
-        $books['author'] = $request->author;
-        $books['publisher'] = $request->publisher;
-        $books['publicationDate'] = $request->public_date;
-        $books['releaseDate'] = $request->public_date;
-        $books['pages'] = $request->pages;
-        $books['category'] = 0;
-        // DB::table('books')->insert($books);
+        $dvds = array();
+        $dvds['productID'] = $product_id->id;
+        $dvds['director'] = $request->director;
+        $dvds['dvdKind'] = $request->kind;
+        $dvds['videoKind'] = $request->video_kind;
+        $dvds['studio'] = $request->studio;
+        $dvds['subtitles'] = $request->sub_title;
+        $dvds['runtime'] = $request->runtime;
+        DB::table('dvds')->insert($dvds);
 
-        dd($request);
+        // dd($physical_products);
         Session::put('message','Add product successfully!');
-        return \redirect()->action([AdminController::class, 'all_dvd']);;
+        return \redirect()->action([AdminController::class, 'all_dvd']);
+    }
+
+    public function save_dvd_on(Request $request){
+        $product = array();
+        $product['title'] = $request->title;
+        $product['value'] = $request->value;
+        $product['price'] = $request->price;
+        $product['language'] = $request->language;
+        $product['productCategoryID'] =2;
+        $product['productTypeID'] = 2;
+        DB::table('products')->insert($product);
+
+        $product_id = DB::table('products')->select('id')->get()->last();
+
+        $products_product_kinds = array();
+        $products_product_kinds['productID'] = $product_id->id;
+        $products_product_kinds['productKindID'] = $request->kind;
+        DB::table('products_product_kinds')->insert($products_product_kinds);
+
+        $online_products = array();
+        $online_products['productID'] = $product_id->id;
+        $online_products['content'] = $request->content;
+        DB::table('online_products')->insert($online_products);
+
+        $dvds = array();
+        $dvds['productID'] = $product_id->id;
+        $dvds['director'] = $request->director;
+        $dvds['dvdKind'] = $request->kind;
+        $dvds['videoKind'] = $request->video_kind;
+        $dvds['studio'] = $request->studio;
+        $dvds['subtitles'] = $request->sub_title;
+        $dvds['runtime'] = $request->runtime;
+        DB::table('dvds')->insert($dvds);
+
+        // dd($physical_products);
+        Session::put('message','Add product successfully!');
+        return \redirect()->action([AdminController::class, 'all_dvd']);
     }
 
     public function all_product(){

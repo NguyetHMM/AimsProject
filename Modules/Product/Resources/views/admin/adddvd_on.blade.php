@@ -1,11 +1,11 @@
 @extends('layout.admin')
 @section('admin-content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800 ml-5">Add Book - online type</h1>
+    <h1 class="h3 mb-0 text-gray-800 ml-5">Add DVD - online type</h1>
 </div>
 <div class="container" style="margin-left: 10%">
     <div class="col-10">
-        <form role="form" action="{{route('savebook-on')}}" method="post" enctype="multipart/form-data" 
+        <form role="form" action="{{route('savedvd-on')}}" method="post" enctype="multipart/form-data" 
         name="add" onsubmit="return(checkForm());">
             {{ csrf_field() }}
             <div class="form-group">
@@ -14,42 +14,38 @@
             </div>
 
             <div class="form-group">
-                <label">Author</label>
-                <input type="text" name="author" class="form-control" id="author" required>
+                <label">Director</label>
+                <input type="text" name="director" class="form-control" id="director" required>
             </div>
 
             <div class="form-group">
-                <label">Cover type</label>
-                <select class="form-control" name="cover_type" id="cover_type">
-                    @foreach ($cover as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
-                    @endforeach
-                </select>
+                <label">Video kind</label>
+                <input type="text" name="video_kind" class="form-control" id="video_kind" required>
             </div>
 
             <div class="form-group">
-                <label">Publisher</label>
-                <input type="text" name="publisher" class="form-control" id="publisher" required>
+                <label">Studio</label>
+                <input type="text" name="studio" class="form-control" id="studio" required>
             </div>
 
             <div class="form-group">
-                <label">Publication date</label>
-                <input type="date" name="public_date" class="form-control" id="public_date" required>
+                <label">Sub title</label>
+                <input type="text" name="sub_title" class="form-control" id="sub_title" required>
             </div>
 
             <div class="form-group">
-                <label">Pages</label>
-                <input type="number" name="pages" min="1" class="form-control" id="pages" required>
+                <label">Run time</label>
+                <input type="number" name="run_time" min="1" class="form-control" id="run_time" required>
             </div>
 
             <div class="form-group">
                 <label">Value</label>
-                <input type="number" name="value" min="1" class="form-control" id="value" required>
+                <input type="number" name="value" min="0" step="0.01" class="form-control" id="value" required>
             </div>
 
             <div class="form-group">
                 <label">Price</label>
-                <input type="int" name="price" min="1" class="form-control" id="price" required
+                <input type="number" name="price" min="0" step="0.01" class="form-control" id="price" required
                 onfocus="setPrice(this.id)" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
 
@@ -59,7 +55,7 @@
             </div>
             
             <div class="form-group">
-                <label">Book kind</label>
+                <label">DVD kind</label>
                 <select class="form-control" name="kind" id="kind">
                     @foreach ($kind as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
@@ -72,7 +68,7 @@
                 <textarea class="form-control" name="content" id="content" rows="4" style="resize: none" required></textarea>
             </div>
 
-            <button type="submit" name="add_book_phy" id="add" class="btn btn-info">Add product</button>
+            <button type="submit" name="adddvd_phy" id="adddvd_phy" class="btn btn-info">Add product</button>
         </form>
     </div>
 </div>
@@ -96,7 +92,9 @@
         }
         return true;
     }
+
     function setPrice(x) {
         document.getElementById(x).setCustomValidity('Please enter price between 30% and 150% of value');
     }
+
 </script>

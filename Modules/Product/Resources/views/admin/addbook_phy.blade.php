@@ -6,7 +6,7 @@
 <div class="container" style="margin-left: 10%">
     <div class="col-10">
         <form role="form" action="{{route('savebook-phy')}}" method="post" enctype="multipart/form-data" 
-        name="addbook" onsubmit="return(checkValue());">
+        name="add" onsubmit="return(checkForm());">
             {{ csrf_field() }}
             <div class="form-group">
                 <label">Title</label>
@@ -50,7 +50,7 @@
             <div class="form-group">
                 <label">Price</label>
                 <input type="int" name="price" min="1" class="form-control" id="price" required
-                onfocus="myFunction(this.id)" onchange="try{setCustomValidity('')}catch(e){}">
+                onfocus="setPrice(this.id)" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
 
             <div class="form-group">
@@ -110,16 +110,39 @@
 @endsection
 
 <script>
+    function checkForm(){
+        var isFormValid = true;
+        isFormValid &= checkValue();
+        isFormValid &= checkBarcode();
+        return isFormValid? true:false
+    }
+
     function checkValue(){
-        if( document.addbook.price.value < document.addbook.value.value*0.3 || 
-            document.addbook.price.value > document.addbook.value.value*1.5 ) {
+        if( document.add.price.value < document.add.value.value*0.3 || 
+            document.add.price.value > document.add.value.value*1.5 ) {
             
-            document.addbook.price.focus();
+            document.add.price.focus();
             return false;
         }
         return true;
     }
-    function myFunction(x) {
+
+    function checkBarcode(){
+        var a = document.add.barCode;
+        var check = true
+        for(var i = 0; i<a.length; i++ ){
+            if(a[i]. value == document.add.barcode.value){
+                document.add.barcode.focus();
+                check = false;
+            }
+        }
+        return check;
+    }
+
+    function setPrice(x) {
         document.getElementById(x).setCustomValidity('Please enter price between 30% and 150% of value');
+    }
+    function setBarcode(x) {
+        document.getElementById(x).setCustomValidity('Barcode is identical, please enter a new barcode.');
     }
 </script>

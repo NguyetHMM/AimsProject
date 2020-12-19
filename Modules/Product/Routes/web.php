@@ -40,6 +40,11 @@ Route::prefix('product')->group(function() {
     Route::get('/adddvd-on','AdminController@add_dvd_on')->name('adddvd-on');
     Route::post('/savedvd-on','AdminController@save_dvd_on')->name('savedvd-on');
 
+    Route::get('/addcd-phy','AdminController@add_dvd_on')->name('addcd-phy');
+    Route::get('/addcd-on','AdminController@add_dvd_on')->name('addcd-on');
+    Route::get('/addlp-phy','AdminController@add_dvd_on')->name('addlp-phy');
+    Route::get('/addlp-on','AdminController@add_dvd_on')->name('addlp-on');
+
     //Show route
     Route::get('/all-product','AdminController@all_product')->name('allproduct');
     Route::get('/all-book','AdminController@all_book')->name('allbook');

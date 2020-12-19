@@ -19,9 +19,8 @@ class Product_KindSeeder extends Seeder
         for($index = 0; $index < 4; $index ++){
             $product_kinds[] = [
                 'productCategoryID' => 1,
-                'name' => rand($kind[0],$kind[4]),
+                'name' => $kinds[$index],
             ];
-
         }
         $product_kinds[4] = [
             'productCategoryID' => 2,
@@ -38,7 +37,7 @@ class Product_KindSeeder extends Seeder
         for($index = 7; $index < 10; $index ++){
             $product_kinds[] = [
                 'productCategoryID' => 3,
-                'name' => rand($kind[0],$kind[4]),
+                'name' => $kinds[$index-7],
             ];
         }
         // dd($product_kinds);
