@@ -352,33 +352,51 @@
                                         <input type="text" placeholder="Commune*">
                                         <input type="text" placeholder="Specific address*">
                                     </div>
-                                    <!--<div class="single-checkout-box checkbox">
-                                        <input id="remind-me" type="checkbox">
-                                        <label for="remind-me"><span></span>Create a Account ?</label>
-                                    </div>-->
+                            
                                 </div>
                             </div>
                             <!-- End Checkbox Area -->
                             <!-- Start Payment Box -->
                             <div class="payment-form">
                                 <h2 class="section-title-3">payment details</h2>
-                                <!--<p>Lorem ipsum dolor sit amet, consectetur kgjhyt</p>-->
-                                <div class="payment-form-inner">
-                                    <div class="single-checkout-box">
-                                        <input type="text" placeholder="Name on Card*">
-                                        <input type="text" placeholder="Card Number*">
-                                    </div>
-                                    <div class="single-checkout-box select-option">
-                                        <select>
-                                            <option>Date*</option>
-                                            <option>Date</option>
-                                            <option>Date</option>
-                                            <option>Date</option>
-                                            <option>Date</option>
-                                        </select>
-                                        <input type="text" placeholder="Security Code*">
-                                    </div>
-                                </div>
+                                
+                                <div class="table-responsive cart_info">
+				                    <table class="table table-condensed">
+				                    	<thead>
+				                    		<tr class="cart_menu">
+				                    			<td class="image">Hình ảnh</td>
+				                    			<td class="description">Tên sản phẩm</td>
+				                    			<td class="price">Giá sản phẩm</td>
+				                    			<td class="quantity">Số lượng</td>
+				                    			<td class="total">Giá tiền</td>
+				                    			<td></td>
+				                    		</tr>
+				                    	</thead>
+				                    	<tbody>					
+				                    			<td colspan="4">&nbsp;</td>
+				                    			<td colspan="2">
+				                    				<table class="table table-condensed total-result">
+				                    					<tr>
+				                    						<td>Tổng</td>
+				                    						<td>1000</td>
+				                    					</tr>
+				                    					
+				                    					<tr class="shipping-cost">
+				                    						<td>Phí vận chuyển</td>
+				                    						
+				                    						<td>1000</td>										
+				                    					</tr>
+				                    					<tr>
+				                    						<td>Thành tiền</td>
+				                    						<td><span>2000</span></td>
+				                    						
+				                    					</tr>
+				                    				</table>
+				                    			</td>
+				                    		</tr>
+				                    	</tbody>
+				                    </table>
+			                    </div>
                             </div>
                             <!-- End Payment Box -->
                             <!-- Start Payment Way -->
@@ -493,6 +511,7 @@
                             </div>
                         </div>
                         <!-- Start Single Footer Widget -->
+
                         <div class="col-md-3 col-lg-3 col-lg-offset-1 col-sm-6 smt-30 xmt-30">
                             <div class="ft__widget">
                                 <h2 class="ft__title">Newsletter</h2>
