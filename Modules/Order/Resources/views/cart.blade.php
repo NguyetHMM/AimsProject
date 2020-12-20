@@ -95,7 +95,7 @@
                                         </tbody>
                                     </table>
                                     <div class="wc-proceed-to-checkout">
-                                        <button type="submit">Proceed to Checkout</button>
+                                       <a> <button type="submit" style="background-color: transparent; border:transparent; height: 40px; ">PROCESS TO CHECKOUT</button></a>
                                     </div>
                                 </div>
                             </div>
