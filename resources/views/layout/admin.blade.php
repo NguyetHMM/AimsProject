@@ -129,10 +129,11 @@
                 <div id="allproduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Show product</h6>
+                        <a class="collapse-item" href="{{route('allproduct')}}">Show All</a>
                         <a class="collapse-item" href="{{route('allbook')}}">Show Book</a>
-                        <a class="collapse-item" href="{{route('allbook')}}">Show CD</a>
-                        <a class="collapse-item" href="{{route('allbook')}}">Show DVD</a>
-                        <a class="collapse-item" href="{{route('allbook')}}">Show Long Player Record</a>
+                        <a class="collapse-item" href="{{route('allcdlp')}}">Show CD-LP</a>
+                        <a class="collapse-item" href="{{route('alldvd')}}">Show DVD</a>
+                        {{-- <a class="collapse-item" href="{{route('allbook')}}">Show Long Player Record</a> --}}
                     </div>
                 </div>
             </li>

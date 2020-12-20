@@ -1,6 +1,3 @@
-@extends('layout.main')
-
-<!--@section('content')-->
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -162,14 +159,7 @@
                             </div>                         
                         </div>
                         <!-- End MAinmenu Ares -->
-                        <div class="col-md-2 col-sm-4 col-xs-3">  
-                            <ul class="menu-extra">
-                                <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
-                                <li><a href="login-register.html"><span class="ti-user"></span></a></li>
-                                <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
-                                <li class="toggle__menu hidden-xs hidden-sm"><span class="ti-menu"></span></li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     <div class="mobile-menu-area"></div>
                 </div>
@@ -345,7 +335,7 @@
                                         <input type="text" placeholder="Last Name*">
                                     </div>
                                     <div class="single-checkout-box">
-                                        <input type="email" placeholder="Emil*">
+                                        <input type="email" placeholder="Email*">
                                         <input type="text" placeholder="Phone*">
                                     </div>
                                     <div class="single-checkout-box">
@@ -353,57 +343,65 @@
                                     </div>
                                     <div class="single-checkout-box select-option mt--40">
                                         <select>
-                                            <option>Country*</option>
-                                            <option>Bangladesh</option>
-                                            <option>Bangladesh</option>
-                                            <option>Bangladesh</option>
-                                            <option>Bangladesh</option>
+                                            <option>City/Province*</option>
+                                            
                                         </select>
-                                        <input type="text" placeholder="Company Name*">
+                                        <input type="text" placeholder="District*">
                                     </div>
                                     <div class="single-checkout-box">
-                                        <input type="email" placeholder="State*">
-                                        <input type="text" placeholder="Zip Code*">
+                                        <input type="text" placeholder="Commune*">
+                                        <input type="text" placeholder="Specific address*">
                                     </div>
-                                    <div class="single-checkout-box checkbox">
-                                        <input id="remind-me" type="checkbox">
-                                        <label for="remind-me"><span></span>Create a Account ?</label>
-                                    </div>
+                            
                                 </div>
                             </div>
                             <!-- End Checkbox Area -->
                             <!-- Start Payment Box -->
                             <div class="payment-form">
                                 <h2 class="section-title-3">payment details</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur kgjhyt</p>
-                                <div class="payment-form-inner">
-                                    <div class="single-checkout-box">
-                                        <input type="text" placeholder="Name on Card*">
-                                        <input type="text" placeholder="Card Number*">
-                                    </div>
-                                    <div class="single-checkout-box select-option">
-                                        <select>
-                                            <option>Date*</option>
-                                            <option>Date</option>
-                                            <option>Date</option>
-                                            <option>Date</option>
-                                            <option>Date</option>
-                                        </select>
-                                        <input type="text" placeholder="Security Code*">
-                                    </div>
-                                </div>
+                                
+                                <div class="table-responsive cart_info">
+				                    <table class="table table-condensed">
+				                    	<thead>
+				                    		<tr class="cart_menu">
+				                    			<td class="image">Hình ảnh</td>
+				                    			<td class="description">Tên sản phẩm</td>
+				                    			<td class="price">Giá sản phẩm</td>
+				                    			<td class="quantity">Số lượng</td>
+				                    			<td class="total">Giá tiền</td>
+				                    			<td></td>
+				                    		</tr>
+				                    	</thead>
+				                    	<tbody>					
+				                    			<td colspan="4">&nbsp;</td>
+				                    			<td colspan="2">
+				                    				<table class="table table-condensed total-result">
+				                    					<tr>
+				                    						<td>Tổng</td>
+				                    						<td>1000</td>
+				                    					</tr>
+				                    					
+				                    					<tr class="shipping-cost">
+				                    						<td>Phí vận chuyển</td>
+				                    						
+				                    						<td>1000</td>										
+				                    					</tr>
+				                    					<tr>
+				                    						<td>Thành tiền</td>
+				                    						<td><span>2000</span></td>
+				                    						
+				                    					</tr>
+				                    				</table>
+				                    			</td>
+				                    		</tr>
+				                    	</tbody>
+				                    </table>
+			                    </div>
                             </div>
                             <!-- End Payment Box -->
                             <!-- Start Payment Way -->
                             <div class="our-payment-sestem">
-                                <h2 class="section-title-3">We  Accept :</h2>
-                                <ul class="payment-menu">
-                                    <li><a href="#"><img src="images/payment/1.jpg" alt="payment-img"></a></li>
-                                    <li><a href="#"><img src="images/payment/2.jpg" alt="payment-img"></a></li>
-                                    <li><a href="#"><img src="images/payment/3.jpg" alt="payment-img"></a></li>
-                                    <li><a href="#"><img src="images/payment/4.jpg" alt="payment-img"></a></li>
-                                    <li><a href="#"><img src="images/payment/5.jpg" alt="payment-img"></a></li>
-                                </ul>
+                                
                                 <div class="checkout-btn">
                                     <a class="ts-btn btn-light btn-large hover-theme" href="#">CONFIRM & BUY NOW</a>
                                 </div>    
@@ -424,10 +422,10 @@
                                     <li><a href="#"><i class="zmdi zmdi-caret-right-circle"></i>Lorem ipsum dolor sit amet</a></li>
                                 </ul>
                             </div>
-                            <div class="puick-contact-area mt--60">
+                            <!--<div class="puick-contact-area mt--60">
                                 <h2 class="section-title-3">Quick Contract</h2>
                                 <a href="phone:+8801722889963">+012 345 678 102 </a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -513,6 +511,7 @@
                             </div>
                         </div>
                         <!-- Start Single Footer Widget -->
+
                         <div class="col-md-3 col-lg-3 col-lg-offset-1 col-sm-6 smt-30 xmt-30">
                             <div class="ft__widget">
                                 <h2 class="ft__title">Newsletter</h2>

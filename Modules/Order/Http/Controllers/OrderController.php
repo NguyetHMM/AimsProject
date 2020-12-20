@@ -26,6 +26,7 @@ class OrderController extends Controller
         ->join('cart_details','products.id','=','cart_details.productID')
         ->where('userID', Auth::user()->id)
         ->get();
+        // dd($product_details);
         return view('order::cart', compact('product_details'));
     }
     public function storeCart(Request $request)
