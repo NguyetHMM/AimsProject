@@ -13,6 +13,7 @@
                 <input type="text" name="title" class="form-control" id="title" required>
             </div>
 
+            {{-- Book Table --}}
             <div class="form-group">
                 <label">Author</label>
                 <input type="text" name="author" class="form-control" id="author" required>
@@ -42,6 +43,7 @@
                 <input type="number" name="pages" min="1" class="form-control" id="pages" required>
             </div>
 
+            {{-- Product Table --}}
             <div class="form-group">
                 <label">Value</label>
                 <input type="number" name="value" min="1" class="form-control" id="value" required>
@@ -66,7 +68,8 @@
                     @endforeach
                 </select>
             </div>
-
+            
+            {{-- Online product table --}}
             <div class="form-group">
                 <label>Content</label>
                 <textarea class="form-control" name="content" id="content" rows="4" style="resize: none" required></textarea>
@@ -83,7 +86,6 @@
     function checkForm(){
         var isFormValid = true;
         isFormValid &= checkValue();
-        isFormValid &= checkBarcode();
         return isFormValid? true:false
     }
 

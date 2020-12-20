@@ -13,6 +13,7 @@
                 <input type="text" name="title" class="form-control" id="title" required>
             </div>
 
+            {{-- DVD Table --}}
             <div class="form-group">
                 <label">Director</label>
                 <input type="text" name="director" class="form-control" id="director" required>
@@ -38,6 +39,7 @@
                 <input type="number" name="run_time" min="1" class="form-control" id="run_time" required>
             </div>
 
+            {{-- Product Table --}}
             <div class="form-group">
                 <label">Value</label>
                 <input type="number" name="value" min="0" step="0.01" class="form-control" id="value" required>
@@ -63,6 +65,7 @@
                 </select>
             </div>
 
+            {{-- Online Product Table --}}
             <div class="form-group">
                 <label>Content</label>
                 <textarea class="form-control" name="content" id="content" rows="4" style="resize: none" required></textarea>
@@ -79,7 +82,6 @@
     function checkForm(){
         var isFormValid = true;
         isFormValid &= checkValue();
-        isFormValid &= checkBarcode();
         return isFormValid? true:false
     }
 

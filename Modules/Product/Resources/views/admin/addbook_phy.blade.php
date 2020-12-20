@@ -13,6 +13,7 @@
                 <input type="text" name="title" class="form-control" id="title" required>
             </div>
 
+            {{-- Book Table --}}
             <div class="form-group">
                 <label">Author</label>
                 <input type="text" name="author" class="form-control" id="author" required>
@@ -42,6 +43,7 @@
                 <input type="number" name="pages" min="1" class="form-control" id="pages" required>
             </div>
 
+            {{-- Product Table --}}
             <div class="form-group">
                 <label">Value</label>
                 <input type="number" name="value" min="1" class="form-control" id="value" required>
@@ -67,8 +69,12 @@
                 </select>
             </div>
 
+            {{-- Physical Product Table --}}
             <div class="form-group">
                 <label">Barcode</label>
+                @foreach ($barcode as $key => $bar)
+                    <input type="hidden" name="barCode" class="form-control" id="barCode" value="{{$bar->barcode}}">
+                @endforeach
                 <input type="text" name="barcode" class="form-control" id="barcode" required>
             </div>
 

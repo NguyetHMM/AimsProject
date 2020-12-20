@@ -167,12 +167,12 @@ class AdminController extends Controller
         return \redirect()->action([AdminController::class, 'all_dvd']);
     }
 
-    public function add_dvd_on(){
+    public function add_dvd_on(){ //done
         $dvd_kind = DB::table('product_kinds')->where('productCategoryID',2)->get();
-        return view('product::admin.adddvd_phy')->with('kind',$dvd_kind);
+        return view('product::admin.adddvd_on')->with('kind',$dvd_kind);
     }
 
-    public function save_dvd_on(Request $request){
+    public function save_dvd_on(Request $request){ //done
         $product = array();
         $product['title'] = $request->title;
         $product['value'] = $request->value;
@@ -207,6 +207,21 @@ class AdminController extends Controller
         // dd($physical_products);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_dvd']);
+    }
+
+    public function add_cd_phy(){
+        $cd_kind = DB::table('product_kinds')->where('productCategoryID',1)->get();
+        $physical = DB::table('physical_products')->select('barcode')->get();
+        // dd($physical);
+        return view('product::admin.addcd_phy')->with('kind',$cd_kind)->with('barcode', $physical);
+    }
+
+    public function save_cd_phy(Request $request){
+        return $request;
+    }
+
+    public function add_cd_on(){
+        return 0;
     }
 
     public function all_product(){

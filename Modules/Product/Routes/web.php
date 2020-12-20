@@ -40,10 +40,18 @@ Route::prefix('product')->group(function() {
     Route::get('/adddvd-on','AdminController@add_dvd_on')->name('adddvd-on');
     Route::post('/savedvd-on','AdminController@save_dvd_on')->name('savedvd-on');
 
-    Route::get('/addcd-phy','AdminController@add_dvd_on')->name('addcd-phy');
-    Route::get('/addcd-on','AdminController@add_dvd_on')->name('addcd-on');
-    Route::get('/addlp-phy','AdminController@add_dvd_on')->name('addlp-phy');
-    Route::get('/addlp-on','AdminController@add_dvd_on')->name('addlp-on');
+    Route::get('/addcd-phy','AdminController@add_cd_phy')->name('addcd-phy');
+    Route::post('/savecd-phy','AdminController@save_cd_phy')->name('savecd-phy');
+
+    Route::get('/addcd-on','AdminController@add_cd_on')->name('addcd-on');
+    // Route::post('/savedvd-on','AdminController@save_dvd_on')->name('savedvd-on');
+
+
+    Route::get('/addlp-phy','AdminController@add_lp_on')->name('addlp-phy');
+    // Route::post('/savedvd-on','AdminController@save_dvd_on')->name('savedvd-on');
+
+    Route::get('/addlp-on','AdminController@add_lp_on')->name('addlp-on');
+    // Route::post('/savedvd-on','AdminController@save_dvd_on')->name('savedvd-on');
 
     //Show route
     Route::get('/all-product','AdminController@all_product')->name('allproduct');
