@@ -64,9 +64,9 @@
                                 </div>  
                                 <div class="pro__dtl__btn">
                                     @if (Auth::user())
-                                        <button class="buy__now__btn" type="submit">Buy Now</button>
+                                        <button class="buy__now__btn" type="submit" style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px ">BUY NOW</button>
                                     @else
-                                        <button class="buy__now__btn"><a href="{{Route('login')}}">Buy Now</a></button>
+                                        <button class="buy__now__btn"><a href="{{Route('login')}}" style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px">BUY NOW</a></button>
                                     @endif
                                 </div>
                             </form>

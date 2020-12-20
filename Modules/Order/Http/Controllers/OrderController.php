@@ -45,7 +45,7 @@ class OrderController extends Controller
     public function addToCart(Request $request){
 
         $cart_detail =[
-            'userID' => 1,
+            'userID' => Auth::user()->id,
             'productID' =>($request->product_id),
             'quantity' =>$request->qtybutton
         ];
