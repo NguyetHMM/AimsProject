@@ -77,7 +77,7 @@
                         <div class="row">
                             <div class="col-md-8 col-sm-7 col-xs-12">
                                 <div class="buttons-cart">
-                                    <a href="#">Continue Shopping</a>
+                                    <a href="{{Route('welcome')}}">Continue Shopping</a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-5 col-xs-12">

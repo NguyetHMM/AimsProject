@@ -30,7 +30,29 @@
                             {{-- @yield('content') --}}
                             <div class="pro__details">
                                 <h3 class="title__6">Detail</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod temf incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostr exercitation ullamco laboris nisi ut aliquip ex ea. </p>
+                                @if ($key->productCategoryID == 3)
+                                    <ul style="font-size: 17px;">
+                                        <li>Language: {{$key->language}}, Author: {{$key->author}}, Publisher: {{$key->publisher}}, {{$key->pages}} pages. Description: {{$key->description}} </li>
+                                        <li>Width: {{$key->width}} (m)</li>
+                                        <li>Heigth: {{$key->heigth}} (m)</li>
+                                        <li>Weight: {{$key->weigh}} (kg)</li>
+                                    </ul>
+                                @elseif ($key->productCategoryID == 2)
+                                    <ul style="font-size: 17px;">
+                                        <li>Language: {{$key->language}}, Director: {{$key->director}}, Video kind: {{$key->videoKind}}, Studio: {{$key->studio}}, Subtitles: {{$key->subtitles}}, Time: {{$key->runtime}} (s), Description: {{$key->description}} </li>
+                                        <li>Width: {{$key->width}} (m)</li>
+                                        <li>Heigth: {{$key->heigth}} (m)</li>
+                                        <li>Weight: {{$key->weigh}} (kg)</li>
+                                    </ul>
+                                @else
+                                    <ul style="font-size: 17px;">
+                                        <li>Language: {{$key->language}}, Artists: {{$key->artists}}, Record Label: {{$key->recordLabel}}, Music Type: {{$key->musicType}}, Description: {{$key->description}} </li>
+                                        <li>Width: {{$key->width}} (m)</li>
+                                        <li>Heigth: {{$key->heigth}} (m)</li>
+                                        <li>Weight: {{$key->weigh}} (kg)</li>
+                                    </ul>
+                                @endif
+                                
                             </div>
                             <ul class="pro__dtl__prize">
                                 {{-- <li class="old__prize">$15.21</li> --}}
