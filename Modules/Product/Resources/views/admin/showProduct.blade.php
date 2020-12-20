@@ -5,7 +5,13 @@
 {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
     For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
         DataTables documentation</a>.</p> --}}
-
+    <?php
+        $message = Session::get('message');
+        if($message){
+            echo '<span class="text-alert" style="color:green; border: 1px solid green">'.$message.'</span>';
+            Session::put('message',null);
+        }
+    ?>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     {{-- <div class="card-header py-3">
@@ -20,10 +26,10 @@
                         <th>Title</th>
                         <th>Product Category</th>
                         <th>Product Type</th>
-                        <th>Value</th>
-                        <th>Price</th>
+                        <th>Value (vnđ)</th>
+                        <th>Price (vnđ)</th>
                         <th>Language</th>
-                        <th>Promotion</th>
+                        <th>Promotion (%)</th>
                         <th>Edit</th>
                     </tr>
                 </thead>
@@ -33,10 +39,10 @@
                         <th>Title</th>
                         <th>Product Category</th>
                         <th>Product Type</th>
-                        <th>Value</th>
-                        <th>Price</th>
+                        <th>Value (vnđ)</th>
+                        <th>Price (vnđ)</th>
                         <th>Language</th>
-                        <th>Promotion</th>
+                        <th>Promotion (%)</th>
                         <th>Edit</th>
                     </tr>
                 </tfoot>
@@ -50,7 +56,7 @@
                         <td>{{$key->value}}</td>
                         <td>{{$key->price}}</td>
                         <td>{{$key->language}}</td>
-                        <td>{{$key->percent}}%</td>
+                        <td>{{$key->percent}}</td>
                         <td>Sửa/xóa</td>
                     </tr>
                     @endforeach

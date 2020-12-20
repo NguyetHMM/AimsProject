@@ -1,11 +1,11 @@
 @extends('layout.admin')
 @section('admin-content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800 ml-5">Add Book - physical type</h1>
+    <h1 class="h3 mb-0 text-gray-800 ml-5">Add CD - physical type</h1>
 </div>
 <div class="container" style="margin-left: 10%">
     <div class="col-10">
-        <form role="form" action="{{route('savebook-phy')}}" method="post" enctype="multipart/form-data" 
+        <form role="form" action="{{route('savecd-phy')}}" method="post" enctype="multipart/form-data" 
         name="add" onsubmit="return(checkForm());">
             {{ csrf_field() }}
             <div class="form-group">
@@ -13,45 +13,41 @@
                 <input type="text" name="title" class="form-control" id="title" required>
             </div>
 
-            {{-- Book Table --}}
+            {{-- CD Table --}}
             <div class="form-group">
-                <label">Author</label>
-                <input type="text" name="author" class="form-control" id="author" required>
+                <label">Artists</label>
+                <input type="text" name="artists" class="form-control" id="artists" required>
             </div>
 
             <div class="form-group">
-                <label">Cover type</label>
-                <select class="form-control" name="cover_type" id="cover_type">
-                    @foreach ($cover as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
-                    @endforeach
-                </select>
+                <label">Record Label</label>
+                <input type="text" name="record_label" class="form-control" id="record_label" required>
             </div>
 
             <div class="form-group">
-                <label">Publisher</label>
-                <input type="text" name="publisher" class="form-control" id="publisher" required>
+                <label">Music Type</label>
+                <input type="text" name="music_type" class="form-control" id="music_type" required>
             </div>
 
             <div class="form-group">
-                <label">Publication date</label>
-                <input type="date" name="public_date" class="form-control" id="public_date" required>
+                <label">Release Date</label>
+                <input type="date" name="release_date" class="form-control" id="release_date" required>
             </div>
 
-            <div class="form-group">
-                <label">Pages</label>
-                <input type="number" name="pages" min="1" class="form-control" id="pages" required>
-            </div>
+            {{-- <div class="form-group">
+                <label">Run time</label>
+                <input type="number" name="run_time" min="1" class="form-control" id="run_time" required>
+            </div> --}}
 
             {{-- Product Table --}}
             <div class="form-group">
                 <label">Value</label>
-                <input type="number" name="value" min="1" class="form-control" id="value" required>
+                <input type="number" name="value" min="0" step="0.01" class="form-control" id="value" required>
             </div>
 
             <div class="form-group">
                 <label">Price</label>
-                <input type="int" name="price" min="1" class="form-control" id="price" required
+                <input type="number" name="price" min="0" step="0.01" class="form-control" id="price" required
                 onfocus="setPrice(this.id)" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
 
@@ -61,7 +57,7 @@
             </div>
             
             <div class="form-group">
-                <label">Book kind</label>
+                <label">CD kind</label>
                 <select class="form-control" name="kind" id="kind">
                     @foreach ($kind as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
@@ -75,7 +71,8 @@
                 @foreach ($barcode as $key => $bar)
                     <input type="hidden" name="barCode" class="form-control" id="barCode" value="{{$bar->barcode}}">
                 @endforeach
-                <input type="text" name="barcode" class="form-control" id="barcode" required>
+                <input type="text" name="barcode" class="form-control" id="barcode" 
+                onfocus="setBarcode(this.id)" onchange="try{setCustomValidity('')}catch(e){}" required>
             </div>
 
             <div class="form-group">
@@ -95,7 +92,7 @@
 
             <div class="form-group">
                 <label">Width</label>
-                <input type="numbet" step="0.01" min="0" name="width" class="form-control" id="width" required>
+                <input type="number" step="0.01" min="0" name="width" class="form-control" id="width" required>
             </div>
 
             <div class="form-group">
@@ -108,7 +105,7 @@
                 <input type="number" step="0.01" min="0" name="weigh" class="form-control" id="weigh" required>
             </div>
 
-            <button type="submit" name="add_book_phy" id="add" class="btn btn-info">Add product</button>
+            <button type="submit" name="adddvd_phy" id="adddvd_phy" class="btn btn-info">Add product</button>
         </form>
     </div>
 </div>
@@ -148,6 +145,7 @@
     function setPrice(x) {
         document.getElementById(x).setCustomValidity('Please enter price between 30% and 150% of value');
     }
+
     function setBarcode(x) {
         document.getElementById(x).setCustomValidity('Barcode is identical, please enter a new barcode.');
     }

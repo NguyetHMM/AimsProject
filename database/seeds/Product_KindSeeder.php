@@ -18,10 +18,27 @@ class Product_KindSeeder extends Seeder
         $kinds = ["Romatic", "Action", "Detective", "Humor"];
         for($index = 0; $index < 4; $index ++){
             $product_kinds[] = [
-                'productCategoryID' => rand(1,3),
+                'productCategoryID' => 1,
                 'name' => $kinds[$index],
             ];
-
+        }
+        $product_kinds[4] = [
+            'productCategoryID' => 2,
+            'name' => 'HD-DVD',
+        ];
+        $product_kinds[5] = [
+            'productCategoryID' => 2,
+            'name' => 'Full-HD-DVD',
+        ];
+        $product_kinds[6] = [
+            'productCategoryID' => 2,
+            'name' => 'Blu-ray',
+        ];
+        for($index = 7; $index < 10; $index ++){
+            $product_kinds[] = [
+                'productCategoryID' => 3,
+                'name' => $kinds[$index-7],
+            ];
         }
         // dd($product_kinds);
         DB::table('product_kinds')->insert($product_kinds);
