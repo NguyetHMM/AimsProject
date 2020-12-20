@@ -221,7 +221,32 @@ class AdminController extends Controller
     }
 
     public function add_cd_on(){
-        return 0;
+        $cd_kind = DB::table('product_kinds')->where('productCategoryID',1)->get();
+        return view('product::admin.addcd_on')->with('kind',$cd_kind);
+    }
+
+    public function save_cd_on(Request $request){
+        return $request;
+    }
+
+    public function add_lp_phy(){
+        $lp_kind = DB::table('product_kinds')->where('productCategoryID',1)->get();
+        $physical = DB::table('physical_products')->select('barcode')->get();
+        // dd($physical);
+        return view('product::admin.addlp_phy')->with('kind',$lp_kind)->with('barcode', $physical);
+    }
+
+    public function save_lp_phy(Request $request){
+        return $request;
+    }
+
+    public function add_lp_on(){
+        $lp_kind = DB::table('product_kinds')->where('productCategoryID',1)->get();
+        return view('product::admin.addlp_on')->with('kind',$lp_kind);
+    }
+
+    public function save_lp_on(Request $request){
+        return $request;
     }
 
     public function all_product(){
