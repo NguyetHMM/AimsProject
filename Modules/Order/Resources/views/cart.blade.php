@@ -52,14 +52,14 @@
                                         $totalOrder += $total;
                                         ?>
                                         <tr>
-                                            <td class="product-thumbnail"><a href="#"><img
+                                            <td class="product-thumbnail"><a href="{{URL::to('product/product-detail/'.$item->productID)}}"><img
                                                         src="{{ asset('images/product/4.png') }}" alt="product img" /></a>
                                             </td>
-                                            <td class="product-name"><a href="#">{{ $item->title }}</a></td>
+                                            <td class="product-name"><a href="{{URL::to('product/product-detail/'.$item->productID)}}">{{ $item->title }}</a></td>
                                             <td class="product-price"><span class="amount"
                                                     id="{{ 'product-price' . $key }}">{{ $item->price }}</span></td>
                                             <td class="product-quantity"><input type="number" value="{{ $item->quantity }}"
-                                                    class="{{ 'number_select' . $key }}" min="0" name="{{ 'number_select' . $key }}"/></td>
+                                                    class="{{ 'number_select' . $key }}" min="1" name="{{ 'number_select' . $key }}"/></td>
                                             <input type="hidden" name="{{ 'hidden_product'.$key }}" value="{{$item->id}}">
                                             <td class="product-subtotal" id="{{ 'cost-product' . $key }}">{{ $total }}</td>
                                             <td class="product-remove">
