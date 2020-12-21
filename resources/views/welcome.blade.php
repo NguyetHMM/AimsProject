@@ -111,7 +111,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="#"><img alt="" src="images/icons/thum3.png"> Long Player Record <i class="zmdi zmdi-chevron-right"></i></a>
+                                <a href="{{Route('showLPs')}}"><img alt="" src="images/icons/thum3.png"> Long Player Record <i class="zmdi zmdi-chevron-right"></i></a>
                                 <div class="category-menu-dropdown">
                                     <div class="category-part-1 category-common2 mb--30">
                                         <h4 class="categories-subtitle"> Music Categories</h4>

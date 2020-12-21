@@ -20,6 +20,7 @@ Route::prefix('product')->group(function() {
     Route::get('/book','ProductController@showBook')->name('showBook');
     Route::get('/cds','ProductController@showCDs')->name('showCDs');
     Route::get('/dvds','ProductController@showDVDs')->name('showDVDs');
+    Route::get('/lps','ProductController@showLPs')->name('showLPs');
     Route::get('/book/picture-books','ProductController@showPictureBook')->name('showPictureBook');
     Route::get('/book/comic','ProductController@showComic')->name('showComic');
     Route::get('/book/technology-books','ProductController@showTechnologyBook')->name('showTechnologyBook');
