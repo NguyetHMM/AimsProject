@@ -212,8 +212,9 @@ class AdminController extends Controller
     public function add_cd_phy(){
         $cd_kind = DB::table('product_kinds')->where('productCategoryID',1)->get();
         $physical = DB::table('physical_products')->select('barcode')->get();
+        $tracks = DB::table('tracks')->get();
         // dd($physical);
-        return view('product::admin.addcd_phy')->with('kind',$cd_kind)->with('barcode', $physical);
+        return view('product::admin.addcd_phy')->with('kind',$cd_kind)->with('barcode', $physical)->with('tracks', $tracks);
     }
 
     public function save_cd_phy(Request $request){

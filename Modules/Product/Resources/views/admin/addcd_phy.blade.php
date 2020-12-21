@@ -34,6 +34,15 @@
                 <input type="date" name="release_date" class="form-control" id="release_date" required>
             </div>
 
+            <div class="form-group">
+                <label">Tracks</label>
+                <select class="form-control" name="tracks" id="tracks" multiple>
+                    @foreach ($tracks as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             {{-- <div class="form-group">
                 <label">Run time</label>
                 <input type="number" name="run_time" min="1" class="form-control" id="run_time" required>

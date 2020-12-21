@@ -49,7 +49,7 @@
                         </div>
 
                     </ul>
-                    <form id='myform' method='POST' action='{{Route(' addToCart')}}'>
+                    <form id='myform' method='POST' action='{{Route('addToCart')}}'>
                         {{ csrf_field() }}
                         <div class="product-action-wrap">
                             <div class="prodict-statas"><span>Quantity :</span></div>
