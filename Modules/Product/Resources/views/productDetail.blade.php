@@ -1,22 +1,20 @@
 @extends('layout.main')
 @section('content')
-        
-        <!-- Start Product Details -->
-        <section class="htc__product__details pt--120 pb--100 bg__white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                        <div class="product__details__container">
-                            <div class="product__big__images">
-                                <div class="portfolio-full-image tab-content">
-                                    <div role="tabpanel" class="tab-pane fade in active product-video-position" id="img-tab-1">
-                                        <img src="{{asset('images/portfolio/equal/1.jpg')}}" alt="full-image">
-                                        <div class="product-video">
-                                            <a class="video-popup" href="https://www.youtube.com/watch?v=cDDWvj_q-o8">
-                                                <i class="zmdi zmdi-videocam"></i> View Video
-                                            </a>
-                                        </div>
-                                    </div>
+
+<!-- Start Product Details -->
+<section class="htc__product__details pt--120 pb--100 bg__white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                <div class="product__details__container">
+                    <div class="product__big__images">
+                        <div class="portfolio-full-image tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active product-video-position" id="img-tab-1">
+                                <img src="{{asset('images/portfolio/equal/1.jpg')}}" alt="full-image">
+                                <div class="product-video">
+                                    <a class="video-popup" href="https://www.youtube.com/watch?v=cDDWvj_q-o8">
+                                        <i class="zmdi zmdi-videocam"></i> View Video
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +50,7 @@
                                         <li>Weight: {{$key->weigh}} (kg)</li>
                                     </ul>
                                 @endif
-                                
+                            
                             </div>
                             <ul class="pro__dtl__prize">
                                 {{-- <li class="old__prize">$15.21</li> --}}
@@ -88,14 +86,15 @@
                                     @else
                                         <button class="buy__now__btn"><a href="{{Route('login')}}" style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px">BUY NOW</a></button>
                                     @endif
+
                                 </div>
-                            </form>
-                        @endforeach
-                            
-                        </div>
-                    </div>
+                    </form>
+                    @endforeach
+
                 </div>
             </div>
-        </section>
-        <!-- End Product Details -->
+        </div>
+    </div>
+</section>
+<!-- End Product Details -->
 @endsection
