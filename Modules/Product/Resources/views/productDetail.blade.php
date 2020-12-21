@@ -19,75 +19,60 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 smt-30 xmt-30">
-                        <div class="htc__product__details__inner">
-                        @foreach ($detailForProduct as $key)
-                            <div class="pro__detl__title">
-                                <h2>{{$key->title}}</h2>
-                            </div>
-                            {{-- @yield('content') --}}
-                            <div class="pro__details">
-                                <h3 class="title__6">Detail</h3>
-                                @if ($key->productCategoryID == 3)
-                                    <ul style="font-size: 17px;">
-                                        <li>Language: {{$key->language}}, Author: {{$key->author}}, Publisher: {{$key->publisher}}, {{$key->pages}} pages. Description: {{$key->description}} </li>
-                                        <li>Width: {{$key->width}} (m)</li>
-                                        <li>Heigth: {{$key->heigth}} (m)</li>
-                                        <li>Weight: {{$key->weigh}} (kg)</li>
-                                    </ul>
-                                @elseif ($key->productCategoryID == 2)
-                                    <ul style="font-size: 17px;">
-                                        <li>Language: {{$key->language}}, Director: {{$key->director}}, Video kind: {{$key->videoKind}}, Studio: {{$key->studio}}, Subtitles: {{$key->subtitles}}, Time: {{$key->runtime}} (s), Description: {{$key->description}} </li>
-                                        <li>Width: {{$key->width}} (m)</li>
-                                        <li>Heigth: {{$key->heigth}} (m)</li>
-                                        <li>Weight: {{$key->weigh}} (kg)</li>
-                                    </ul>
-                                @else
-                                    <ul style="font-size: 17px;">
-                                        <li>Language: {{$key->language}}, Artists: {{$key->artists}}, Record Label: {{$key->recordLabel}}, Music Type: {{$key->musicType}}, Description: {{$key->description}} </li>
-                                        <li>Width: {{$key->width}} (m)</li>
-                                        <li>Heigth: {{$key->heigth}} (m)</li>
-                                        <li>Weight: {{$key->weigh}} (kg)</li>
-                                    </ul>
-                                @endif
-                            
-                            </div>
-                            <ul class="pro__dtl__prize">
-                                {{-- <li class="old__prize">$15.21</li> --}}
-                                <div class="prodict-statas">
-                                    <span>Price :</span>
-                                    <span>
-                                    <script>
-                                        function number(n) {
-                                            return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + ' $';
-                                        }                               
-                                        document.write(number({{$key->price}}));
-                                    </script>
-                                    </span>
-                                </div>
-                                
-                            </ul>
-                            <form id='myform' method='POST' action='{{Route('addToCart')}}'>
-                                {{ csrf_field() }}
-                                <div class="product-action-wrap">
-                                    <div class="prodict-statas"><span>Quantity :</span></div>
-                                    <div class="product-quantity">
-                                        
-                                            <div class="product-quantity">
-                                                <input class="cart-plus-minus-box" type="number" min="1" name="qtybutton" value="1">
-                                                <input type="hidden" name="product_id" value="{{$key->id}}">
-                                            </div>
-                                        
-                                    </div>
-                                </div>  
-                                <div class="pro__dtl__btn">
-                                    @if (Auth::user())
-                                        <button class="buy__now__btn" type="submit" style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px ">BUY NOW</button>
-                                    @else
-                                        <button class="buy__now__btn"><a href="{{Route('login')}}" style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px">BUY NOW</a></button>
-                                    @endif
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 smt-30 xmt-30">
+                <div class="htc__product__details__inner">
+                    @foreach ($detailForProduct as $key)
+                    <div class="pro__detl__title">
+                        <h2>{{$key->title}}</h2>
+                    </div>
+                    {{-- @yield('content') --}}
+                    <div class="pro__details">
+                        <h3 class="title__6">Detail</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod temf incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, nostr exercitation ullamco laboris
+                            nisi ut aliquip ex ea. </p>
+                    </div>
+                    <ul class="pro__dtl__prize">
+                        {{-- <li class="old__prize">$15.21</li> --}}
+                        <div class="prodict-statas">
+                            <span>Price :</span>
+                            <span>
+                                <script>
+                                    function number(n) {
+                                        return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + ' $';
+                                    }
+                                    document.write(number({{ $key-> price}}));
+                                </script>
+                            </span>
+                        </div>
 
+                    </ul>
+                    <form id='myform' method='POST' action='{{Route('addToCart')}}'>
+                        {{ csrf_field() }}
+                        <div class="product-action-wrap">
+                            <div class="prodict-statas"><span>Quantity :</span></div>
+                            <div class="product-quantity">
+
+                                <div class="product-quantity">
+                                    <input class="cart-plus-minus-box" type="number" min="1" name="qtybutton" value="1">
+                                    <input type="hidden" name="product_id" value="{{$key->id}}">
                                 </div>
+
+                            </div>
+                        </div>
+                        <div class="pro__dtl__btn">
+                            @if (Auth::user())
+                            <button class="buy__now__btn" type="submit"
+                                style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px ">BUY
+                                NOW</button>
+                            @else
+                            <button class="buy__now__btn"><a href="{{Route('login')}}"
+                                    style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px">BUY
+                                    NOW</a></button>
+                            @endif
+                        </div>
                     </form>
                     @endforeach
 
