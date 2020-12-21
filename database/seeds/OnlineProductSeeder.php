@@ -15,14 +15,22 @@ class OnlineProductSeeder extends Seeder
     {
         $faker =  Faker::create();
         $online_products = [];
-        for($index = 0; $index < 100; $index ++){
+        for($index = 20; $index < 40; $index ++){
             
             $online_products[] = [
                 'productID' => $index + 1,
                 'content' => $faker->text(400)
             ];
-
         }
+
+        for($index = 75; $index < 100; $index ++){
+            
+            $online_products[] = [
+                'productID' => $index + 1,
+                'content' => $faker->text(400)
+            ];
+        }
+
         // dd($online_products);
         DB::table('online_products')->insert($online_products);
     }

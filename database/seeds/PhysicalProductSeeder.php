@@ -15,7 +15,7 @@ class PhysicalProductSeeder extends Seeder
     {
         $faker =  Faker::create();
         $physical_products = [];
-        for($index = 0; $index < 100; $index ++){
+        for($index = 0; $index < 20; $index ++){
             $physical_products[] = [
                 'productID' => $index +1,
                 'barcode' => $faker->name(20),
@@ -28,6 +28,21 @@ class PhysicalProductSeeder extends Seeder
                 'inputDay' => now(),
             ];
         }
+
+        for($index = 40; $index < 75; $index ++){
+            $physical_products[] = [
+                'productID' => $index +1,
+                'barcode' => $faker->name(20),
+                'description' => $faker->text(50),
+                'quantity' => rand(1,100),
+                'length' => rand(1,100)/100,
+                'width' => rand(1,100)/100,
+                'heigth' => rand(1,100)/100,
+                'weigh' => rand(1,1000)/1000,
+                'inputDay' => now(),
+            ];
+        }
+
         DB::table('physical_products')->insert($physical_products);
     }
 }
