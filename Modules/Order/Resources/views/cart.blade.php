@@ -91,12 +91,34 @@
                                                         }}</span></strong>
                                             </td>
                                         </tr>
-                                    </tbody>
-                                </table>
-                                <div class="wc-proceed-to-checkout">
-                                    <a> <button type="submit"
-                                            style="background-color: transparent; border:transparent; height: 40px; ">PROCESS
-                                            TO CHECKOUT</button></a>
+                                    @endforeach
+                                    <input type="hidden" name="product_count" value="{{$countProduct}}">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <div class="buttons-cart">
+                                    <a href="{{Route('welcome')}}">Continue Shopping</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-5 col-xs-12">
+                                <div class="cart_totals">
+                                    <h2>Cart Totals</h2>
+                                    <table>
+                                        <tbody>
+                                            <tr class="order-total">
+                                                <th>Subtotal</th>
+                                                <td>
+                                                    <strong><span
+                                                            class="amount total-order">{{ $totalOrder }}</span></strong>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="wc-proceed-to-checkout">
+                                       <a> <button type="submit" style="background-color: transparent; border:transparent; height: 40px; ">PROCESS TO CHECKOUT</button></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
