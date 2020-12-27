@@ -62,7 +62,7 @@
             
             <div class="form-group">
                 <label">Book kind</label>
-                <select class="form-control" name="kind" id="kind">
+                <select class="form-control" name="kind[]" id="kind" multiple>
                     @foreach ($kind as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                     @endforeach

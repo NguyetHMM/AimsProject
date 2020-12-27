@@ -28,6 +28,9 @@
                         <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
                         @if (Auth::user())
                             <li style="min-width: 150%; text-align:right" ><a href="{{ route('userProfile') }}">HELLO {{ Auth::user()->name }}</a></li>
+                            @if (Auth::user()->roleID == 1)
+                            <li><a href="{{ route('admin-index') }}">Admin page</a></li>
+                            @endif
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                             <li class=""><a href="{{Route('cart')}}"><span class="ti-shopping-cart"></span></a></li>
                         @else

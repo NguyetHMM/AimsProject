@@ -12,7 +12,9 @@
 */
 
 Route::prefix('product')->group(function() {
-    Route::get('/a', 'ProductController@index')->name('index');
+    Route::get('/a', 'ProductController@index')->name('admin-index');
+    Route::get('/ab', 'AdminController@delete_product')->name('delete-p');
+    
     Route::get('/product-detail/{product_id}','ProductController@productDetail')->name('productDetail');
     // Route::get('/product-detail/{}','ProductController@processRequestDetail')->name('processRequestDetail');
     Route::get('/home','ProductController@home')->name('home');
@@ -59,5 +61,8 @@ Route::prefix('product')->group(function() {
     Route::get('/all-book','AdminController@all_book')->name('allbook');
     Route::get('/all-dvd','AdminController@all_dvd')->name('alldvd');
     Route::get('/all-cd-lp','AdminController@all_cd_lp')->name('allcdlp');
+
+    //Edit - Delete Product
+    Route::get('/detail-pro/{product_id}','AdminController@show_product');
 
 });

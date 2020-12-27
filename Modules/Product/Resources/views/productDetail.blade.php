@@ -97,7 +97,6 @@
                                     style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px">BUY
                                     NOW</a></button>
                             @endif
-
                         </div>
                     </form>
                     @endforeach

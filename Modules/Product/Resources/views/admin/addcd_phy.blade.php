@@ -8,6 +8,7 @@
         <form role="form" action="{{route('savecd-phy')}}" method="post" enctype="multipart/form-data" 
         name="add" onsubmit="return(checkForm());">
             {{ csrf_field() }}
+            
             <div class="form-group">
                 <label">Title</label>
                 <input type="text" name="title" class="form-control" id="title" required>
@@ -34,6 +35,15 @@
                 <input type="date" name="release_date" class="form-control" id="release_date" required>
             </div>
 
+            <div class="form-group">
+                <label">Tracks</label>
+                <select class="form-control" name="tracks[]" id="tracks" multiple>
+                    @foreach ($tracks as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             {{-- <div class="form-group">
                 <label">Run time</label>
                 <input type="number" name="run_time" min="1" class="form-control" id="run_time" required>
@@ -58,7 +68,7 @@
             
             <div class="form-group">
                 <label">CD kind</label>
-                <select class="form-control" name="kind" id="kind">
+                <select class="form-control" name="kind[]" id="kind" multiple>
                     @foreach ($kind as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                     @endforeach

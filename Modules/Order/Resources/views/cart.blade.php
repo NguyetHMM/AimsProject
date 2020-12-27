@@ -51,32 +51,37 @@
                                         $total += $item->price * $item->quantity;
                                         $totalOrder += $total;
                                         ?>
-                                        <tr>
-                                            <td class="product-thumbnail"><a href="{{URL::to('product/product-detail/'.$item->productID)}}"><img
-                                                        src="{{ asset('images/product/4.png') }}" alt="product img" /></a>
-                                            </td>
-                                            <td class="product-name"><a href="{{URL::to('product/product-detail/'.$item->productID)}}">{{ $item->title }}</a></td>
-                                            <td class="product-price"><span class="amount"
-                                                    id="{{ 'product-price' . $key }}">{{ $item->price }}</span></td>
-                                            <td class="product-quantity"><input type="number" value="{{ $item->quantity }}"
-                                                    class="{{ 'number_select' . $key }}" min="1" name="{{ 'number_select' . $key }}"/></td>
-                                            <input type="hidden" name="{{ 'hidden_product'.$key }}" value="{{$item->id}}">
-                                            <td class="product-subtotal" id="{{ 'cost-product' . $key }}">{{ $total }}</td>
-                                            <td class="product-remove">
-                                                <a onclick="return confirm('Bạn có muốn xóa sản phẩm này không?')"
-                                                    href="{{ URL::to('/order/deleteFromCart/' . $item->productID) }}"
-                                                    class="active" ui-toggle-class="">X
-                                                </a>
-                               
-                                @endforeach
-                                <input type="hidden" name="product_count" value="{{$countProduct}}">
+                                <tr>
+                                    <td class="product-thumbnail"><a
+                                            href="{{URL::to('product/product-detail/'.$item->productID)}}"><img
+                                                src="{{ asset('images/product/4.png') }}" alt="product img" /></a>
+                                    </td>
+                                    <td class="product-name"><a
+                                            href="{{URL::to('product/product-detail/'.$item->productID)}}">{{
+                                            $item->title }}</a></td>
+                                    <td class="product-price"><span class="amount" id="{{ 'product-price' . $key }}">{{
+                                            $item->price }}</span></td>
+                                    <td class="product-quantity"><input type="number" value="{{ $item->quantity }}"
+                                            class="{{ 'number_select' . $key }}" min="1"
+                                            name="{{ 'number_select' . $key }}" /></td>
+                                    <input type="hidden" name="{{ 'hidden_product'.$key }}" value="{{$item->id}}">
+                                    <td class="product-subtotal" id="{{ 'cost-product' . $key }}">{{ $total }}</td>
+                                    <td class="product-remove">
+                                        <a onclick="return confirm('Bạn có muốn xóa sản phẩm này không?')"
+                                            href="{{ URL::to('/order/deleteFromCart/' . $item->productID) }}"
+                                            class="active" ui-toggle-class="">X
+                                        </a>
+
+                                        @endforeach
+                                        <input type="hidden" name="product_count" value="{{$countProduct}}">
                             </tbody>
                         </table>
                     </div>
+
                     <div class="row">
                         <div class="col-md-8 col-sm-7 col-xs-12">
                             <div class="buttons-cart">
-                                <a href="{{route('welcome')}}">Continue Shopping</a>
+                                <a href="{{Route('welcome')}}">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-5 col-xs-12">
@@ -91,38 +96,18 @@
                                                         }}</span></strong>
                                             </td>
                                         </tr>
-                                    @endforeach
-                                    <input type="hidden" name="product_count" value="{{$countProduct}}">
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8 col-sm-7 col-xs-12">
-                                <div class="buttons-cart">
-                                    <a href="{{Route('welcome')}}">Continue Shopping</a>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-5 col-xs-12">
-                                <div class="cart_totals">
-                                    <h2>Cart Totals</h2>
-                                    <table>
-                                        <tbody>
-                                            <tr class="order-total">
-                                                <th>Subtotal</th>
-                                                <td>
-                                                    <strong><span
-                                                            class="amount total-order">{{ $totalOrder }}</span></strong>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="wc-proceed-to-checkout">
-                                       <a> <button type="submit" style="background-color: transparent; border:transparent; height: 40px; ">PROCESS TO CHECKOUT</button></a>
-                                    </div>
+                                        <input type="hidden" name="product_count" value="{{$countProduct}}">
+                                    </tbody>
+                                </table>
+                                <div class="wc-proceed-to-checkout">
+                                    <a> <button type="submit"
+                                            style="background-color: transparent; border:transparent; height: 40px; ">PROCESS
+                                            TO CHECKOUT</button></a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -142,6 +127,17 @@
             $('.total-order').html(numeral(totalOrder).format('0,0[.]00 $'));
         });
     });
+    window.onload = function () {
+        var totalOrder = 0;
+        var product_number = '<?php echo $countProduct; ?>';
+        for (var i = 0; i < product_number; i++) {
+            let price = parseInt($('.number_select' + i).val()) *
+                parseInt($('#product-price' + i).html());
+            $('#cost-product' + i).html(numeral(price).format('0,0[.]00 $'));
+            totalOrder += price;
+        }
+        $('.total-order').html(numeral(totalOrder).format('0,0[.]00 $'));
+    }
 
 </script>
 @endsection
