@@ -14,22 +14,31 @@
 Route::prefix('product')->group(function() {
     Route::get('/a', 'ProductController@index')->name('admin-index');
     Route::get('/ab', 'AdminController@delete_product')->name('delete-p');
+
+    // show book route
+    Route::get('show-book-physical/{productKind_id}','ProductController@showBookPhysical')->name('showBookPhysical');
+    Route::get('show-book-online/{productKind_id}','ProductController@showBookOnline')->name('showBookOnline');
+    Route::get('/book','ProductController@showBook')->name('showBook');
     
+    // detail for each product
     Route::get('/product-detail/{product_id}','ProductController@productDetail')->name('productDetail');
-    // Route::get('/product-detail/{}','ProductController@processRequestDetail')->name('processRequestDetail');
     Route::get('/home','ProductController@home')->name('home');
 
-    Route::get('/book','ProductController@showBook')->name('showBook');
+    // show CD route
     Route::get('/cds','ProductController@showCDs')->name('showCDs');
+    // Route::get('cds/online/{productKind_id}','ProductController@showCDOnline')->name('showCDOnline');
+    // Route::get('cds/physical/{productKind_id}','ProductController@showCDPhysical')->name('showCDPhysical');
+
+    // show DVDS route
     Route::get('/dvds','ProductController@showDVDs')->name('showDVDs');
+
+    // show LPs Route
     Route::get('/lps','ProductController@showLPs')->name('showLPs');
-    Route::get('/book/picture-books','ProductController@showPictureBook')->name('showPictureBook');
-    Route::get('/book/comic','ProductController@showComic')->name('showComic');
-    Route::get('/book/technology-books','ProductController@showTechnologyBook')->name('showTechnologyBook');
-    Route::get('/addbook','AdminController@add_book')->name('addbook');
+    
+    // search route
     Route::post('/search','ProductController@search')->name('search');
     //Admin route
-    
+    Route::get('/addbook','AdminController@add_book')->name('addbook');
     //Add route
     Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
     Route::post('/savebook-phy','AdminController@save_book_phy')->name('savebook-phy');

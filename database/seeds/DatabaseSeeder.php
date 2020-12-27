@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
             CitiesSeeder::class,
             DistrictsSeeder::class,
             AddressSeeder::class,
-            Product_KindSeeder::class
+            Product_KindSeeder::class,
+            Products_Product_Kinds::class,
         ]);
     }
 }

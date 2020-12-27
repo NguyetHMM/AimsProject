@@ -5,17 +5,35 @@
 
     <div class="portfolio-grid-area bg__white pt--130 pb--100">
         <div class="container">
-            <div class="portfolio-menu-active gutter-btn mb--50 text-center">
-                <button class="active" data-filter="*">All Product</button>
+            <div class="portfolio-menu-active mb--50 text-center">
+                {{-- <button class="active" data-filter="*">All Product</button>
                 <button data-filter=".cat2">Sort by title</button>
-                <button data-filter=".cat3">Sort by price</button>
+                <button data-filter=".cat3">Sort by price</button> --}}
                 {{-- <button data-filter=".cat5">Photography</button> --}}
+                
+                <form class="form-inline">
+                    <div class="form-group" style="float:left;">
+                        <label for="formControlRange">Range Price</label>
+                        <input type="range" class="form-control-range" id="formControlRange">
+                    </div>
+                    <div class="form-group mb-2">
+                        <select name="filter-box" id="filter-follow-sub" class="select-container form-control">
+                            <option name="" id="" value="0">Tìm kiếm theo môn</option>
+                            {{-- @foreach ($listSubject as $subject)
+                                <option name="{{$subject->name}}" id="{{$subject->name}}" value="{{$subject->id}}">{{$subject->name}}</option>
+                            @endforeach --}}
+                        </select>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="inputPassword2" class="sr-only">Name Product</label>
+                        <input type="text" class="form-control" id="nameProduct" placeholder="Enter a product's name">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+                </form>
             </div>
             <div class="portfolio-style">
-
                 <div class="row-mb-5">
                     @foreach ($all_product_of_1category as $key => $product)
-                    {{-- @dd($key); --}}
                     <div class="col-md-3 col-sm-3 col-xs-6 grid-item cat2 cat3">
                         <div class="single-portfolio-card mb--30">
                             <div class="">
