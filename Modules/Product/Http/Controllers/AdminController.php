@@ -63,7 +63,6 @@ class AdminController extends Controller
         $books['author'] = $request->author;
         $books['publisher'] = $request->publisher;
         $books['publicationDate'] = $request->public_date;
-        $books['releaseDate'] = $request->public_date;
         $books['pages'] = $request->pages;
         $books['category'] = 0;
         // DB::table('books')->insert($books);
@@ -113,7 +112,6 @@ class AdminController extends Controller
         $books['author'] = $request->author;
         $books['publisher'] = $request->publisher;
         $books['publicationDate'] = $request->public_date;
-        $books['releaseDate'] = $request->public_date;
         $books['pages'] = $request->pages;
         $books['category'] = 0;
         DB::table('books')->insert($books);
