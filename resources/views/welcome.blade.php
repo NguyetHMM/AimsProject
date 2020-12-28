@@ -13,12 +13,14 @@
                 <div class="slider__container slider--one">
                     <div class="slider__activation__wrap owl-carousel owl-theme">
                         <!-- Start Single Slide -->
-                        <div class="slide slider__full--screen slider-height-inherit slider-text-right" style="background: rgba(0, 0, 0, 0) url(images/slider/bg/5.jpg) no-repeat scroll center center / cover ;">
+                        <div class="slide slider__full--screen slider-height-inherit slider-text-right"
+                            style="background: rgba(0, 0, 0, 0) url(images/slider/bg/5.jpg) no-repeat scroll center center / cover ;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-10 col-lg-8 col-md-offset-2 col-lg-offset-4 col-sm-12 col-xs-12">
                                         <div class="slider__inner">
-                                            <h1 style="color: white">New CD-DVD <span class="text--theme">Collection</span></h1>
+                                            <h1 style="color: white">New CD-DVD <span
+                                                    class="text--theme">Collection</span></h1>
                                             <div class="slider__btn">
                                                 <a class="htc__btn" href="cart.html" style="color: white">shop now</a>
                                             </div>
@@ -29,7 +31,8 @@
                         </div>
                         <!-- End Single Slide -->
                         <!-- Start Single Slide -->
-                        <div class="slide slider__full--screen slider-height-inherit  slider-text-left" style="background: rgba(0, 0, 0, 0) url(images/slider/bg/bg3.jpeg) no-repeat scroll center center / cover ;">
+                        <div class="slide slider__full--screen slider-height-inherit  slider-text-left"
+                            style="background: rgba(0, 0, 0, 0) url(images/slider/bg/bg3.jpeg) no-repeat scroll center center / cover ;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
@@ -57,68 +60,97 @@
                         <ul>
                             <li>
                                 <form>
-                                    <a href="{{Route('showBook')}}"><img alt="" src="images/icons/thum2.png"> Books <i class="zmdi zmdi-chevron-right"></i></a>
-                                <div class="category-menu-dropdown">
-                                    <div class="category-part-1 category-common mb--30">
-                                        <h4 class="categories-subtitle"> Books</h4>
-                                        <ul>
-                                            <li><a href="{{Route('showPictureBook')}}"> Picture Books</a></li>
-                                            <li><a href="{{Route('showComic')}}"> Comic Books</a></li>
-                                            <li><a href="#"> Economy Books</a></li>
-                                            <li><a href="#"> Language Books</a></li>
-                                            <li><a href="{{Route('showTechnologyBook')}}"> Technology Books</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category-part-2 category-common mb--30">
-                                        <h4 class="categories-subtitle"> E-books</h4>
-                                    </div>
-                                </div>
-                                </form>
-                                
-                            </li>
-                            <li>
-                                <a href="{{Route('showCDs')}}"><img alt="" src="images/icons/thum3.png"> CDs <i class="zmdi zmdi-chevron-right"></i></a>
-                                <div class="category-menu-dropdown">
-                                    <div class="category-part-1 category-common2 mb--30">
-                                        <h4 class="categories-subtitle"> Music Categories</h4>
-                                        <ul>
-                                            <li><a href="#"> K-POP</a></li>
-                                            <li><a href="#"> J-POP</a></li>
-                                            <li><a href="#"> US-UK</a></li>
-                                            <li><a href="#"> Jazz</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="{{Route('showDVDs')}}"><img alt="" src="images/icons/thum4.png"> DVDs <i class="zmdi zmdi-chevron-right"></i></a>
-                                <div class="category-menu-dropdown">
-                                    <div class="category-menu-dropdown-top">
-                                        <div class="category-part-1 category-common2 mb--30">
-                                            <h4 class="categories-subtitle"> Blu-ray</h4>
-                                        </div>
-                                        <div class="category-part-2 category-common2 mb--30">
-                                            <h4 class="categories-subtitle"> HD-DVD</h4>
-                                        </div>
-                                        <div class="category-part-3 category-common2 mb--30">
-                                            <h4 class="categories-subtitle">Caregories</h4>
+                                    <a href="{{Route('showBook')}}"><img alt="" src="images/icons/thum2.png"> Books <i
+                                            class="zmdi zmdi-chevron-right"></i></a>
+                                    <div class="category-menu-dropdown">
+                                        <div class="category-part-1 category-common mb--30">
+                                            <h4 class="categories-subtitle"> Books Physical</h4>
                                             <ul>
-                                                <li><a href="#"> Movie</a></li>
-                                                <li><a href="#"> Series Movies</a></li>
+                                                @foreach ($bookKinds as $key=>$kind)
+                                                <li><a
+                                                        href="{{Route('showBookPhysical',$kind->id)}}">{{$kind->name}}</a>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="category-part-2 category-common mb--30">
+                                            <h4 class="categories-subtitle"> E-books</h4>
+                                            <ul>
+                                                @foreach ($bookKinds as $key=>$kind)
+                                                <li><a href="{{Route('showBookOnline',$kind->id)}}">{{$kind->name}}</a>
+                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
+                                </form>
+
+                            </li>
+                            <li>
+                                <a href="{{Route('showCDs')}}"><img alt="" src="images/icons/thum3.png"> CDs <i
+                                        class="zmdi zmdi-chevron-right"></i></a>
+                                <div class="category-menu-dropdown">
+                                    <div class="category-part-1 category-common mb--30">
+                                        <h4 class="categories-subtitle"> CD Physical</h4>
+                                        <ul>
+                                            @foreach ($cdKinds as $key=>$kind)
+                                            <li><a href="{{Route('showBookPhysical',$kind->id)}}">{{$kind->name}}</a>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div class="category-part-2 category-common mb--30">
+                                        <h4 class="categories-subtitle"> E-CD</h4>
+                                        <ul>
+                                            @foreach ($cdKinds as $key=>$kind)
+                                            <li><a href="{{Route('showBookOnline',$kind->id)}}">{{$kind->name}}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
                             </li>
                             <li>
-                                <a href="{{Route('showLPs')}}"><img alt="" src="images/icons/thum3.png"> Long Player Record <i class="zmdi zmdi-chevron-right"></i></a>
+                                <a href="{{Route('showDVDs')}}"><img alt="" src="images/icons/thum4.png"> DVDs <i
+                                        class="zmdi zmdi-chevron-right"></i></a>
                                 <div class="category-menu-dropdown">
-                                    <div class="category-part-1 category-common2 mb--30">
-                                        <h4 class="categories-subtitle"> Music Categories</h4>
+                                    <div class="category-part-1 category-common mb--30">
+                                        <h4 class="categories-subtitle"> DVDs Physical</h4>
                                         <ul>
-                                            <li><a href="#"> K-POP</a></li>
-                                            <li><a href="#"> J-POP</a></li>
-                                            <li><a href="#"> US-UK</a></li>
+                                            @foreach ($dvdKinds as $key=>$kind)
+                                            <li><a href="{{Route('showBookPhysical',$kind->id)}}">{{$kind->name}}</a>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div class="category-part-2 category-common mb--30">
+                                        <h4 class="categories-subtitle"> E-DVDs</h4>
+                                        <ul>
+                                            @foreach ($dvdKinds as $key=>$kind)
+                                            <li><a href="{{Route('showBookOnline',$kind->id)}}">{{$kind->name}}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="{{Route('showLPs')}}"><img alt="" src="images/icons/thum3.png"> Long Player
+                                    Record <i class="zmdi zmdi-chevron-right"></i></a>
+                                <div class="category-menu-dropdown">
+                                    <div class="category-part-1 category-common mb--30">
+                                        <h4 class="categories-subtitle"> Long Player Physical</h4>
+                                        <ul>
+                                            @foreach ($lpKinds as $key=>$kind)
+                                            <li><a href="{{Route('showBookPhysical',$kind->id)}}">{{$kind->name}}</a>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div class="category-part-2 category-common mb--30">
+                                        <h4 class="categories-subtitle"> E-Long Player</h4>
+                                        <ul>
+                                            @foreach ($lpKinds as $key=>$kind)
+                                            <li><a href="{{Route('showBookOnline',$kind->id)}}">{{$kind->name}}</a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -207,9 +239,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -232,9 +269,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -257,9 +299,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -288,9 +335,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -313,9 +365,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -338,9 +395,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -369,9 +431,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -394,9 +461,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -419,9 +491,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -450,9 +527,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -475,9 +557,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -500,9 +587,14 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                        <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                        <li><a data-toggle="modal" data-target="#productModal"
+                                                                title="Quick View"
+                                                                class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="ti-plus"></span></a></li>
+                                                        <li><a title="Add TO Cart" href="cart.html"><span
+                                                                    class="ti-shopping-cart"></span></a></li>
+                                                        <li><a title="Wishlist" href="wishlist.html"><span
+                                                                    class="ti-heart"></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
