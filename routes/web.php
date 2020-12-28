@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $bookKinds = DB::table('product_kinds')
+    ->where('productCategoryID',3)
+    ->get();
+    $dvdKinds = DB::table('product_kinds')
+    ->where('productCategoryID',2)->get();
+    $cdKinds = DB::table('product_kinds')
+    ->where('productCategoryID',1)->get();
+    $lpKinds = DB::table('product_kinds')
+    ->where('productCategoryID',1)->get();
+    // dd($bookKinds);
+    return view('welcome',compact('bookKinds','dvdKinds','cdKinds','lpKinds'));
 })->name('welcome');
