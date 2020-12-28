@@ -34,7 +34,7 @@ class AdminController extends Controller
         $product['productTypeID'] = 2;
         DB::table('products')->insert($product);
 
-        $product_id = DB::table('products')->select('id')->get()->last();
+        $product_id = DB::table('products')->select('id')->get()->max();
 
         $products_product_kinds = array();
         for($i = 0; $i<count($request->kind);$i++){
@@ -43,7 +43,7 @@ class AdminController extends Controller
                 'productKindID' => $request->kind[$i],
             ];
         };
-        DB::table('products_product_kinds')->insert($products_product_kinds);
+        // DB::table('products_product_kinds')->insert($products_product_kinds);
 
         $physical_products = array();
         $physical_products['productID'] = $product_id->id;
@@ -55,7 +55,7 @@ class AdminController extends Controller
         $physical_products['heigth'] = $request->heigth;
         $physical_products['weigh'] = $request->weigh;
         $physical_products['inputDay'] = date("Y-m-d");
-        DB::table('physical_products')->insert($physical_products);
+        // DB::table('physical_products')->insert($physical_products);
 
         $books = array();
         $books['productID'] = $product_id->id;
@@ -66,9 +66,8 @@ class AdminController extends Controller
         $books['releaseDate'] = $request->public_date;
         $books['pages'] = $request->pages;
         $books['category'] = 0;
-        DB::table('books')->insert($books);
-
-        dd($request);
+        // DB::table('books')->insert($books);
+        dd($product_id);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_book']);;
     }
@@ -92,7 +91,7 @@ class AdminController extends Controller
         $product['productTypeID'] = 1;
         DB::table('products')->insert($product);
 
-        $product_id = DB::table('products')->select('id')->get()->last();
+        $product_id = DB::table('products')->select('id')->get()->max();
 
         $products_product_kinds = array();
         for($i = 0; $i<count($request->kind);$i++){
@@ -141,7 +140,7 @@ class AdminController extends Controller
         $product['productTypeID'] = 2;
         DB::table('products')->insert($product);
 
-        $product_id = DB::table('products')->select('id')->get()->last();
+        $product_id = DB::table('products')->select('id')->get()->max();
 
         $products_product_kinds = array();
         $products_product_kinds['productID'] = $product_id->id;
@@ -190,7 +189,7 @@ class AdminController extends Controller
         $product['productTypeID'] = 2;
         DB::table('products')->insert($product);
 
-        $product_id = DB::table('products')->select('id')->get()->last();
+        $product_id = DB::table('products')->select('id')->get()->max();
 
         $products_product_kinds = array();
         $products_product_kinds['productID'] = $product_id->id;
@@ -235,7 +234,7 @@ class AdminController extends Controller
         $product['productTypeID'] = 2;
         DB::table('products')->insert($product);
 
-        $product_id = DB::table('products')->select('id')->get()->last();
+        $product_id = DB::table('products')->select('id')->get()->max();
         
         $products_product_kinds = array();
         for($i = 0; $i<count($request->kind);$i++){
@@ -295,7 +294,7 @@ class AdminController extends Controller
         $product['productTypeID'] = 2;
         DB::table('products')->insert($product);
 
-        $product_id = DB::table('products')->select('id')->get()->last();
+        $product_id = DB::table('products')->select('id')->get()->max();
         
         $products_product_kinds = array();
         for($i = 0; $i<count($request->kind);$i++){
@@ -350,7 +349,7 @@ class AdminController extends Controller
         $product['productTypeID'] = 2;
         DB::table('products')->insert($product);
 
-        $product_id = DB::table('products')->select('id')->get()->last();
+        $product_id = DB::table('products')->select('id')->get()->max();
         
         $products_product_kinds = array();
         for($i = 0; $i<count($request->kind);$i++){
@@ -410,7 +409,7 @@ class AdminController extends Controller
         $product['productTypeID'] = 2;
         DB::table('products')->insert($product);
 
-        $product_id = DB::table('products')->select('id')->get()->last();
+        $product_id = DB::table('products')->select('id')->get()->max();
         
         $products_product_kinds = array();
         for($i = 0; $i<count($request->kind);$i++){
@@ -520,7 +519,7 @@ class AdminController extends Controller
         ->join('covers','books.coverID','=','covers.id')
         ->where('productID',$product_id)->get();
 
-        dd($category);
+        // dd($category);
         return view('product::admin.showDetailPro')->with('product', $data)->with('kind', $kind)->with('category', $category);
     }
     
