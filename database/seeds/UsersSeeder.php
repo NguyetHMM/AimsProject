@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
         for($index=0;$index<10;$index++){
             $users[] = [
                 'name' => $faker->name,
-                'email' => "Trung$index@gmail.com",
+                'email' => "trung$index@gmail.com",
                 'password' => bcrypt('trung1234'),
                 'username' => "trung$index",
                 'roleID' => rand(1,2)

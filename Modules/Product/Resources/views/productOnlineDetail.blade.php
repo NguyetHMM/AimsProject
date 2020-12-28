@@ -25,7 +25,7 @@
                 <div class="htc__product__details__inner">
                     @foreach ($detailForProduct as $key)
                     <div class="pro__detl__title">
-                        <h2>{{$key->title}}</h2>
+                        <h2>[Online] {{$key->title}}</h2>
                     </div>
                     {{-- @yield('content') --}}
                     <div class="pro__details">
