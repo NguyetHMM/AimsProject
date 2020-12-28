@@ -37,6 +37,10 @@ Route::prefix('product')->group(function() {
     
     // search route
     Route::post('/search','ProductController@search')->name('search');
+
+    // filter product
+    Route::get('/filter','ProductController@filterFollowPrice')->name('filterPrice');
+
     //Admin route
     Route::get('/addbook','AdminController@add_book')->name('addbook');
     //Add route
