@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             AddressSeeder::class,
             Product_KindSeeder::class,
             Products_Product_Kinds::class,
+            OrderStateSeeder::class,
         ]);
     }
 }
