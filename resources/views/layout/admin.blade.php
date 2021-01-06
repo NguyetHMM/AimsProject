@@ -132,7 +132,7 @@
                         <h6 class="collapse-header">Show product</h6>
                         <a class="collapse-item" href="{{route('allproduct')}}">Show All Product</a>
                         <a class="collapse-item" href="{{route('allbook')}}">Show Book</a>
-                        <a class="collapse-item" href="{{route('allcdlp')}}">Show CD</a>
+                        <a class="collapse-item" href="{{route('allcdlp')}}">Show CD and LP</a>
                         <a class="collapse-item" href="{{route('alldvd')}}">Show DVD</a>
                         {{-- <a class="collapse-item" href="{{route('alllp')}}">Show Long Player Record</a> --}}
                     </div>
@@ -156,16 +156,14 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="{{route('login')}}">Login</a>
-                        <a class="collapse-item" href="{{route('register')}}">Register</a>
+                        {{-- <h6 class="collapse-header">Home layout</h6> --}}
                         <a class="collapse-item" href="{{route('welcome')}}">Home</a>
                         {{-- <a class="collapse-item" href="forgot-password.html">Forgot Password</a> --}}
 
-                        <div class="collapse-divider"></div>
+                        {{-- <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a> --}}
                     </div>
                 </div>
             </li>

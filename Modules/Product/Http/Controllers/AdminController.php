@@ -12,6 +12,10 @@ use Session;
 
 class AdminController extends Controller
 {   
+    public function error()
+    {
+        return view('product::admin.404');
+    }
 
     public function add_book_phy(){ //done
         $book_kind = DB::table('product_kinds')->where('productCategoryID',3)->get();
@@ -23,7 +27,7 @@ class AdminController extends Controller
 
     public function save_book_phy(Request $request){ //done
         $product = array();
-        $product['title'] = $request->title;
+        $product['title'] = 'Book. '.$request->title;
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
@@ -63,7 +67,7 @@ class AdminController extends Controller
         $books['pages'] = $request->pages;
         $books['category'] = 0;
         DB::table('books')->insert($books);
-        dd($product_id);
+        
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_book']);;
     }
@@ -79,7 +83,7 @@ class AdminController extends Controller
 
     public function save_book_on(Request $request){ //done
         $product = array();
-        $product['title'] = $request->title;
+        $product['title'] = 'Book. '.$request->title;
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
@@ -127,7 +131,7 @@ class AdminController extends Controller
 
     public function save_dvd_phy(Request $request){ //done
         $product = array();
-        $product['title'] = $request->title;
+        $product['title'] = 'DVD. '.$request->title;
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
@@ -175,13 +179,14 @@ class AdminController extends Controller
     }
 
     public function save_dvd_on(Request $request){ //done
+        
         $product = array();
-        $product['title'] = $request->title;
+        $product['title'] = 'DVD. '.$request->title;
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
         $product['productCategoryID'] =2;
-        $product['productTypeID'] = 2;
+        $product['productTypeID'] = 1;
         DB::table('products')->insert($product);
 
         $product_id = DB::table('products')->select('id')->get()->max();
@@ -221,7 +226,7 @@ class AdminController extends Controller
 
     public function save_cd_phy(Request $request){ //done
         $product = array();
-        $product['title'] = $request->title;
+        $product['title'] = 'CD. '.$request->title;
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
@@ -258,7 +263,7 @@ class AdminController extends Controller
         $cds['recordLabel'] = $request->record_label;
         $cds['musicType'] = $request->music_type;
         $cds['releaseDate'] = $request->release_date;
-        DB::table('cds')->insert($cds);
+        DB::table('cds_lps')->insert($cds);
 
         $tracks =array();
         for($i=0;$i<count($request->tracks);$i++){
@@ -281,12 +286,12 @@ class AdminController extends Controller
 
     public function save_cd_on(Request $request){ //done
         $product = array();
-        $product['title'] = $request->title;
+        $product['title'] = 'CD. '.$request->title;
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
         $product['productCategoryID'] = 1;
-        $product['productTypeID'] = 2;
+        $product['productTypeID'] = 1;
         DB::table('products')->insert($product);
 
         $product_id = DB::table('products')->select('id')->get()->max();
@@ -311,7 +316,7 @@ class AdminController extends Controller
         $cds['recordLabel'] = $request->record_label;
         $cds['musicType'] = $request->music_type;
         $cds['releaseDate'] = $request->release_date;
-        DB::table('cds')->insert($cds);
+        DB::table('cds_lps')->insert($cds);
 
         $tracks =array();
         for($i=0;$i<count($request->tracks);$i++){
@@ -336,7 +341,7 @@ class AdminController extends Controller
 
     public function save_lp_phy(Request $request){ //done
         $product = array();
-        $product['title'] = $request->title;
+        $product['title'] = 'LP. '.$request->title;
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
@@ -373,7 +378,7 @@ class AdminController extends Controller
         $cds['recordLabel'] = $request->record_label;
         $cds['musicType'] = $request->music_type;
         $cds['releaseDate'] = $request->release_date;
-        DB::table('cds')->insert($cds);
+        DB::table('cds_lps')->insert($cds);
 
         $tracks =array();
         for($i=0;$i<count($request->tracks);$i++){
@@ -396,12 +401,12 @@ class AdminController extends Controller
 
     public function save_lp_on(Request $request){ //done
         $product = array();
-        $product['title'] = $request->title;
+        $product['title'] = 'LP. '.$request->title;
         $product['value'] = $request->value;
         $product['price'] = $request->price;
         $product['language'] = $request->language;
         $product['productCategoryID'] = 4;
-        $product['productTypeID'] = 2;
+        $product['productTypeID'] = 1;
         DB::table('products')->insert($product);
 
         $product_id = DB::table('products')->select('id')->get()->max();
@@ -426,7 +431,7 @@ class AdminController extends Controller
         $cds['recordLabel'] = $request->record_label;
         $cds['musicType'] = $request->music_type;
         $cds['releaseDate'] = $request->release_date;
-        DB::table('cds')->insert($cds);
+        DB::table('cds_lps')->insert($cds);
 
         $tracks =array();
         for($i=0;$i<count($request->tracks);$i++){
@@ -451,7 +456,10 @@ class AdminController extends Controller
         'products.id AS id','products.title','products.price','products.value','products.language', 'promotions.percent')
         ->get();
         // dd($data);
-        return view('product::admin.showProduct')->with('product', $data);
+        return view('product::admin.showProduct')->with([
+            'product' => $data,
+            'name_show' => 'Show Products'
+            ]);
     }
     
     public function all_book(){
@@ -465,7 +473,10 @@ class AdminController extends Controller
         'products.id AS id','products.title','products.price','products.value','products.language','promotions.percent')
         ->get();
         // dd($data);
-        return view('product::admin.showProduct')->with('product', $data);
+        return view('product::admin.showProduct')->with([
+            'product' => $data,
+            'name_show' => 'Show Books'
+            ]);
     }
 
     public function all_cd_lp(){
@@ -473,13 +484,16 @@ class AdminController extends Controller
         ->join('product_categories','products.productCategoryID','=','product_categories.id')
         ->join('product_types','products.productTypeID','=','product_types.id')
         ->leftjoin('promotions','products.promotionID','=','promotions.id')
-        ->where('product_categories.name','cds_lps')
+        ->where('product_categories.name','cds')->orwhere('product_categories.name','lps')
         ->orderBy('products.id', 'asc')
         ->select('product_categories.name AS category_name', 'product_types.name AS type_name',
         'products.id AS id','products.title','products.price','products.value','products.language','promotions.percent')
         ->get();
         // dd($data);
-        return view('product::admin.showProduct')->with('product', $data);
+        return view('product::admin.showProduct')->with([
+            'product' => $data,
+            'name_show' => 'Show CDs and LPs'
+            ]);
     }
 
     public function all_dvd(){
@@ -493,7 +507,10 @@ class AdminController extends Controller
         'products.id AS id','products.title','products.price','products.value','products.language','promotions.percent')
         ->get();
         // dd($data);
-        return view('product::admin.showProduct')->with('product', $data);
+        return view('product::admin.showProduct')->with([
+            'product' => $data,
+            'name_show' => 'Show DVDs'
+            ]);
     }
 
     public function show_product($product_id){
@@ -501,21 +518,64 @@ class AdminController extends Controller
         ->join('product_categories','products.productCategoryID','=','product_categories.id')
         ->join('product_types','products.productTypeID','=','product_types.id')
         ->leftjoin('promotions','products.promotionID','=','promotions.id')
-        ->select('product_categories.name AS category_name', 'product_types.name AS type_name',
+        ->select('product_categories.name AS category_name', 'product_types.name AS type_name', 'product_categories.id AS categoryID',
         'products.id AS id','products.title','products.price','products.value','products.language', 'promotions.percent')
         ->where('products.id',$product_id)
         ->get();
+        if(!isset($data[0])){
+            abort(404);
+        }
+        $product_des = array();
 
-        $kind = DB::table('products_product_kinds')
-        ->join('product_kinds','products_product_kinds.productKindID','=','product_kinds.id')
-        ->where('products_product_kinds.productID',$product_id)->get();
+        if($data[0]->category_name == 'books'){
+            $product_des = DB::table('books')
+            ->join('covers', 'books.coverID','=','covers.id')
+            ->where('books.productID',$product_id)
+            ->get();
+            $name = 'Book';
+        }
+        elseif($data[0]->category_name == 'dvds'){
+            $product_des = DB::table('dvds')
+            ->where('dvds.productID',$product_id)
+            ->get();
+            $name = 'DVD';
+        }
+        elseif($data[0]->category_name == 'cds' || $data[0]->category_name == 'lps'){
+            $product_des = DB::table('cds_lps')
+            ->where('cds_lps.productID',$product_id)
+            ->get();
+            $cd_lp_track = DB::table('cd_lp_track')->where('productID', $product_id)->get();
+            if($data[0]->category_name == 'cds') $name = 'CD';
+            else $name = 'LP';
+        }
+
+
+        $book_cover = DB::table('covers')->get();
+        $track = DB::table('tracks')->get();
         
+        $kind = DB::table('product_kinds')
+        ->where('productCategoryID',$data[0]->categoryID)->get();
+        $product_kind = array();
+        $a = DB::table('products_product_kinds')
+        ->where('productID',$product_id)->select('productKindID AS id')->get();
+        foreach ($a as $key => $value) {
+            array_push($product_kind, $value->id);
+        }
+        // dd($product_kind);
         $category = DB::table('books')
         ->join('covers','books.coverID','=','covers.id')
         ->where('productID',$product_id)->get();
 
         // dd($category);
-        return view('product::admin.showDetailPro')->with('product', $data)->with('kind', $kind)->with('category', $category);
+        return view('product::admin.showDetailPro')->with([
+            'product' => $data[0],
+            'kind' => $kind,
+            'category' => $category,
+            'desc' => $product_des[0],
+            'co_tra' => ['covers' => $book_cover, 'tracks' =>$track ],
+            'product_kind' => $product_kind,
+            'name' => $name,
+            ]);
     }
     
     public function delete_product(Request $request){

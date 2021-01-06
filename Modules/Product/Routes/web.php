@@ -14,6 +14,7 @@
 Route::prefix('product')->group(function() {
     Route::get('/a', 'ProductController@index')->name('admin-index');
     Route::get('/ab', 'AdminController@delete_product')->name('delete-p');
+    Route::get('/error','AdminController@error')->name('error');
 
     // show book route
     Route::get('show-book-physical/{productKind_id}','ProductController@showBookPhysical')->name('showBookPhysical');
