@@ -6,7 +6,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
                     <div class="logo">
                         <a href="{{Route('welcome')}}">
-                            <img src="{{asset('images/logo/logo.png')}}" alt="logo">
+                            <img src="{{asset('images/cart-icon.png')}}" alt="logo" style="max-width: 50%; margin: 0 50%">
                         </a>
                     </div>
                 </div>
