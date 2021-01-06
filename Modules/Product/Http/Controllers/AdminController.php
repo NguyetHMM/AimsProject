@@ -12,9 +12,6 @@ use Session;
 
 class AdminController extends Controller
 {   
-    // public function showa(){ //function test
-    //     return view('product::admin.test');
-    // }
 
     public function add_book_phy(){ //done
         $book_kind = DB::table('product_kinds')->where('productCategoryID',3)->get();
@@ -43,7 +40,7 @@ class AdminController extends Controller
                 'productKindID' => $request->kind[$i],
             ];
         };
-        // DB::table('products_product_kinds')->insert($products_product_kinds);
+        DB::table('products_product_kinds')->insert($products_product_kinds);
 
         $physical_products = array();
         $physical_products['productID'] = $product_id->id;
@@ -55,7 +52,7 @@ class AdminController extends Controller
         $physical_products['heigth'] = $request->heigth;
         $physical_products['weigh'] = $request->weigh;
         $physical_products['inputDay'] = date("Y-m-d");
-        // DB::table('physical_products')->insert($physical_products);
+        DB::table('physical_products')->insert($physical_products);
 
         $books = array();
         $books['productID'] = $product_id->id;
@@ -65,7 +62,7 @@ class AdminController extends Controller
         $books['publicationDate'] = $request->public_date;
         $books['pages'] = $request->pages;
         $books['category'] = 0;
-        // DB::table('books')->insert($books);
+        DB::table('books')->insert($books);
         dd($product_id);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_book']);;
