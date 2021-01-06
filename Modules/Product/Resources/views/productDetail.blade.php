@@ -32,29 +32,38 @@
                         <h3 class="title__6">Detail</h3>
                         @if ($key->productCategoryID == 3)
                         <ul style="font-size: 17px;">
-                            <li>Language: {{$key->language}}, Author: {{$key->author}}, Publisher: {{$key->publisher}},
-                                {{$key->pages}} pages. Description: {{$key->description}} </li>
-                            <li>Width: {{$key->width}} (m)</li>
-                            <li>Heigth: {{$key->heigth}} (m)</li>
-                            <li>Weight: {{$key->weigh}} (kg)</li>
+                            <li><strong>Language: </strong>{{$key->language}}</li>
+                            <li><strong>Author: </strong>{{$key->author}}</li>
+                            <li><strong>Publisher: </strong>{{$key->publisher}}<li>
+                            <li>{{$key->pages}} pages.</li>
+                            <li><strong>Description: </strong>{{$key->description}} </li>
+                            <li><strong>Width: </strong>{{$key->width}} (m)</li>
+                            <li><strong>Heigth: </strong>{{$key->heigth}} (m)</li>
+                            <li><strong>Weight: </strong>{{$key->weigh}} (kg)</li>
                         </ul>
                         @elseif ($key->productCategoryID == 2)
                         <ul style="font-size: 17px;">
-                            <li>Language: {{$key->language}}, Director: {{$key->director}}, Video kind:
-                                {{$key->videoKind}}, Studio: {{$key->studio}}, Subtitles: {{$key->subtitles}}, Time:
-                                {{$key->runtime}} (s), Description: {{$key->description}} </li>
-                            <li>Width: {{$key->width}} (m)</li>
-                            <li>Heigth: {{$key->heigth}} (m)</li>
-                            <li>Weight: {{$key->weigh}} (kg)</li>
+                            <li><strong>Language: </strong>{{$key->language}}</li>
+                            <li><strong>Director: </strong>{{$key->director}}</li>
+                            <li><strong>Video kind: </strong>{{$key->videoKind}}</li>
+                            <li><strong>Studio: </strong>{{$key->studio}}</li>
+                            <li><strong>Subtitles: </strong>{{$key->subtitles}}</li>
+                            <li><strong>Time: </strong>{{$key->runtime}} (s)
+                            <li><strong> Description: </strong>{{$key->description}}</li>
+                            <li><strong>Width: </strong>{{$key->width}} (m)</li>
+                            <li><strong>Heigth: </strong>{{$key->heigth}} (m)</li>
+                            <li><strong>Weight: </strong>{{$key->weigh}} (kg)</li>
                         </ul>
                         @else
                         <ul style="font-size: 17px;">
-                            <li>Language: {{$key->language}}, Artists: {{$key->artists}}, Record Label:
-                                {{$key->recordLabel}}, Music Type: {{$key->musicType}}, Description:
-                                {{$key->description}} </li>
-                            <li>Width: {{$key->width}} (m)</li>
-                            <li>Heigth: {{$key->heigth}} (m)</li>
-                            <li>Weight: {{$key->weigh}} (kg)</li>
+                            <li><strong>Language: </strong>{{$key->language}}</li>
+                            <li><strong>Artists: </strong>{{$key->artists}}</li>
+                            <li><strong>Record Label: </strong>{{$key->recordLabel}}</li>
+                            <li><strong>Music Type: </strong>{{$key->musicType}}</li>
+                            <li><strong>Description: </strong>{{$key->description}} </li>
+                            <li><strong>Width: </strong>{{$key->width}} (m)</li>
+                            <li><strong>Heigth: </strong>{{$key->heigth}} (m)</li>
+                            <li><strong>Weight: </strong>{{$key->weigh}} (kg)</li>
                         </ul>
                         @endif
 
