@@ -22,7 +22,7 @@
                                             <h1 style="color: white">New CD-DVD <span
                                                     class="text--theme">Collection</span></h1>
                                             <div class="slider__btn">
-                                                <a class="htc__btn" href="cart.html" style="color: white">shop now</a>
+                                                <a class="htc__btn" href="{{Route('showBook')}}" style="color: white">shop now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +39,7 @@
                                         <div class="slider__inner">
                                             <h1>New Book <span class="text--theme">Collection</span></h1>
                                             <div class="slider__btn">
-                                                <a class="htc__btn" href="cart.html">shop now</a>
+                                                <a class="htc__btn" href="{{Route('showBook')}}">shop now</a>
                                             </div>
                                         </div>
                                     </div>

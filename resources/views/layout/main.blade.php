@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/cart-icon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/cart-icon.png') }}">
 
     <!-- All css files are included here. -->
     <!-- Bootstrap fremwork main css -->
