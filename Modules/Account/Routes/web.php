@@ -23,6 +23,9 @@ Route::prefix('account')->group(function() {
     Route::get('/userProfile', 'AccountController@userProfile')->name('userProfile');
     Route::post('/userProfile', 'AccountController@storeUserProfile');
 
+    Route::get('/orderHistory', 'AccountController@orderHistory')->name('orderHistory');
+    // Route::get('/orderDetails/{order_id}', 'AccountModuleController@orderDetails')->name('orderDetails');
+
     Route::get('logout', 'AccountController@logout')->name('logout');
 
 });
