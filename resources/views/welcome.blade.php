@@ -1,12 +1,21 @@
 @extends('layout.main')
 
 @section('content')
+
+
 <div class="body__overlay"></div>
 
 <!-- Start Feature Product -->
 <section class="categories-slider-area bg__white">
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                @if (session()->has('message'))
+                    <div class="alert alert-danger ">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
+            </div>
             <!-- Start Left Feature -->
             <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style">
                 <!-- Start Slider Area -->

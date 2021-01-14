@@ -12,7 +12,7 @@
 */
 
 Route::prefix('product')->group(function() {
-    Route::get('/a', 'ProductController@index')->name('admin-index');
+    Route::get('/a', 'ProductController@index')->middleware('AdminRole')->name('admin-index');
     Route::get('/ab', 'AdminController@delete_product')->name('delete-p');
 
     // show book route
