@@ -5,23 +5,25 @@
 </div>
 <div class="container" style="margin-left: 10%">
     <div class="col-10">
-        <form role="form" action="{{route('savebook-phy')}}" method="post" enctype="multipart/form-data" 
-        name="add" onsubmit="return(checkForm());">
+        <form role="form" action="{{route('update-product',["product_id"=>$product->id])}}" method="post" enctype="multipart/form-data" 
+        name="add" onsubmit="return(checkValue());">
             {{ csrf_field() }}
             <div class="form-group">
                 <label">Title</label>
                 <input type="text" name="title" class="form-control" value="{{$product->title}}" id="title" required>
             </div>
+            {{-- <input type="text" hidden name="categoryID"  value="{{$product->categoryID}}">
+            <input type="text" hidden name="typeID" value="{{$product->typeID}}"> --}}
             @if($product->category_name == 'books')
             {{-- Book Table --}}
             <div class="form-group">
                 <label">Author</label>
                 <input type="text" name="author" class="form-control" value="{{$desc->author}}" id="author" required>
             </div>
-            <?php //dd($product) ?>
+
             <div class="form-group">
                 <label">Cover type</label>
-                <select class="form-control" name="cover_type" id="cover_type">
+                <select class="form-control" name="cover_type" id="cover_type" required>
                     
                     @foreach ($co_tra['covers'] as $item)
                         <option value="{{$item->id}}" {{$item->id == $desc->coverID ? 'selected' : ''}}>{{$item->name}}</option>
@@ -43,7 +45,70 @@
                 <label">Pages</label>
                 <input type="number" name="pages" min="1" value="{{$desc->pages}}" class="form-control" id="pages" required>
             </div>
+
+            <div class="form-group">
+                <label">Book category</label>
+                <input type="text" name="book_category" value="{{$desc->category}}" class="form-control" id="book_category" required>
+            </div>
+            
+            @elseif($product->category_name == 'dvds')
+            {{-- DVDs Table --}}
+            <div class="form-group">
+                <label">Director</label>
+                <input type="text" name="director" class="form-control" id="director" value="{{$desc->director}}" required>
+            </div>
+
+            <div class="form-group">
+                <label">Video kind</label>
+                <input type="text" name="video_kind" class="form-control" id="video_kind" value="{{$desc->dvdKind}}" required>
+            </div>
+
+            <div class="form-group">
+                <label">Studio</label>
+                <input type="text" name="studio" class="form-control" id="studio" value="{{$desc->studio}}" required>
+            </div>
+
+            <div class="form-group">
+                <label">Sub title</label>
+                <input type="text" name="sub_title" class="form-control" id="sub_title" value="{{$desc->subtitles}}" required>
+            </div>
+
+            <div class="form-group">
+                <label">Run time (s)</label>
+                <input type="number" name="run_time" min="1" class="form-control" id="run_time" value="{{$desc->runtime}}" required>
+            </div>
+            
+            @elseif($product->categoryID == 1)
+            <div class="form-group">
+                <label">Artists</label>
+                <input type="text" name="artists" class="form-control" id="artists" value="{{$desc->artists}}" required>
+            </div>
+
+            <div class="form-group">
+                <label">Record Label</label>
+                <input type="text" name="record_label" class="form-control" id="record_label" value="{{$desc->recordLabel}}" required>
+            </div>
+
+            <div class="form-group">
+                <label">Music Type</label>
+                <input type="text" name="music_type" class="form-control" id="music_type" value="{{$desc->musicType}}" required>
+            </div>
+
+            <div class="form-group">
+                <label">Release Date</label>
+                <input type="date" name="release_date" class="form-control" id="release_date" value="{{$desc->releaseDate}}" required>
+            </div>
+            <?php //dd($tracks) ?>
+            <div class="form-group">
+                <label">Tracks</label>
+                <select class="form-control" name="tracks[]" id="tracks" size="10" multiple required>
+                    @foreach ($co_tra['tracks'] as $item)
+                        <option value="{{$item->id}}" {{in_array($item->id, $tracks) ? 'selected' : ''}}>{{$item->name}}</option>
+                    @endforeach
+                </select>
+            </div>
             @endif
+            
             {{-- Product Table --}}
             <div class="form-group">
                 <label">Value</label>
@@ -63,68 +128,66 @@
             
             <div class="form-group">
                 <label>{{$name}} Kind</label>
-                @if($product->)
-                @else
-                <select class="form-control" name="kind[]" id="kind" multiple>
+                <select class="form-control" name="kind[]" id="kind" {{ ($product->categoryID != 2)  ? 'multiple' : ''}} required>
                     @foreach ($kind as $item)
                         <option value="{{$item->id}}" {{ in_array($item->id, $product_kind)  ? 'selected' : ''}}>{{$item->name}}</option>
                     @endforeach
                 </select>
-                @endif
             </div>
 
+            @if($product->type_name == 'physical')
             {{-- Physical Product Table --}}
-            {{-- <div class="form-group">
+            <div class="form-group">
                 <label">Barcode</label>
-                @foreach ($barcode as $key => $bar)
-                    <input type="hidden" name="barCode" class="form-control" id="barCode" value="{{$bar->barcode}}">
-                @endforeach
-                <input type="text" name="barcode" class="form-control" id="barcode" required>
+                <input type="text" name="barcode" class="form-control" id="barcode" value="{{$type->barcode}}" required>
             </div>
 
             <div class="form-group">
                 <label>Description</label>
-                <textarea class="form-control" name="description" id="description" rows="4" style="resize: none" required></textarea>
+                <textarea class="form-control" name="description" id="description" rows="4" style="resize: none" required>{{$type->description}}</textarea>
             </div>
 
             <div class="form-group">
                 <label">Quantity</label>
-                <input type="number" min="1" name="quantity" class="form-control" id="quantity" required>
+                <input type="number" min="1" name="quantity" class="form-control" id="quantity" value="{{$type->quantity}}" required>
             </div>
 
             <div class="form-group">
-                <label">Length</label>
-                <input type="number" step="0.01" min="0" name="length" class="form-control" id="length" required>
+                <label">Length (cm)</label>
+                <input type="number" step="0.001" min="0" name="length" class="form-control" id="length" value="{{$type->length}}" required>
             </div>
 
             <div class="form-group">
-                <label">Width</label>
-                <input type="number" step="0.01" min="0" name="width" class="form-control" id="width" required>
+                <label">Width (cm)</label>
+                <input type="number" step="0.001" min="0" name="width" class="form-control" id="width" value="{{$type->width}}" required>
             </div>
 
             <div class="form-group">
-                <label">Heigth</label>
-                <input type="number" step="0.01" min="0" name="heigth" class="form-control" id="heigth" required>
+                <label">Height (cm)</label>
+                <input type="number" step="0.001" min="0" name="heigth" class="form-control" id="heigth" value="{{$type->heigth}}" required>
             </div>
 
             <div class="form-group">
-                <label">Weigh</label>
-                <input type="number" step="0.01" min="0" name="weigh" class="form-control" id="weigh" required>
-            </div> --}}
+                <label">Weigh (g)</label>
+                <input type="number" step="0.001" min="0" name="weigh" class="form-control" id="weigh" value="{{$type->weigh}}" required>
+            </div>
+            
+            @elseif($product->type_name == 'online')
+            {{-- Online product table --}}
+            <div class="form-group">
+                <label>Content</label>
+                <textarea class="form-control" name="content" id="content" rows="4" style="resize: none" required>{{$type->content}}</textarea>
+            </div>
+            @endif
 
-            <button type="submit" name="add_book_phy" id="add" class="btn btn-info">Save</button>
+            <a id="add" class="btn btn-info" onclick="back()"><i class="fas fa-arrow-left"></i></a>
+            <button type="submit" id="add" class="btn btn-info"><i class="far fa-save"></i></button>
+            
         </form>
     </div>
 </div>
 @endsection
 <script>
-    function checkForm(){
-        var isFormValid = true;
-        isFormValid &= checkValue();
-        isFormValid &= checkBarcode();
-        return isFormValid? true:false
-    }
-
     function checkValue(){
         if( document.add.price.value < document.add.value.value*0.3 || 
             document.add.price.value > document.add.value.value*1.5 ) {
@@ -135,22 +198,11 @@
         return true;
     }
 
-    function checkBarcode(){
-        var a = document.add.barCode;
-        var check = true
-        for(var i = 0; i<a.length; i++ ){
-            if(a[i]. value == document.add.barcode.value){
-                document.add.barcode.focus();
-                check = false;
-            }
-        }
-        return check;
-    }
-
     function setPrice(x) {
         document.getElementById(x).setCustomValidity('Please enter price between 30% and 150% of value');
     }
-    function setBarcode(x) {
-        document.getElementById(x).setCustomValidity('Barcode is identical, please enter a new barcode.');
+
+    function back(){
+        history.back();
     }
 </script>

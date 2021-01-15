@@ -20,12 +20,16 @@ class AdminController extends Controller
     public function add_book_phy(){ //done
         $book_kind = DB::table('product_kinds')->where('productCategoryID',3)->get();
         $book_cover = DB::table('covers')->get();
-        $physical = DB::table('physical_products')->select('barcode')->get();
         // dd($book_kind);
-        return view('product::admin.addbook_phy')->with('kind',$book_kind)->with('cover',$book_cover)->with('barcode', $physical);
+        return view('product::admin.addbook_phy')->with('kind',$book_kind)->with('cover',$book_cover);
     }
 
     public function save_book_phy(Request $request){ //done
+        
+        $request->validate([
+            'barcode' => 'unique:physical_products'
+        ]);
+
         $product = array();
         $product['title'] = 'Book. '.$request->title;
         $product['value'] = $request->value;
@@ -65,11 +69,17 @@ class AdminController extends Controller
         $books['publisher'] = $request->publisher;
         $books['publicationDate'] = $request->public_date;
         $books['pages'] = $request->pages;
-        $books['category'] = 0;
+        $books['category'] = $request->book_category;
         DB::table('books')->insert($books);
         
+        $admin_active = array();
+        $admin_active['userID'] = Auth::user()->id;
+        $admin_active['productID'] = $product_id->id;
+        $admin_active['description'] = 'Add';
+        DB::table('admin_activities')->insert($admin_active);
+
         Session::put('message','Add product successfully!');
-        return \redirect()->action([AdminController::class, 'all_book']);;
+        return \redirect()->action([AdminController::class, 'all_book']);
     }
 
     public function add_book_on(){ //done
@@ -114,9 +124,14 @@ class AdminController extends Controller
         $books['publisher'] = $request->publisher;
         $books['publicationDate'] = $request->public_date;
         $books['pages'] = $request->pages;
-        $books['category'] = 0;
+        $books['category'] = $request->book_category;
         DB::table('books')->insert($books);
 
+        $admin_active = array();
+        $admin_active['userID'] = Auth::user()->id;
+        $admin_active['productID'] = $product_id->id;
+        $admin_active['description'] = 'Add';
+        DB::table('admin_activities')->insert($admin_active);
         // dd($books);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_book']);;
@@ -124,12 +139,15 @@ class AdminController extends Controller
 
     public function add_dvd_phy(){ //done
         $dvd_kind = DB::table('product_kinds')->where('productCategoryID',2)->get();
-        $physical = DB::table('physical_products')->select('barcode')->get();
-        // dd($physical);
-        return view('product::admin.adddvd_phy')->with('kind',$dvd_kind)->with('barcode', $physical);
+        
+        return view('product::admin.adddvd_phy')->with('kind',$dvd_kind);
     }
 
     public function save_dvd_phy(Request $request){ //done
+        $request->validate([
+            'barcode' => 'unique:physical_products'
+        ]);
+
         $product = array();
         $product['title'] = 'DVD. '.$request->title;
         $product['value'] = $request->value;
@@ -168,6 +186,11 @@ class AdminController extends Controller
         $dvds['runtime'] = $request->runtime;
         DB::table('dvds')->insert($dvds);
 
+        $admin_active = array();
+        $admin_active['userID'] = Auth::user()->id;
+        $admin_active['productID'] = $product_id->id;
+        $admin_active['description'] = 'Add';
+        DB::table('admin_activities')->insert($admin_active);
         // dd($physical_products);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_dvd']);
@@ -211,6 +234,11 @@ class AdminController extends Controller
         $dvds['runtime'] = $request->runtime;
         DB::table('dvds')->insert($dvds);
 
+        $admin_active = array();
+        $admin_active['userID'] = Auth::user()->id;
+        $admin_active['productID'] = $product_id->id;
+        $admin_active['description'] = 'Add';
+        DB::table('admin_activities')->insert($admin_active);
         // dd($physical_products);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_dvd']);
@@ -218,13 +246,16 @@ class AdminController extends Controller
 
     public function add_cd_phy(){ //done
         $cd_kind = DB::table('product_kinds')->where('productCategoryID',1)->get();
-        $physical = DB::table('physical_products')->select('barcode')->get();
         $tracks = DB::table('tracks')->get();
         // dd($physical);
-        return view('product::admin.addcd_phy')->with('kind',$cd_kind)->with('barcode', $physical)->with('tracks', $tracks);
+        return view('product::admin.addcd_phy')->with('kind',$cd_kind)->with('tracks', $tracks);
     }
 
     public function save_cd_phy(Request $request){ //done
+        $request->validate([
+            'barcode' => 'unique:physical_products'
+        ]);
+
         $product = array();
         $product['title'] = 'CD. '.$request->title;
         $product['value'] = $request->value;
@@ -273,6 +304,12 @@ class AdminController extends Controller
             ];
         }
         DB::table('cd_lp_track')->insert($tracks);
+
+        $admin_active = array();
+        $admin_active['userID'] = Auth::user()->id;
+        $admin_active['productID'] = $product_id->id;
+        $admin_active['description'] = 'Add';
+        DB::table('admin_activities')->insert($admin_active);
         // dd($tracks);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_cd_lp']);
@@ -326,6 +363,12 @@ class AdminController extends Controller
             ];
         }
         DB::table('cd_lp_track')->insert($tracks);
+
+        $admin_active = array();
+        $admin_active['userID'] = Auth::user()->id;
+        $admin_active['productID'] = $product_id->id;
+        $admin_active['description'] = 'Add';
+        DB::table('admin_activities')->insert($admin_active);
         // dd($tracks);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_cd_lp']);
@@ -333,13 +376,16 @@ class AdminController extends Controller
 
     public function add_lp_phy(){ //done
         $lp_kind = DB::table('product_kinds')->where('productCategoryID',1)->get();
-        $physical = DB::table('physical_products')->select('barcode')->get();
         $tracks = DB::table('tracks')->get();
         // dd($physical);
-        return view('product::admin.addlp_phy')->with('kind',$lp_kind)->with('barcode', $physical)->with('tracks', $tracks);
+        return view('product::admin.addlp_phy')->with('kind',$lp_kind)->with('tracks', $tracks);
     }
 
     public function save_lp_phy(Request $request){ //done
+        $request->validate([
+            'barcode' => 'unique:physical_products'
+        ]);
+
         $product = array();
         $product['title'] = 'LP. '.$request->title;
         $product['value'] = $request->value;
@@ -388,6 +434,12 @@ class AdminController extends Controller
             ];
         }
         DB::table('cd_lp_track')->insert($tracks);
+
+        $admin_active = array();
+        $admin_active['userID'] = Auth::user()->id;
+        $admin_active['productID'] = $product_id->id;
+        $admin_active['description'] = 'Add';
+        DB::table('admin_activities')->insert($admin_active);
         // dd($tracks);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_cd_lp']);
@@ -441,6 +493,12 @@ class AdminController extends Controller
             ];
         }
         DB::table('cd_lp_track')->insert($tracks);
+
+        $admin_active = array();
+        $admin_active['userID'] = Auth::user()->id;
+        $admin_active['productID'] = $product_id->id;
+        $admin_active['description'] = 'Add';
+        DB::table('admin_activities')->insert($admin_active);
         // dd($tracks);
         Session::put('message','Add product successfully!');
         return \redirect()->action([AdminController::class, 'all_cd_lp']);
@@ -518,13 +576,14 @@ class AdminController extends Controller
         ->join('product_categories','products.productCategoryID','=','product_categories.id')
         ->join('product_types','products.productTypeID','=','product_types.id')
         ->leftjoin('promotions','products.promotionID','=','promotions.id')
-        ->select('product_categories.name AS category_name', 'product_types.name AS type_name', 'product_categories.id AS categoryID',
+        ->select('product_categories.name AS category_name', 'product_types.name AS type_name', 'product_categories.id AS categoryID', 'product_types.id AS typeID',
         'products.id AS id','products.title','products.price','products.value','products.language', 'promotions.percent')
         ->where('products.id',$product_id)
         ->get();
         if(!isset($data[0])){
             abort(404);
         }
+        if($data[0]->categoryID == 4) $data[0]->categoryID=1;
         $product_des = array();
 
         if($data[0]->category_name == 'books'){
@@ -544,7 +603,12 @@ class AdminController extends Controller
             $product_des = DB::table('cds_lps')
             ->where('cds_lps.productID',$product_id)
             ->get();
-            $cd_lp_track = DB::table('cd_lp_track')->where('productID', $product_id)->get();
+            $t = DB::table('cd_lp_track')->where('productID', $product_id)->get();
+            $cd_lp_track = array();
+            foreach ($t as $key => $value) {
+                array_push($cd_lp_track, $value->trackID);
+            }
+        
             if($data[0]->category_name == 'cds') $name = 'CD';
             else $name = 'LP';
         }
@@ -566,16 +630,35 @@ class AdminController extends Controller
         ->join('covers','books.coverID','=','covers.id')
         ->where('productID',$product_id)->get();
 
-        // dd($category);
-        return view('product::admin.showDetailPro')->with([
-            'product' => $data[0],
-            'kind' => $kind,
-            'category' => $category,
-            'desc' => $product_des[0],
-            'co_tra' => ['covers' => $book_cover, 'tracks' =>$track ],
-            'product_kind' => $product_kind,
-            'name' => $name,
-            ]);
+        $product_type = array();
+        if($data[0]->type_name == 'online')
+            $product_type = DB::table('online_products')->where('productID', $product_id)->get();
+        else $product_type = DB::table('physical_products')->where('productID', $product_id)->get();
+
+        if(isset($cd_lp_track)){
+            return view('product::admin.showDetailPro')->with([
+                'product' => $data[0],
+                'kind' => $kind,
+                'category' => $category,
+                'desc' => $product_des[0],
+                'tracks' => $cd_lp_track,
+                'co_tra' => ['covers' => $book_cover, 'tracks' =>$track ],
+                'product_kind' => $product_kind,
+                'name' => $name,
+                'type' => $product_type[0],
+                ]);
+        }else{
+            return view('product::admin.showDetailPro')->with([
+                'product' => $data[0],
+                'kind' => $kind,
+                'category' => $category,
+                'desc' => $product_des[0],
+                'co_tra' => ['covers' => $book_cover, 'tracks' =>$track ],
+                'product_kind' => $product_kind,
+                'name' => $name,
+                'type' => $product_type[0],
+                ]);
+        }
     }
     
     public function delete_product(Request $request){
@@ -586,4 +669,106 @@ class AdminController extends Controller
             'data' => $request->id,
         ]);
     }
+
+    public function update_product(Request $request, $product_id){
+        //Update Product Table
+        $product = array();
+        $product['title'] = $request->title;
+        $product['value'] = $request->value;
+        $product['price'] = $request->price;
+        $product['language'] = $request->language;
+        DB::table('products')->where('id', $product_id)->update($product);
+        
+        $category = array();
+        if(isset($request->author)) //update Book
+        {
+            $category[] = [
+                'coverID' => $request->cover_type,
+                'author' => $request->author,
+                'publisher' => $request->publisher,
+                'publicationDate' => $request->public_date,
+                'pages' => $request->pages
+            ];
+            $name = 'book';
+            DB::table('books')->where('productID', $product_id)->update($category[0]);
+        } 
+        elseif(isset($request->director)) //update DVD
+        {
+            $category[] = [
+                'director' => $request->director,
+                'dvdKind' => $request->kind[0],
+                'videoKind' => $request->video_kind,
+                'studio' => $request->studio,
+                'subtitles' => $request->sub_title,
+                'runtime' => $request->run_time
+            ];
+            $name = 'dvd';
+            DB::table('dvds')->where('productID', $product_id)->update($category[0]);
+        }
+        else //update CD or LP
+        {
+            $category[]= [
+                'artists' => $request->artists,
+                'recordLabel' => $request->record_label,
+                'musicType' => $request->music_type,
+                'releaseDate' => $request->release_date
+            ];
+            DB::table('cds_lps')->where('productID', $product_id)->update($category[0]);
+
+            DB::table('cd_lp_track')->where('productID', $product_id)->delete();
+            for($i = 0; $i<count($request->tracks);$i++){
+                $track [] = [
+                    'productID' => $product_id,
+                    'trackID' => $request->tracks[$i],
+                ];
+            }
+            DB::table('cd_lp_track')->insert($track);            
+            $name = 'cd_lp';            
+        }
+
+        DB::table('products_product_kinds')->where('productID', $product_id)->delete();
+        for($i = 0; $i<count($request->kind);$i++){
+            $kinds [] = [
+                'productID' => $product_id,
+                'productKindID' => $request->kind[$i],
+            ];
+        };
+        DB::table('products_product_kinds')->insert($kinds);
+
+        // dd($request->all());
+        $type = array();
+        if(isset($request->barcode)){
+            DB::table('physical_products')->where('productID', $product_id)->update(['barcode' => '#############']);
+            $request->validate([
+                'barcode' => 'unique:physical_products'
+            ]);
+            $type[] = [
+                'barcode' => $request->barcode,
+                'description' => $request->description,
+                'quantity' => $request->quantity,
+                'length' => $request->length,
+                'width' => $request->width,
+                'heigth' => $request->heigth,
+                'weigh' => $request->weigh
+            ];
+            DB::table('physical_products')->where('productID', $product_id)->update($type[0]);
+        }
+        else{
+            $type[] = [
+                'content' => $request->content
+            ];
+            DB::table('online_products')->where('productID', $product_id)->update($type[0]);
+        }
+
+        $admin_active[] = [
+            'userID' => Auth::user()->id,
+            'productID' => $product_id,
+            'description' => 'Update'
+        ];
+        DB::table('admin_activities')->insert($admin_active);
+
+        Session::put('message','Update product ['.$product['title'].'] successfully!');
+        return redirect()->action([AdminController::class, 'all_'.$name]);
+    }
+
 }

@@ -22,7 +22,7 @@
     
     <!-- Custom styles for this page -->
     <link href="{{asset('Admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
-
+    
 </head>
 
 <body id="page-top">
@@ -301,7 +301,9 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+    
     <script src="{{asset('Admin/vendor/jquery/jquery.min.js')}}"></script>
+    
     <script src="{{asset('Admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
