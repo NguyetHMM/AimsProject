@@ -5,10 +5,12 @@ namespace Modules\Account\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+//sửa
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
-use Auth;
-use Hash;
+//use Auth;
+//use Hash;
 
 class AccountController extends Controller
 {

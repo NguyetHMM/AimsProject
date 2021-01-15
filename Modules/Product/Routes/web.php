@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,7 @@ Route::prefix('product')->group(function() {
     Route::get('show-book-physical/{productKind_id}','ProductController@showBookPhysical')->name('showBookPhysical');
     Route::get('show-book-online/{productKind_id}','ProductController@showBookOnline')->name('showBookOnline');
     Route::get('/book','ProductController@showBook')->name('showBook');
-    
+
     // detail for each product
     Route::get('/product-detail/{product_id}','ProductController@productDetail')->name('productDetail');
     Route::get('/home','ProductController@home')->name('home');
@@ -34,7 +35,7 @@ Route::prefix('product')->group(function() {
 
     // show LPs Route
     Route::get('/lps','ProductController@showLPs')->name('showLPs');
-    
+
     // search route
     Route::post('/search','ProductController@search')->name('search');
 
@@ -46,10 +47,10 @@ Route::prefix('product')->group(function() {
     //Add route
     Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
     Route::post('/savebook-phy','AdminController@save_book_phy')->name('savebook-phy');
-    
+
     Route::get('/addbook-on','AdminController@add_book_on')->name('addbook-on');
     Route::post('/savebook-on','AdminController@save_book_on')->name('savebook-on');
-    
+
     Route::get('/adddvd-phy','AdminController@add_dvd_phy')->name('adddvd-phy');
     Route::post('/savedvd-phy','AdminController@save_dvd_phy')->name('savedvd-phy');
 
