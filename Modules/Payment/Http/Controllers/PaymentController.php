@@ -5,7 +5,7 @@ namespace Modules\Payment\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use Illuminate\Support\Facades\DB;
 class PaymentController extends Controller
 {
     /**
@@ -16,7 +16,23 @@ class PaymentController extends Controller
     {
         return view('payment::checkout');
     }
-
+    public function fetch(Request $request)
+    {
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      $data = DB::table('address_payment')
+        ->where('city_address', 'LIKE', "%{$query}%")
+        ->get();
+      $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+      foreach($data as $row)
+      {
+       $output .= '<li><a href="#">'.$row->city_address.'</a></li>';
+      }
+      $output .= '</ul>';
+      echo $output;
+     }
+    }
     /**
      * Show the form for creating a new resource.
      * @return Renderable
@@ -43,7 +59,8 @@ class PaymentController extends Controller
      */
     public function show()
     {
-        return view('payment::checkout');//->with('products', $data_product);
+       // $data = DB::table('order_detail')->where('order_id',1)->get();
+        return view('payment::checkout');//->with('products', $data);//->with('products', $data_product);
         /*return view('payment::show');*/
     }
 
