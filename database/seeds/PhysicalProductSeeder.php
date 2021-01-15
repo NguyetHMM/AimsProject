@@ -18,7 +18,7 @@ class PhysicalProductSeeder extends Seeder
         for($index = 0; $index < 20; $index ++){
             $physical_products[] = [
                 'productID' => $index +1,
-                'barcode' => $faker->name(20),
+                'barcode' => $faker->isbn13,
                 'description' => $faker->text(50),
                 'quantity' => rand(1,100),
                 'length' => rand(1,100)/100,
@@ -32,7 +32,7 @@ class PhysicalProductSeeder extends Seeder
         for($index = 40; $index < 75; $index ++){
             $physical_products[] = [
                 'productID' => $index +1,
-                'barcode' => $faker->name(20),
+                'barcode' => $faker->isbn13,
                 'description' => $faker->text(50),
                 'quantity' => rand(1,100),
                 'length' => rand(1,100)/100,

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 Route::prefix('product')->group(function() {
     Route::get('/a', 'ProductController@index')->middleware('AdminRole')->name('admin-index');
     Route::get('/ab', 'AdminController@delete_product')->name('delete-p');
+    Route::get('/error','AdminController@error')->name('error');
 
     // show book route
     Route::get('show-book-physical/{productKind_id}','ProductController@showBookPhysical')->name('showBookPhysical');
@@ -78,5 +79,5 @@ Route::prefix('product')->group(function() {
 
     //Edit - Delete Product
     Route::get('/detail-pro/{product_id}','AdminController@show_product');
-
+    Route::post('/update-pro/{product_id}','AdminController@update_product')->name('update-product');
 });

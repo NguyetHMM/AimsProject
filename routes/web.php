@@ -26,3 +26,4 @@ Route::get('/', function () {
     // dd($bookKinds);
     return view('welcome',compact('bookKinds','dvdKinds','cdKinds','lpKinds'));
 })->name('welcome');
+

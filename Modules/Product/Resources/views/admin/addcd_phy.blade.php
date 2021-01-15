@@ -5,8 +5,17 @@
 </div>
 <div class="container" style="margin-left: 10%">
     <div class="col-10">
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form role="form" action="{{route('savecd-phy')}}" method="post" enctype="multipart/form-data" 
-        name="add" onsubmit="return(checkForm());">
+        name="add" onsubmit="return(checkValue());">
             {{ csrf_field() }}
             
             <div class="form-group">
@@ -123,13 +132,6 @@
 @endsection
 
 <script>
-    function checkForm(){
-        var isFormValid = true;
-        isFormValid &= checkValue();
-        isFormValid &= checkBarcode();
-        return isFormValid? true:false
-    }
-
     function checkValue(){
         if( document.add.price.value < document.add.value.value*0.3 || 
             document.add.price.value > document.add.value.value*1.5 ) {
@@ -140,23 +142,7 @@
         return true;
     }
 
-    function checkBarcode(){
-        var a = document.add.barCode;
-        var check = true
-        for(var i = 0; i<a.length; i++ ){
-            if(a[i]. value == document.add.barcode.value){
-                document.add.barcode.focus();
-                check = false;
-            }
-        }
-        return check;
-    }
-
     function setPrice(x) {
         document.getElementById(x).setCustomValidity('Please enter price between 30% and 150% of value');
-    }
-
-    function setBarcode(x) {
-        document.getElementById(x).setCustomValidity('Barcode is identical, please enter a new barcode.');
     }
 </script>
