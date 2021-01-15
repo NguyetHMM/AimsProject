@@ -26,31 +26,44 @@
                             @csrf
                                 <input type="text" placeholder="Full Name*" class="@error('name') is-invalid @enderror"
                                     name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                </span> @enderror
+                                {{-- @error('name')
+                                    <div class="alert alert-danger">
+                                        <span>
+                                            
+                                        </span> 
+                                    </div>
+                                @enderror --}}
 
                                 <input type="text" placeholder="Username*" class="@error('username') is-invalid @enderror"
                                     name="username" value="{{ old('username') }}" required autocomplete="name" autofocus>
                                 @error('username')
+                                <div class="alert alert-danger">
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                </span> @enderror
+                                    </span>
+                                </div>
+                                @enderror
 
                                 <input type="email" placeholder="Email*" class="@error('email') is-invalid @enderror"
                                     name="email" value="{{ old('email') }}" required autocomplete="email">
                                 @error('email')
+                                <div class="alert alert-danger">
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                </span> @enderror
+                                    </span>
+                                </div>
+                                @enderror
 
                                 <input type="password" placeholder="Password*"
                                     class="@error('password') is-invalid @enderror" name="password" required
-                                    autocomplete="new-password"> @error('password')
+                                    autocomplete="new-password"> 
+                                @error('password')
+                                <div class="alert alert-danger">
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                </span> @enderror
+                                    </span>
+                                </div>
+                                @enderror
 
                                 <input type="password" placeholder="Confirm Password*" name="password_confirmation" required
                                     autocomplete="new-password">

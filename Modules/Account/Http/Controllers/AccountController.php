@@ -44,7 +44,7 @@ class AccountController extends Controller
             'password' => Hash::make($request->password),
             'roleID' => 2
         ]);
-        return redirect()->route('welcome');
+        return redirect()->route('login')->with('success', 'Create Account Successfully! Login to Continue! ');
     }
 
     public function login()
