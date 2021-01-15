@@ -5,10 +5,12 @@ namespace Modules\Account\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+//sửa
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
-use Auth;
-use Hash;
+//use Auth;
+//use Hash;
 
 class AccountController extends Controller
 {
@@ -69,22 +71,29 @@ class AccountController extends Controller
 
     public function userProfile()
     {
-        
+        return view('account::userProfile');
     }
 
     public function storeUserProfile(Request $request)
     {
-        // User::where('email', Auth::user()->email)
-        //     ->update([
-        //         'name' => $request->name,
-        //         'phonenumber' => $request->phonenumber,
-        //         'dateofbirth' => $request->dateofbirth
-        //     ]);
-        // Auth::user()->phonenumber = $request->phonenumber;
-        // Auth::user()->dateofbirth = $request->dateofbirth;
-
-        // return redirect(route('editUserInfor'))->with('error', 'Oppes! You have entered invalid credentials');
+        $request->validate([
+            'name' => 'string',
+            'phonenumber' => 'required|numeric',
+        ]);
+        User::where('email', Auth::user()->email)
+            ->update([
+                'name' => $request->name,
+                'phonenumber' => $request->phonenumber,
+            ]);
+        Auth::user()->phonenumber = $request->phonenumber;
+        return redirect(route('userProfile'))->with('error', 'Oppes! You have entered invalid credentials');
     }
+
+    public function orderHistory()
+    {
+        return view('account::orderHistory');
+    }
+
     public function logout(){
         Auth::logout();
         return redirect()->route('welcome');

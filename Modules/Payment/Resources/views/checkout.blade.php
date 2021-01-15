@@ -4,13 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Tmart-Minimalist eCommerce HTML5 Template</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    
+
 
     <!-- All css files are included here. -->
     <!-- Bootstrap fremwork main css -->
@@ -31,13 +35,16 @@
 
 
     <!-- Modernizr JS -->
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->  
+    <![endif]-->
 
     <!-- Body main wrapper start -->
     <div class="wrapper fixed__footer">
@@ -156,10 +163,10 @@
                                         <li><a href="contact.html">contact</a></li>
                                     </ul>
                                 </nav>
-                            </div>                         
+                            </div>
                         </div>
                         <!-- End MAinmenu Ares -->
-                        
+
                     </div>
                     <div class="mobile-menu-area"></div>
                 </div>
@@ -167,7 +174,7 @@
             <!-- End Mainmenu Area -->
         </header>
         <!-- End Header Style -->
-        
+
         <div class="body__overlay"></div>
         <!-- Start Offset Wrapper -->
         <div class="offset__wrapper">
@@ -191,7 +198,7 @@
             </div>
             <!-- End Search Popap -->
             <!-- Start Offset MEnu -->
-            <div class="offsetmenu">
+             <div class="offsetmenu">
                 <div class="offsetmenu__inner">
                     <div class="offsetmenu__close__btn">
                         <a href="#"><i class="zmdi zmdi-close"></i></a>
@@ -236,7 +243,7 @@
                         <h4 class="offset__title">Follow Us On Social</h4>
                         <ul class="off__soaial__link">
                             <li><a class="bg--twitter" href="#"  title="Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
-                            
+
                             <li><a class="bg--instagram" href="#" title="Instagram"><i class="zmdi zmdi-instagram"></i></a></li>
 
                             <li><a class="bg--facebook" href="#" title="Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
@@ -250,7 +257,7 @@
             </div>
             <!-- End Offset MEnu -->
             <!-- Start Cart Panel -->
-            <div class="shopping__cart">
+             <div class="shopping__cart">
                 <div class="shopping__cart__inner">
                     <div class="offsetmenu__close__btn">
                         <a href="#"><i class="zmdi zmdi-close"></i></a>
@@ -341,25 +348,40 @@
                                     <div class="single-checkout-box">
                                         <textarea name="message" placeholder="Message*"></textarea>
                                     </div>
-                                    <div class="single-checkout-box select-option mt--40">
+                                    {{-- <div class="single-checkout-box select-option mt--40">
                                         <select>
                                             <option>City/Province*</option>
-                                            
+
                                         </select>
                                         <input type="text" placeholder="District*">
+                                    </div> --}}
+                                    <div class="single-checkout-box">
+                                        <input type="text" name="city_address" id="city_address" placeholder="City/Province*">
+                                        <div id="cityList"></div>
+                                        {{-- <input type="text" name="district" id="district" placeholder="District*"> --}}
                                     </div>
+                                    {{ csrf_field() }}
+                                    <div class="single-checkout-box">
+                                        {{-- <input type="text" name="city" id="city" placeholder="City/Province*"> --}}
+                                        {{-- <div id="cityList"></div> --}}
+                                        <input type="text" name="district" id="district" placeholder="District*">
+                                    </div>
+                                    {{-- <div id="cityList"></div> --}}
                                     <div class="single-checkout-box">
                                         <input type="text" placeholder="Commune*">
+                                        {{-- <input type="text" placeholder="Specific address*"> --}}
+                                    </div>
+                                    <div class="single-checkout-box">
+                                        {{-- <input type="text" placeholder="Commune*"> --}}
                                         <input type="text" placeholder="Specific address*">
                                     </div>
-                            
                                 </div>
                             </div>
                             <!-- End Checkbox Area -->
                             <!-- Start Payment Box -->
                             <div class="payment-form">
                                 <h2 class="section-title-3">payment details</h2>
-                                
+
                                 <div class="table-responsive cart_info">
 				                    <table class="table table-condensed">
 				                    	<thead>
@@ -372,7 +394,9 @@
 				                    			<td></td>
 				                    		</tr>
 				                    	</thead>
-				                    	<tbody>					
+				                    	<tbody>
+
+                                            <tr>
 				                    			<td colspan="4">&nbsp;</td>
 				                    			<td colspan="2">
 				                    				<table class="table table-condensed total-result">
@@ -380,16 +404,16 @@
 				                    						<td>Tổng</td>
 				                    						<td>1000</td>
 				                    					</tr>
-				                    					
+
 				                    					<tr class="shipping-cost">
 				                    						<td>Phí vận chuyển</td>
-				                    						
-				                    						<td>1000</td>										
-				                    					</tr>
+				                    						<td>1000</td>
+                                                        </tr>
+
 				                    					<tr>
 				                    						<td>Thành tiền</td>
 				                    						<td><span>2000</span></td>
-				                    						
+
 				                    					</tr>
 				                    				</table>
 				                    			</td>
@@ -401,10 +425,10 @@
                             <!-- End Payment Box -->
                             <!-- Start Payment Way -->
                             <div class="our-payment-sestem">
-                                
+
                                 <div class="checkout-btn">
                                     <a class="ts-btn btn-light btn-large hover-theme" href="#">CONFIRM & BUY NOW</a>
-                                </div>    
+                                </div>
                             </div>
                             <!-- End Payment Way -->
                         </div>
@@ -527,12 +551,12 @@
                                                     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                                                     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
                                                     <div class="clearfix subscribe__btn"><input type="submit" value="Send" name="subscribe" id="mc-embedded-subscribe" class="bst__btn btn--white__color">
-                                                        
+
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>        
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -581,3 +605,30 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function(){
+
+     $('#city_address').keyup(function(){
+            var query = $(this).val();
+            if(query != '')
+            {
+             var _token = $('input[name="_token"]').val();
+             $.ajax({
+              url:"{{ route('payment.fetch') }}",
+              method:"POST",
+              data:{query:query, _token:_token},
+              success:function(data){
+               $('#cityList').fadeIn();
+                        $('#cityList').html(data);
+              }
+             });
+            }
+        });
+
+        $(document).on('click', 'li', function(){
+            $('#city_address').val($(this).text());
+            $('#cityList').fadeOut();
+        });
+
+    });
+</script>
