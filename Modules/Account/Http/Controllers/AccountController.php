@@ -137,7 +137,13 @@ class AccountController extends Controller
         $products = DB::table('order_details')
             ->where('orderID', $request->orderID)
             ->get();
-        dd($products);
-        return view('account::orderDetails');
+        $ship_fee = DB::table('orders')
+                    ->where('id', $request->orderID)
+                    ->select('shipfee')
+                    ->get();
+        return view('account::orderDetails', [
+            'products' => $products,
+            'ship_fee' => $ship_fee[0]->shipfee,
+        ]);
     }
 }

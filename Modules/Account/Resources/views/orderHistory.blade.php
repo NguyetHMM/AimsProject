@@ -22,7 +22,7 @@
                             </td>
                             <td>{{ $value->orderDate }}</td>
                             <td class="{{ 'state-' . $value->id }}">{{ $value->name }}</td>
-                            <td><a href="{{ route('orderDetails', ['orderID' => $value->id])}}">Show details</a></td>
+                            <td><a href="{{ route('orderDetails', ['orderID' => $value->id])}}" style="text-decoration: underline">Show details</a></td>
                             <td><a style="cursor: pointer" onclick="cancel({{ $value->id }})"><strong style="color: red"
                                         class="cancel">Cancel</strong></a></td>
                         </tr>

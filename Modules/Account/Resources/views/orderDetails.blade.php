@@ -14,28 +14,60 @@
         </thead>
         <tbody>
             <?php
-            $total = 0;
-            $countProduct = 0;
+            $subTotal = 0;
             $totalOrder = 0;
             ?>
 
-            {{-- @foreach ($countProduct < 10) --}}
-            @while ($countProduct < 10)
+            @foreach ($products as $product)
                 <tr>
                     <td style="width: 11%; height: 11%">
                         <a href=""><img src="{{ asset('images/product/4.png') }}" alt="product img" /></a></td>
-                    <td>lkasdj</td>
-                    <td>lkajsd</td>
-                    <td>kalsjd</td>
-                    <td>lasdkad</td>
+                    <td>{{ $product->productName }}</td>
+                    <td>{{ $product->price}}</td>
+                    <td>{{ $product->quantity }}</td>
+                    <td>{{ $product->price * $product->quantity}}</td>
                 </tr>
                 <?php
-                $countProduct++;
+                    $subTotal += $product->price * $product->quantity;
                 ?>
-            {{-- @endforeach --}}
-            @endwhile
-            {{-- <input type="hidden" name="product_count" value="{{ $countProduct }}"> --}}
+            @endforeach
+            @php
+                $totalOrder = $subTotal + $ship_fee;
+            @endphp
         </tbody>
     </table>
+</div>
+<div class="row">
+    <div class="col-md-5 col-sm-7 col-xs-12">
+    </div>
+    <div class="col-md-7 col-sm-5 col-xs-12">
+        <div class="cart_totals">
+            <table>
+                <tbody>
+                    <tr class="order-total">
+                        <th>Subtotal</th>
+                        <td>
+                            <strong><span
+                                    class="amount total-order">{{ $subTotal }}</span></strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ship fee</th>
+                        <td>
+                            <strong><span
+                                    class="amount total-order">{{ $ship_fee }}</span></strong>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th><h2>Order Totals</h2></th>
+                        <td>
+                            <strong><h2>{{ $totalOrder }}</h2></strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 @endsection
