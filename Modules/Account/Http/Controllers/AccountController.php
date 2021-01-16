@@ -92,13 +92,43 @@ class AccountController extends Controller
 
     public function orderHistory()
     {
-        $orders = DB::table('orders')->where("userID", Auth::user()->id)->get();
-        // dd(Auth::user()->id);
-        return view('account::orderHistory');
+        $orders = DB::table('orders')
+                    ->join('order_states', 'orders.stateID', '=', 'order_states.id')
+                    ->select('orders.*', 'order_states.name')
+                    ->where("userID", 1)->get();
+        // dd($orders);
+        return view('account::orderHistory', \compact('orders'));
     }
 
     public function logout(){
         Auth::logout();
         return redirect()->route('welcome');
+    }
+
+    public function cancel(Request $request)
+    {   
+        $id = $request->id;
+        // Get state --> validate change state
+        $order = DB::table('orders')
+                    ->join('order_states', 'orders.stateID', '=', 'order_states.id')
+                    ->select('orders.*', 'order_states.name')
+                    ->where("orders.id", $id)->get();
+        if($order[0]->name === "Đang giao dịch"){
+            $state = DB::table('order_states')
+                ->where('name', 'Đã hủy')
+                ->get();
+            DB::table('orders')
+                    ->where("orders.id", $id)
+                    ->update([
+                        'stateID' => $state[0]->id
+                    ]);
+            // Success
+            return \response()->json([
+                'data' => "Đã Huỷ",
+            ], 200);
+        }else{
+            return \response()->json([
+            ], 403);
+        }
     }
 }
