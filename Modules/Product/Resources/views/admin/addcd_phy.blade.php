@@ -6,12 +6,10 @@
 <div class="container" style="margin-left: 10%">
     <div class="col-10">
         @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
+            <div class="border-bottom-danger col-md-5">
                     @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
+                        <p><b>{{$error}}</p>
                     @endforeach
-                </ul>
             </div>
         @endif
         <form role="form" action="{{route('savecd-phy')}}" method="post" enctype="multipart/form-data" 
