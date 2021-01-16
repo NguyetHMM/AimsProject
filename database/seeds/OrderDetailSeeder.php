@@ -15,6 +15,7 @@ class OrderDetailSeeder extends Seeder
             $order_detail[] = [
                 'orderID' => rand(1,20),
                 'productID' => rand(1,100),
+                'productName' => 'Test order detail '.$index,
                 'quantity' => rand(1,100),
                 'price' => rand(30,500)
             ];
