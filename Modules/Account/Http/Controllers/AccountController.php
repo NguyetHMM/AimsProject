@@ -131,4 +131,13 @@ class AccountController extends Controller
             ], 403);
         }
     }
+
+    public function orderDetails(Request $request)
+    {
+        $products = DB::table('order_details')
+            ->where('orderID', $request->orderID)
+            ->get();
+        dd($products);
+        return view('account::orderDetails');
+    }
 }
