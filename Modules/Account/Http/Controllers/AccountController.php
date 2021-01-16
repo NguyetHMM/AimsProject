@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use DB;
 //use Auth;
 //use Hash;
 
@@ -44,7 +45,7 @@ class AccountController extends Controller
             'password' => Hash::make($request->password),
             'roleID' => 2
         ]);
-        return redirect()->route('welcome');
+        return redirect()->route('login')->with('success', 'Create Account Successfully! Login to Continue! ');
     }
 
     public function login()
@@ -91,6 +92,8 @@ class AccountController extends Controller
 
     public function orderHistory()
     {
+        $orders = DB::table('orders')->where("userID", Auth::user()->id)->get();
+        // dd(Auth::user()->id);
         return view('account::orderHistory');
     }
 
