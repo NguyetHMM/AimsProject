@@ -73,7 +73,7 @@
                             <a class="collapse-item dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                Add Book
+                                Book
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
@@ -85,7 +85,7 @@
                             <a class="collapse-item dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                Add CD
+                                CD
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
@@ -97,7 +97,7 @@
                             <a class="collapse-item dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                Add DVD
+                                DVD
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
@@ -109,7 +109,7 @@
                             <a class="collapse-item dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                Add Long Player Record
+                                Long Player Record
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
@@ -130,11 +130,27 @@
                 <div id="allproduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Show product</h6>
-                        <a class="collapse-item" href="{{route('allproduct')}}">Show All Product</a>
-                        <a class="collapse-item" href="{{route('allbook')}}">Show Book</a>
-                        <a class="collapse-item" href="{{route('allcdlp')}}">Show CD and LP</a>
-                        <a class="collapse-item" href="{{route('alldvd')}}">Show DVD</a>
+                        <a class="collapse-item" href="{{route('allproduct')}}">All Product</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Book</a>
+                        <a class="collapse-item" href="{{route('allcdlp')}}">CD and LP</a>
+                        <a class="collapse-item" href="{{route('alldvd')}}">DVD</a>
                         {{-- <a class="collapse-item" href="{{route('alllp')}}">Show Long Player Record</a> --}}
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#promotion"
+                    aria-expanded="true" aria-controls="promotion">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Promotion management</span>
+                </a>
+                <div id="promotion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Promotion management</h6>
+                        <a class="collapse-item" href="{{route('add-promotion')}}">Add promotion</a>
+                        <a class="collapse-item" href="#">Add promotion to product</a>
+                        <a class="collapse-item" href="{{route('show-promotion')}}">Show promotion</a>
                     </div>
                 </div>
             </li>
@@ -212,24 +228,15 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset('Admin/img/undraw_profile.jpg')}}">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 medium">{{ Auth::user()->name }}</span>
+                                <i class="fas fa-user-cog"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('userProfile') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -294,7 +301,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>
         </div>
