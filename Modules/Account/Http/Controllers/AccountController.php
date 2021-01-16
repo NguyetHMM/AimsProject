@@ -131,4 +131,19 @@ class AccountController extends Controller
             ], 403);
         }
     }
+
+    public function orderDetails(Request $request)
+    {
+        $products = DB::table('order_details')
+            ->where('orderID', $request->orderID)
+            ->get();
+        $ship_fee = DB::table('orders')
+                    ->where('id', $request->orderID)
+                    ->select('shipfee')
+                    ->get();
+        return view('account::orderDetails', [
+            'products' => $products,
+            'ship_fee' => $ship_fee[0]->shipfee,
+        ]);
+    }
 }
