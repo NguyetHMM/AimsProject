@@ -5,6 +5,13 @@
 </div>
 <div class="container" style="margin-left: 10%">
     <div class="col-10">
+        @if($errors->any())
+            <div class="border-bottom-danger col-md-5">
+                    @foreach ($errors->all() as $error)
+                        <p><b>{{$error}}</p>
+                    @endforeach
+            </div>
+        @endif
         <form role="form" action="{{route('update-product',["product_id"=>$product->id])}}" method="post" enctype="multipart/form-data" 
         name="add" onsubmit="return(checkValue());">
             {{ csrf_field() }}
@@ -180,7 +187,7 @@
             </div>
             @endif
 
-            <a id="add" class="btn btn-info" onclick="back()"><i class="fas fa-arrow-left"></i></a>
+            <a href="{{route('all'.strtolower($name))}}" id="add" class="btn btn-info"><i class="fas fa-arrow-left"></i></a>
             <button type="submit" id="add" class="btn btn-info"><i class="far fa-save"></i></button>
             
         </form>
@@ -202,7 +209,4 @@
         document.getElementById(x).setCustomValidity('Please enter price between 30% and 150% of value');
     }
 
-    function back(){
-        history.back();
-    }
 </script>

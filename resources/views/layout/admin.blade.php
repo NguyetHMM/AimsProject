@@ -73,7 +73,7 @@
                             <a class="collapse-item dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                Add Book
+                                Book
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
@@ -85,7 +85,7 @@
                             <a class="collapse-item dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                Add CD
+                                CD
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
@@ -97,7 +97,7 @@
                             <a class="collapse-item dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                Add DVD
+                                DVD
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
@@ -109,7 +109,7 @@
                             <a class="collapse-item dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                Add Long Player Record
+                                Long Player Record
                             </a>
                             <div class="dropdown-menu animated--fade-in"
                                 aria-labelledby="dropdownMenuButton">
@@ -130,11 +130,27 @@
                 <div id="allproduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Show product</h6>
-                        <a class="collapse-item" href="{{route('allproduct')}}">Show All Product</a>
-                        <a class="collapse-item" href="{{route('allbook')}}">Show Book</a>
-                        <a class="collapse-item" href="{{route('allcdlp')}}">Show CD and LP</a>
-                        <a class="collapse-item" href="{{route('alldvd')}}">Show DVD</a>
+                        <a class="collapse-item" href="{{route('allproduct')}}">All Product</a>
+                        <a class="collapse-item" href="{{route('allbook')}}">Book</a>
+                        <a class="collapse-item" href="{{route('allcdlp')}}">CD and LP</a>
+                        <a class="collapse-item" href="{{route('alldvd')}}">DVD</a>
                         {{-- <a class="collapse-item" href="{{route('alllp')}}">Show Long Player Record</a> --}}
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#promotion"
+                    aria-expanded="true" aria-controls="promotion">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Promotion management</span>
+                </a>
+                <div id="promotion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Promotion management</h6>
+                        <a class="collapse-item" href="{{route('add-promotion')}}">Add promotion</a>
+                        <a class="collapse-item" href="#">Add promotion to product</a>
+                        <a class="collapse-item" href="{{route('show-promotion')}}">Show promotion</a>
                     </div>
                 </div>
             </li>

@@ -79,4 +79,9 @@ Route::prefix('product')->group(function() {
     //Edit - Delete Product
     Route::get('/detail-pro/{product_id}','AdminController@show_product');
     Route::post('/update-pro/{product_id}','AdminController@update_product')->name('update-product');
+
+    //Promotion
+    Route::get('/add-promotion','AdminController@add_promotion')->name('add-promotion');
+    Route::post('/save-promotion','AdminController@save_promotion')->name('save-promotion');
+    Route::get('/show-promotion','AdminController@show_promotion')->name('show-promotion');
 });

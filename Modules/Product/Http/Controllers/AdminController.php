@@ -9,6 +9,7 @@ use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+use Auth;
 
 class AdminController extends Controller
 {   
@@ -664,6 +665,12 @@ class AdminController extends Controller
     public function delete_product(Request $request){
         for($i = 0; $i < count($request->id); $i++){
             DB::table('products')->where('id', $request->id[$i])->delete();
+            $admin[] = [
+                'userID' => Auth::user()->id,
+                'productID' => $request->id[$i],
+                'description' => 'Delete'
+            ];
+            DB::table('admin_activities')->where('id', $request->id[$i])->insert($admin);
         }
         return response()->json([
             'data' => $request->id,
@@ -769,6 +776,27 @@ class AdminController extends Controller
 
         Session::put('message','Update product ['.$product['title'].'] successfully!');
         return redirect()->action([AdminController::class, 'all_'.$name]);
+    }
+
+    public function add_promotion(){
+        return view('product::admin.addpromotion');
+    }
+
+    public function save_promotion(Request $request){
+        $promotion[] = [
+            'percent' => $request->percent,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'numberPromotion' => $request->quantity
+        ];
+        DB::table('promotions')->insert($promotion);
+
+        return \redirect()->action([AdminController::class, 'show_promotion']);
+    }
+
+    public function show_promotion(){
+        $promotion = DB::table('promotions')->get();
+        return view('product::admin.showPromotion')->with('promotion', $promotion);
     }
 
 }
