@@ -23,6 +23,8 @@
                         }).then((result) => {
                         if (result.isConfirmed) {
                             console.log("vao day");
+                            //window.location = "localhost:8000/order/cart-reset/";
+                            window.location.href = "/order/cart-reset";
                         }
                     });
                 </script>

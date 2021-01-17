@@ -5,6 +5,36 @@
 <section class="htc__product__details pt--120 pb--100 bg__white">
     <div class="container">
         <div class="row">
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>    
+                    <strong>{{ $message }}</strong>
+                </div>
+                <script>
+                    Swal.fire({
+                        title: 'Bạn phải reset lại giỏ hàng',
+                        text: "Giỏ hàng chỉ có thể có 1 loại hàng online hoặc vật lý",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Đồng ý reset giỏ hàng',
+                        cancelButtonText: 'Hủy',
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            console.log("vao day");
+                            //window.location = "localhost:8000/order/cart-reset/";
+                            window.location.href = "/order/cart-reset";
+                        }
+                    });
+                </script>
+            @endif
+            @if ($message = Session::get('info'))
+                <div class="alert alert-info alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>    
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
             <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                 <div class="product__details__container">
                     <div class="product__big__images">
