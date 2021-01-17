@@ -45,7 +45,12 @@ class OrderController extends Controller
 
     }
 
+    public function resetCart(){
+        DB::table('cart_details')->delete();
+        return back()->with('info','Bạn vừa reset lại giỏ hàng thành công!');
+    }
     public function deniedAddToCart(){
+        // dd("vaof day");
         return back()->with('info','You added new items, follow next step!');
         // return \redirect()->route('productDetail',97)->with('message',"Loi gio hang");
     }
