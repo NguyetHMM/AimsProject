@@ -20,5 +20,6 @@ Route::prefix('order')->group(function() {
 
     Route::post('/show-cart','OrderController@addToCart')->name('addToCart');
     Route::get('/deleteFromCart/{productID}','OrderController@deleteFromCart')->name('deleteFromCart');
+    Route::get('/deniedAddToCart','OrderController@deniedAddToCart')->name('deniedAddToCart');
     
 });

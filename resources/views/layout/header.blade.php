@@ -15,7 +15,7 @@
                     <nav class="mainmenu__nav hidden-xs hidden-sm">
                         <ul class="main__menu">
                             <li><a href="{{route('welcome')}}">Home</a></li>
-                            <li><a href="{{route('welcome')}}">Shop</a></li>
+                            <li><a href="{{route('showAllProduct')}}">Shop</a></li>
                             <li><a href="">contact</a></li>
                             <li></li>
                             <li></li>

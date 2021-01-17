@@ -37,45 +37,45 @@ Route::prefix('product')->group(function() {
     
     // search route
     Route::post('/search','ProductController@search')->name('search');
-
+    Route::post('/search-product','ProductController@searchInShowProduct')->name('searchInShowProduct');
     // filter product
     Route::get('/filter','ProductController@filterFollowPrice')->name('filterPrice');
 
     //Admin route
-    Route::get('/addbook','AdminController@add_book')->name('addbook');
+    Route::get('/addbook','AdminController@add_book')->middleware('AdminRole')->name('addbook');
     //Add route
-    Route::get('/addbook-phy','AdminController@add_book_phy')->name('addbook-phy');
+    Route::get('/addbook-phy','AdminController@add_book_phy')->middleware('AdminRole')->name('addbook-phy');
     Route::post('/savebook-phy','AdminController@save_book_phy')->name('savebook-phy');
     
-    Route::get('/addbook-on','AdminController@add_book_on')->name('addbook-on');
+    Route::get('/addbook-on','AdminController@add_book_on')->middleware('AdminRole')->name('addbook-on');
     Route::post('/savebook-on','AdminController@save_book_on')->name('savebook-on');
     
-    Route::get('/adddvd-phy','AdminController@add_dvd_phy')->name('adddvd-phy');
+    Route::get('/adddvd-phy','AdminController@add_dvd_phy')->middleware('AdminRole')->name('adddvd-phy');
     Route::post('/savedvd-phy','AdminController@save_dvd_phy')->name('savedvd-phy');
 
-    Route::get('/adddvd-on','AdminController@add_dvd_on')->name('adddvd-on');
+    Route::get('/adddvd-on','AdminController@add_dvd_on')->middleware('AdminRole')->name('adddvd-on');
     Route::post('/savedvd-on','AdminController@save_dvd_on')->name('savedvd-on');
 
-    Route::get('/addcd-phy','AdminController@add_cd_phy')->name('addcd-phy');
+    Route::get('/addcd-phy','AdminController@add_cd_phy')->middleware('AdminRole')->name('addcd-phy');
     Route::post('/savecd-phy','AdminController@save_cd_phy')->name('savecd-phy');
 
-    Route::get('/addcd-on','AdminController@add_cd_on')->name('addcd-on');
+    Route::get('/addcd-on','AdminController@add_cd_on')->middleware('AdminRole')->name('addcd-on');
     Route::post('/savecd-on','AdminController@save_cd_on')->name('savecd-on');
 
 
-    Route::get('/addlp-phy','AdminController@add_lp_phy')->name('addlp-phy');
+    Route::get('/addlp-phy','AdminController@add_lp_phy')->middleware('AdminRole')->name('addlp-phy');
     Route::post('/savelp-phy','AdminController@save_lp_phy')->name('savelp-phy');
 
-    Route::get('/addlp-on','AdminController@add_lp_on')->name('addlp-on');
+    Route::get('/addlp-on','AdminController@add_lp_on')->middleware('AdminRole')->name('addlp-on');
     Route::post('/savelp-on','AdminController@save_lp_on')->name('savelp-on');
 
     //Show route
-    Route::get('/all-product','AdminController@all_product')->name('allproduct');
-    Route::get('/all-book','AdminController@all_book')->name('allbook');
-    Route::get('/all-dvd','AdminController@all_dvd')->name('alldvd');
-    Route::get('/all-cd-lp','AdminController@all_cd_lp')->name('allcdlp');
+    Route::get('/all-product','AdminController@all_product')->middleware('AdminRole')->name('allproduct');
+    Route::get('/all-book','AdminController@all_book')->middleware('AdminRole')->name('allbook');
+    Route::get('/all-dvd','AdminController@all_dvd')->middleware('AdminRole')->name('alldvd');
+    Route::get('/all-cd-lp','AdminController@all_cd_lp')->middleware('AdminRole')->name('allcdlp');
 
     //Edit - Delete Product
-    Route::get('/detail-pro/{product_id}','AdminController@show_product');
+    Route::get('/detail-pro/{product_id}','AdminController@show_product')->middleware('AdminRole');
 
 });
