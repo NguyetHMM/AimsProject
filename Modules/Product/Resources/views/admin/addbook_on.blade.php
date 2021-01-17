@@ -43,6 +43,11 @@
                 <input type="number" name="pages" min="1" class="form-control" id="pages" required>
             </div>
 
+            <div class="form-group">
+                <label">Book category</label>
+                <input type="text" name="book_category" class="form-control" id="book_category" required>
+            </div>
+
             {{-- Product Table --}}
             <div class="form-group">
                 <label">Value</label>

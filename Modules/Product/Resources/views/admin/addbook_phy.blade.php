@@ -3,10 +3,19 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800 ml-5">Add Book - physical type</h1>
 </div>
+
 <div class="container" style="margin-left: 10%">
+    
     <div class="col-10">
+        @if($errors->any())
+            <div class="border-bottom-danger col-md-5">
+                    @foreach ($errors->all() as $error)
+                        <p><b>{{$error}}</p>
+                    @endforeach
+            </div>
+        @endif
         <form role="form" action="{{route('savebook-phy')}}" method="post" enctype="multipart/form-data" 
-        name="add" onsubmit="return(checkForm());">
+        name="add" onsubmit="return(checkValue());">
             {{ csrf_field() }}
             <div class="form-group">
                 <label">Title</label>
@@ -43,6 +52,11 @@
                 <input type="number" name="pages" min="1" class="form-control" id="pages" required>
             </div>
 
+            <div class="form-group">
+                <label">Book category</label>
+                <input type="text" name="book_category" class="form-control" id="book_category" required>
+            </div>
+
             {{-- Product Table --}}
             <div class="form-group">
                 <label">Value</label>
@@ -72,10 +86,7 @@
             {{-- Physical Product Table --}}
             <div class="form-group">
                 <label">Barcode</label>
-                @foreach ($barcode as $key => $bar)
-                    <input type="hidden" name="barCode" class="form-control" id="barCode" value="{{$bar->barcode}}">
-                @endforeach
-                <input type="text" name="barcode" class="form-control" id="barcode" required>
+                <input type="text" name="barcode" class="form-control" id="barcode" required >
             </div>
 
             <div class="form-group">
@@ -116,13 +127,7 @@
 @endsection
 
 <script>
-    function checkForm(){
-        var isFormValid = true;
-        isFormValid &= checkValue();
-        isFormValid &= checkBarcode();
-        return isFormValid? true:false
-    }
-
+    
     function checkValue(){
         if( document.add.price.value < document.add.value.value*0.3 || 
             document.add.price.value > document.add.value.value*1.5 ) {
@@ -132,23 +137,8 @@
         }
         return true;
     }
-
-    function checkBarcode(){
-        var a = document.add.barCode;
-        var check = true
-        for(var i = 0; i<a.length; i++ ){
-            if(a[i]. value == document.add.barcode.value){
-                document.add.barcode.focus();
-                check = false;
-            }
-        }
-        return check;
-    }
-
     function setPrice(x) {
         document.getElementById(x).setCustomValidity('Please enter price between 30% and 150% of value');
     }
-    function setBarcode(x) {
-        document.getElementById(x).setCustomValidity('Barcode is identical, please enter a new barcode.');
-    }
+    
 </script>

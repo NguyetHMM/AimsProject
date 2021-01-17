@@ -90,5 +90,6 @@
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </html>

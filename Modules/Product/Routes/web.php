@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +15,13 @@
 Route::prefix('product')->group(function() {
     Route::get('/a', 'ProductController@index')->middleware('AdminRole')->name('admin-index');
     Route::get('/ab', 'AdminController@delete_product')->name('delete-p');
+    Route::get('/error','AdminController@error')->name('error');
 
     // show book route
     Route::get('show-book-physical/{productKind_id}','ProductController@showBookPhysical')->name('showBookPhysical');
     Route::get('show-book-online/{productKind_id}','ProductController@showBookOnline')->name('showBookOnline');
     Route::get('/book','ProductController@showBook')->name('showBook');
-    
+
     // detail for each product
     Route::get('/product-detail/{product_id}','ProductController@productDetail')->name('productDetail');
     Route::get('/home','ProductController@home')->name('home');
@@ -34,7 +36,7 @@ Route::prefix('product')->group(function() {
 
     // show LPs Route
     Route::get('/lps','ProductController@showLPs')->name('showLPs');
-    
+
     // search route
     Route::post('/search','ProductController@search')->name('search');
     Route::post('/search-product','ProductController@searchInShowProduct')->name('searchInShowProduct');
@@ -76,6 +78,14 @@ Route::prefix('product')->group(function() {
     Route::get('/all-cd-lp','AdminController@all_cd_lp')->middleware('AdminRole')->name('allcdlp');
 
     //Edit - Delete Product
+
     Route::get('/detail-pro/{product_id}','AdminController@show_product')->middleware('AdminRole');
 
+    Route::post('/update-pro/{product_id}','AdminController@update_product')->name('update-product');
+
+
+    //Promotion
+    Route::get('/add-promotion','AdminController@add_promotion')->name('add-promotion');
+    Route::post('/save-promotion','AdminController@save_promotion')->name('save-promotion');
+    Route::get('/show-promotion','AdminController@show_promotion')->name('show-promotion');
 });

@@ -27,8 +27,10 @@ Route::get('/', function () {
     return view('welcome',compact('bookKinds','dvdKinds','cdKinds','lpKinds'));
 })->name('welcome');
 
+
 Route::get('/all-product',function(){
     $allProduct = DB::table('products')->paginate(12);
 
     return view('showAllProduct',compact('allProduct'));
 })->name('showAllProduct');
+

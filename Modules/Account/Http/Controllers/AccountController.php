@@ -5,10 +5,13 @@ namespace Modules\Account\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+//sửa
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
-use Auth;
-use Hash;
+use DB;
+//use Auth;
+//use Hash;
 
 class AccountController extends Controller
 {
@@ -42,7 +45,7 @@ class AccountController extends Controller
             'password' => Hash::make($request->password),
             'roleID' => 2
         ]);
-        return redirect()->route('welcome');
+        return redirect()->route('login')->with('success', 'Create Account Successfully! Login to Continue! ');
     }
 
     public function login()
@@ -89,11 +92,58 @@ class AccountController extends Controller
 
     public function orderHistory()
     {
-        return view('account::orderHistory');
+        $orders = DB::table('orders')
+                    ->join('order_states', 'orders.stateID', '=', 'order_states.id')
+                    ->select('orders.*', 'order_states.name')
+                    ->where("userID", 1)->get();
+        // dd($orders);
+        return view('account::orderHistory', \compact('orders'));
     }
 
     public function logout(){
         Auth::logout();
         return redirect()->route('welcome');
+    }
+
+    public function cancel(Request $request)
+    {   
+        $id = $request->id;
+        // Get state --> validate change state
+        $order = DB::table('orders')
+                    ->join('order_states', 'orders.stateID', '=', 'order_states.id')
+                    ->select('orders.*', 'order_states.name')
+                    ->where("orders.id", $id)->get();
+        if($order[0]->name === "Đang giao dịch"){
+            $state = DB::table('order_states')
+                ->where('name', 'Đã hủy')
+                ->get();
+            DB::table('orders')
+                    ->where("orders.id", $id)
+                    ->update([
+                        'stateID' => $state[0]->id
+                    ]);
+            // Success
+            return \response()->json([
+                'data' => "Đã Huỷ",
+            ], 200);
+        }else{
+            return \response()->json([
+            ], 403);
+        }
+    }
+
+    public function orderDetails(Request $request)
+    {
+        $products = DB::table('order_details')
+            ->where('orderID', $request->orderID)
+            ->get();
+        $ship_fee = DB::table('orders')
+                    ->where('id', $request->orderID)
+                    ->select('shipfee')
+                    ->get();
+        return view('account::orderDetails', [
+            'products' => $products,
+            'ship_fee' => $ship_fee[0]->shipfee,
+        ]);
     }
 }

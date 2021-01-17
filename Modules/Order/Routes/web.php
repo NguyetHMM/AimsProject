@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,5 +22,5 @@ Route::prefix('order')->group(function() {
     Route::post('/show-cart','OrderController@addToCart')->name('addToCart');
     Route::get('/deleteFromCart/{productID}','OrderController@deleteFromCart')->name('deleteFromCart');
     Route::get('/deniedAddToCart','OrderController@deniedAddToCart')->name('deniedAddToCart');
-    
+
 });

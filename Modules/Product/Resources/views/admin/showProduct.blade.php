@@ -1,14 +1,14 @@
 @extends('layout.admin')
 @section('admin-content')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Show Products</h1>
+<h1 class="h3 mb-2 text-gray-800">{{$name_show}}</h1>
 {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
     For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
         DataTables documentation</a>.</p> --}}
     <?php
         $message = Session::get('message');
         if($message){
-            echo '<span class="text-alert" style="color:green; border: 1px solid green">'.$message.'</span>';
+            echo '<span class="border-bottom-success"><b>'.$message.'</span>';
             Session::put('message',null);
         }
     ?>

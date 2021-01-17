@@ -25,6 +25,11 @@
                                     {{ session()->get('error') }}
                                 </div>
                             @endif
+                            @if (session()->has('success'))
+                                <div class="alert alert-success" id="login-success">
+                                    {{ session()->get('success') }}
+                                </div>
+                            @endif
                             <form class="login" method="post" action="{{ route('login') }}">
                                 @csrf
                                 <input type="email" placeholder="Email*" class=" @error('email') is-invalid @enderror"
@@ -60,3 +65,11 @@
     </div>
     <!-- End Login Register Area -->
 @endsection
+
+{{-- <script>
+    $(document).ready(() => {
+        window.onload = function () {
+            $('#login-success').fadeOut(2000);
+        }
+    });
+</script> --}}
