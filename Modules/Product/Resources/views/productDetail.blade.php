@@ -5,6 +5,7 @@
 <section class="htc__product__details pt--120 pb--100 bg__white">
     <div class="container">
         <div class="row">
+            @include('flash-message')
             <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                 <div class="product__details__container">
                     <div class="product__big__images">
