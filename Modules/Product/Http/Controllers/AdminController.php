@@ -799,4 +799,25 @@ class AdminController extends Controller
         return view('product::admin.showPromotion')->with('promotion', $promotion);
     }
 
+    public function add_promo_to_prod(){
+        $promotion = DB::table('promotions')->get();
+        // $product = DB::table('products')->join('product_categories','products.productCategoryID','=','product_categories.id')
+        // ->select('products.*','product_categories.name')
+        // ->get();
+        $category = DB::table('product_categories')->get();
+        // dd($category);
+        return view('product::admin.addpromo_to_prod')->with([
+            'promotion' => $promotion,
+            'category' =>$category
+        ]);
+    }
+
+    public function save_promo_prod(Request $request){
+
+        return redirect()->action([AdminController::class, 'all_product']);
+    }
+
+    public function show_prod_promo(Request $request){
+        return 0;
+    }
 }

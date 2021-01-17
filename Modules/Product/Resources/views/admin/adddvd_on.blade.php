@@ -9,55 +9,55 @@
         name="add" onsubmit="return(checkForm());">
             {{ csrf_field() }}
             <div class="form-group">
-                <label">Title</label>
+                <label>Title</label>
                 <input type="text" name="title" class="form-control" id="title" required>
             </div>
 
             {{-- DVD Table --}}
             <div class="form-group">
-                <label">Director</label>
+                <label>Director</label>
                 <input type="text" name="director" class="form-control" id="director" required>
             </div>
 
             <div class="form-group">
-                <label">Video kind</label>
+                <label>Video kind</label>
                 <input type="text" name="video_kind" class="form-control" id="video_kind" required>
             </div>
 
             <div class="form-group">
-                <label">Studio</label>
+                <label>Studio</label>
                 <input type="text" name="studio" class="form-control" id="studio" required>
             </div>
 
             <div class="form-group">
-                <label">Sub title</label>
+                <label>Sub title</label>
                 <input type="text" name="sub_title" class="form-control" id="sub_title" required>
             </div>
 
             <div class="form-group">
-                <label">Run time</label>
+                <label>Run time</label>
                 <input type="number" name="run_time" min="1" class="form-control" id="run_time" required>
             </div>
 
             {{-- Product Table --}}
             <div class="form-group">
-                <label">Value</label>
+                <label>Value</label>
                 <input type="number" name="value" min="0" step="0.01" class="form-control" id="value" required>
             </div>
 
             <div class="form-group">
-                <label">Price</label>
+                <label>Price</label>
                 <input type="number" name="price" min="0" step="0.01" class="form-control" id="price" required
                 onfocus="setPrice(this.id)" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
 
             <div class="form-group">
-                <label">Language</label>
+                <label>Language</label>
                 <input type="text" name="language" class="form-control" id="language" required>
             </div>
             
             <div class="form-group">
-                <label">DVD kind</label>
+                <label>DVD kind</label>
                 <select class="form-control" name="kind" id="kind">
                     @foreach ($kind as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>

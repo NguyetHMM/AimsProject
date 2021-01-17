@@ -149,7 +149,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Promotion management</h6>
                         <a class="collapse-item" href="{{route('add-promotion')}}">Add promotion</a>
-                        <a class="collapse-item" href="#">Add promotion to product</a>
+                        <a class="collapse-item" href="{{route('add-promo-to-prod')}}">Add promotion to product</a>
                         <a class="collapse-item" href="{{route('show-promotion')}}">Show promotion</a>
                     </div>
                 </div>

@@ -85,4 +85,7 @@ Route::prefix('product')->group(function() {
     Route::get('/add-promotion','AdminController@add_promotion')->name('add-promotion');
     Route::post('/save-promotion','AdminController@save_promotion')->name('save-promotion');
     Route::get('/show-promotion','AdminController@show_promotion')->name('show-promotion');
+    Route::get('/add-promo-to-prod','AdminController@add_promo_to_prod')->name('add-promo-to-prod');
+    Route::post('/save-promotion-product','AdminController@save_promo_prod')->name('save-promotion-product');
+    Route::get('/show-product-promotion','AdminController@show_prod_promo')->name('show-prod-promo');
 });

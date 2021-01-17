@@ -16,33 +16,33 @@
         name="add" onsubmit="return(checkValue());">
             {{ csrf_field() }}
             <div class="form-group">
-                <label">Title</label>
+                <label>Title</label>
                 <input type="text" name="title" class="form-control" id="title" required>
             </div>
 
             {{-- CD Table --}}
             <div class="form-group">
-                <label">Artists</label>
+                <label>Artists</label>
                 <input type="text" name="artists" class="form-control" id="artists" required>
             </div>
 
             <div class="form-group">
-                <label">Record Label</label>
+                <label>Record Label</label>
                 <input type="text" name="record_label" class="form-control" id="record_label" required>
             </div>
 
             <div class="form-group">
-                <label">Music Type</label>
+                <label>Music Type</label>
                 <input type="text" name="music_type" class="form-control" id="music_type" required>
             </div>
 
             <div class="form-group">
-                <label">Release Date</label>
+                <label>Release Date</label>
                 <input type="date" name="release_date" class="form-control" id="release_date" required>
             </div>
 
             <div class="form-group">
-                <label">Tracks</label>
+                <label>Tracks</label>
                 <select class="form-control" name="tracks[]" id="tracks" multiple>
                     @foreach ($tracks as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
@@ -52,23 +52,23 @@
 
             {{-- Product Table --}}
             <div class="form-group">
-                <label">Value</label>
+                <label>Value</label>
                 <input type="number" name="value" min="0" step="0.01" class="form-control" id="value" required>
             </div>
 
             <div class="form-group">
-                <label">Price</label>
+                <label>Price</label>
                 <input type="number" name="price" min="0" step="0.01" class="form-control" id="price" required
                 onfocus="setPrice(this.id)" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
 
             <div class="form-group">
-                <label">Language</label>
+                <label>Language</label>
                 <input type="text" name="language" class="form-control" id="language" required>
             </div>
             
             <div class="form-group">
-                <label">CD kind</label>
+                <label>CD kind</label>
                 <select class="form-control" name="kind[]" id="kind" multiple>
                     @foreach ($kind as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
@@ -78,7 +78,7 @@
 
             {{-- Physical Product Table --}}
             <div class="form-group">
-                <label">Barcode</label>
+                <label>Barcode</label>
                 @foreach ($barcode as $key => $bar)
                     <input type="hidden" name="barCode" class="form-control" id="barCode" value="{{$bar->barcode}}">
                 @endforeach
@@ -92,27 +92,27 @@
             </div>
 
             <div class="form-group">
-                <label">Quantity</label>
+                <label>Quantity</label>
                 <input type="number" min="1" name="quantity" class="form-control" id="quantity" required>
             </div>
 
             <div class="form-group">
-                <label">Length</label>
+                <label>Length</label>
                 <input type="number" step="0.01" min="0" name="length" class="form-control" id="length" required>
             </div>
 
             <div class="form-group">
-                <label">Width</label>
+                <label>Width</label>
                 <input type="number" step="0.01" min="0" name="width" class="form-control" id="width" required>
             </div>
 
             <div class="form-group">
-                <label">Heigth</label>
+                <label>Heigth</label>
                 <input type="number" step="0.01" min="0" name="heigth" class="form-control" id="heigth" required>
             </div>
 
             <div class="form-group">
-                <label">Weigh</label>
+                <label>Weigh</label>
                 <input type="number" step="0.01" min="0" name="weigh" class="form-control" id="weigh" required>
             </div>
 

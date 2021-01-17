@@ -23,7 +23,6 @@
                 style="text-align: center">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Id</th>
                         <th>Discount (%)</th>
                         <th>Start time</th>
@@ -33,7 +32,6 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th><input class="delete" type="button" value="X"></th>
                         <th>Id</th>
                         <th>Discount (%)</th>
                         <th>Start time</th>
@@ -44,7 +42,6 @@
                 <tbody>
                     @foreach ($promotion as $item)
                     <tr class="product_show_"> 
-                        <td><input class="123" type="checkbox" value=""></td>
                         <td>{{$item->id}}</td>
                         <td>{{$item->percent}}</td>
                         <td>{{date("d-m-Y", strtotime($item->start_time))}}</td>

@@ -18,18 +18,18 @@
         name="add" onsubmit="return(checkValue());">
             {{ csrf_field() }}
             <div class="form-group">
-                <label">Title</label>
+                <label>Title</label>
                 <input type="text" name="title" class="form-control" id="title" required>
             </div>
 
             {{-- Book Table --}}
             <div class="form-group">
-                <label">Author</label>
+                <label>Author</label>
                 <input type="text" name="author" class="form-control" id="author" required>
             </div>
 
             <div class="form-group">
-                <label">Cover type</label>
+                <label>Cover type</label>
                 <select class="form-control" name="cover_type" id="cover_type">
                     @foreach ($cover as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
@@ -38,39 +38,39 @@
             </div>
 
             <div class="form-group">
-                <label">Publisher</label>
+                <label>Publisher</label>
                 <input type="text" name="publisher" class="form-control" id="publisher" required>
             </div>
 
             <div class="form-group">
-                <label">Publication date</label>
+                <label>Publication date</label>
                 <input type="date" name="public_date" class="form-control" id="public_date" required>
             </div>
 
             <div class="form-group">
-                <label">Pages</label>
+                <label>Pages</label>
                 <input type="number" name="pages" min="1" class="form-control" id="pages" required>
             </div>
 
             <div class="form-group">
-                <label">Book category</label>
+                <label>Book category</label>
                 <input type="text" name="book_category" class="form-control" id="book_category" required>
             </div>
 
             {{-- Product Table --}}
             <div class="form-group">
-                <label">Value</label>
+                <label>Value</label>
                 <input type="number" name="value" min="1" class="form-control" id="value" required>
             </div>
 
             <div class="form-group">
-                <label">Price</label>
+                <label>Price</label>
                 <input type="int" name="price" min="1" class="form-control" id="price" required
                 onfocus="setPrice(this.id)" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
 
             <div class="form-group">
-                <label">Language</label>
+                <label>Language</label>
                 <input type="text" name="language" class="form-control" id="language" required>
             </div>
             
@@ -85,7 +85,7 @@
 
             {{-- Physical Product Table --}}
             <div class="form-group">
-                <label">Barcode</label>
+                <label>Barcode</label>
                 <input type="text" name="barcode" class="form-control" id="barcode" required >
             </div>
 
@@ -95,27 +95,27 @@
             </div>
 
             <div class="form-group">
-                <label">Quantity</label>
+                <label>Quantity</label>
                 <input type="number" min="1" name="quantity" class="form-control" id="quantity" required>
             </div>
 
             <div class="form-group">
-                <label">Length</label>
+                <label>Length</label>
                 <input type="number" step="0.01" min="0" name="length" class="form-control" id="length" required>
             </div>
 
             <div class="form-group">
-                <label">Width</label>
+                <label>Width</label>
                 <input type="number" step="0.01" min="0" name="width" class="form-control" id="width" required>
             </div>
 
             <div class="form-group">
-                <label">Heigth</label>
+                <label>Heigth</label>
                 <input type="number" step="0.01" min="0" name="heigth" class="form-control" id="heigth" required>
             </div>
 
             <div class="form-group">
-                <label">Weigh</label>
+                <label>Weigh</label>
                 <input type="number" step="0.01" min="0" name="weigh" class="form-control" id="weigh" required>
             </div>
 

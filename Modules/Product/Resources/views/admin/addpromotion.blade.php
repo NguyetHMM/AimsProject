@@ -27,7 +27,7 @@
                 <input type="number" name="quantity" class="form-control" id="quantity" min="1" max="1000" required>
             </div>
 
-            <button type="submit" id="add" class="btn btn-info">Add product</button>
+            <button type="submit" id="add" class="btn btn-info">Add promotion</button>
         </form>
     </div>
 </div>
