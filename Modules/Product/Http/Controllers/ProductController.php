@@ -89,27 +89,52 @@ class ProductController extends Controller
     }
 
     public function showBookPhysical($productKind_id){
+        $productKindID = $productKind_id;
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        // dd($bookKinds);
+        
         $all_product_of_1category = DB::table('products_product_kinds')
         ->join('products','products_product_kinds.productID','=','products.id')
         ->where('products_product_kinds.productKindID',$productKind_id)
         ->where('products.productTypeID',2)
-        ->select('products.id','products.title','products.price')
+        ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
         ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'));
     }
 
     public function showBookOnline($productKind_id){
+        $productKindID = $productKind_id;
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+
         $all_product_of_1category = DB::table('products_product_kinds')
         ->join('products','products_product_kinds.productID','=','products.id')
         ->where('products_product_kinds.productKindID',$productKind_id)
         ->where('products.productTypeID',1)
-        ->select('products.id','products.title','products.price')
+        ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
         ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'));
     }
 
     public function showBook()
@@ -159,6 +184,33 @@ class ProductController extends Controller
         return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
     }
 
+    public function searchInShowProduct(Request $request){
+        // dd($request->nameProduct);
+        $nameSearch = $request->nameProduct;
+        $productKindID = $request->productKindID;
+
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+
+        $all_product_of_1category = DB::table('products_product_kinds')
+        ->join('products','products_product_kinds.productID','=','products.id')
+        ->where('products_product_kinds.productKindID',$request->productKindID)
+        // ->where('products.productTypeID',1)
+        ->where('products.title','like','%'.$nameSearch.'%')
+        ->select('products.id','products.title','products.price','productKindID')
+        ->orderBy('products.price')
+        ->paginate(8);
+        // dd($all_product_of_1category);
+        // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'));
+    }
     public function search(Request $request)
     {
         $all_product_of_1category = DB::table('products')
@@ -212,24 +264,20 @@ class ProductController extends Controller
             }
             $countProduct = count($products);
             if($countProduct != 0){
+                $image = "'images/portfolio/equal/1.jpg'";
                 for($i=0;$i<count($products); $i++){
-                    $html = sprintf('
+                    $html .= sprintf('
                         <div class="col-md-3 col-sm-3 col-xs-6 grid-item cat2 cat3">
                             <div class="single-portfolio-card mb--30">
                                 <div class="">
                                     <a href="{{URL::to(%s.%d}}">
-                                        <img src="{{asset(%s)}}" alt="" />
+                                    <img src="{{asset(%s)}}" alt="" />
                                     </a>
-                                    {{-- <div class="portfolio-icon">
-                                        <a class="img-poppu" href="images/portfolio/equal/2.jpg">
-                                            <i class="zmdi zmdi-instagram"></i>
-                                        </a>
-                                    </div> --}}
                                 </div>
                                 <div class="portfolio-title portfolio-card-title text-center">
     
                                     <h4><a
-                                            href="{{URL::to(%s.%d)}}">{{%s}}</a>
+                                            href="{{URL::to(%s.%d)}}">%s</a>
                                     </h4>
                                     <span>Price :</span>
                                     <span>
@@ -237,13 +285,13 @@ class ProductController extends Controller
                                             function number(n) {
                                                 return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, %s) + %s;
                                             }
-                                            document.write(number({{%.2f}}));
+                                            document.write(number(%.2f));
                                         </script>
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        ',"'product/product-detail/'",$products[$i]['id'], "'images/portfolio/equal/1.jpg'", "'product/product-detail/'",$products[$i]['id'], $products[$i]['title'],"'$1,'", "' $'",$products[$i]['price']);
+                        ',"'product/product-detail/'",$products[$i]['id'],$image, "'product/product-detail/'",$products[$i]['id'], $products[$i]['title'],"'$1,'", "' $'",$products[$i]['price']);
                     // $html = sprintf('%d',$products[$i]['id']);
                 }
             } else {
@@ -255,6 +303,7 @@ class ProductController extends Controller
                 'success' => "Nộp bài thành công!",
                 'products' => $products,
                 'producthtml' => $html,
+                'count' => $countProduct,
             ], 200);
         }
     }

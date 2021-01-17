@@ -15,6 +15,12 @@
                         {{ session()->get('message') }}
                     </div>
                 @endif
+                @if ($message = Session::get('info'))
+                    <div class="alert alert-info alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <strong>{{ $message }}</strong>
+                    </div>
+                 @endif
             </div>
             <!-- Start Left Feature -->
             <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style">

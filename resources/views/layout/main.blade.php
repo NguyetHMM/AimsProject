@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- Modernizr JS -->
     <script src="{{ asset('js/vendor/jquery-1.12.0.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 
