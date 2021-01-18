@@ -6,49 +6,43 @@
 
     <div class="container" style="margin-left: 10%">
         <div class="col-10">
-            <form role="form" action="{{route('save-promotion-product')}}" method="post" enctype="multipart/form-data" onsubmit="return(checkForm());" name="add">
+            <form role="form" action="{{route('save-promotion-product')}}" method="post" enctype="multipart/form-data" name="add">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label>Promotions</label>
-                    <select class="form-control" name="promotion" id="promotion" required>
-                        <option selected disabled>--promotion--</option>
+                    <select class="form-control js-example-basic-multiple" name="promotion" id="promotion" required>
+                             <option disabled selected value> -- select an option -- </option>
                         @foreach ($promotion as $item)
                             <option value="{{$item->id}}" {{($item->end_time < now() || $item->numberPromotion == 0) ? 'disabled' : ''}}>{{$item->percent}}% - Start: {{date("d-m-Y", strtotime($item->start_time))}} - End: {{date("d-m-Y", strtotime($item->end_time))}} - Quantity:{{$item->numberPromotion}}</option>
                         @endforeach
                     </select>
                 </div>
-
+                
                 <div class="form-group">
-                    <label>Categories</label>
-                    <select class="form-control" name="category" id="category" onchange="checkCate()" required>
-                        <option selected disabled>--category--</option>
+                    <label>Kind to Discount</label>        
+                    <select class="form-control js-example-basic-multiple" name="kind[]" multiple required>
                         @foreach ($category as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        <optgroup label="{{$item->name}}">
+                            @foreach ($kind as $value)
+                                @if ($value->productCategoryID == $item->id)
+                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                @endif
+                            @endforeach
+                        </optgroup>
                         @endforeach
-                    </select>
+                    </select>             
                 </div>
 
-                @if (isset($product))
-                    <div class="form-group" id="3" hidden>
-                    <label>Products</label>
-                    <select class="form-control" name="product[]" id="product-3" size="20" multiple>
-                        @foreach ($product as $item)
-                            {{-- @if($item->name == 'books') --}}
-                            <option value="{{$item->id}}">{{$item->title}} - {{$item->name}}</option>
-                            {{-- @endif --}}
-                        @endforeach
-                    </select>
-                </div>
-                @endif
 
                 <button type="submit" id="add" class="btn btn-info">Add</button>
             </form>
         </div>
     </div>
 @endsection
+<script src="{{asset('Admin/vendor/jquery/jquery.min.js')}}"></script>
+
 <script>
-    function checkCate(){
-        let cate_id = document.add.category.value;
-        
-    }
+    $(document).ready(() => {
+            $('.js-example-basic-multiple').select2();
+    });
 </script>

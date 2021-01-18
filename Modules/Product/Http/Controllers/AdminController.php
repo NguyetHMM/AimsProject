@@ -801,23 +801,44 @@ class AdminController extends Controller
 
     public function add_promo_to_prod(){
         $promotion = DB::table('promotions')->get();
-        // $product = DB::table('products')->join('product_categories','products.productCategoryID','=','product_categories.id')
-        // ->select('products.*','product_categories.name')
-        // ->get();
+        $kind = DB::table('product_kinds')->get();
         $category = DB::table('product_categories')->get();
+        $category[0]->name = 'cds and lps';
+        unset($category[3]);
         // dd($category);
         return view('product::admin.addpromo_to_prod')->with([
             'promotion' => $promotion,
-            'category' =>$category
+            'kind' => $kind,
+            'category' => $category
         ]);
     }
 
     public function save_promo_prod(Request $request){
+        $product_kind = DB::table('products_product_kinds')->whereIn('productKindID', $request->kind)->select('productID')->get();
 
-        return redirect()->action([AdminController::class, 'all_product']);
+        $promotion = DB::table('promotions')->where('id', $request->promotion)->get();
+
+        $productID = array();
+
+        foreach ($product_kind as $key => $value) {
+            array_push($productID, $value->productID);
+        }
+
+        $product = DB::table('products')->whereIN('id', $productID)->get();
+
+        foreach ($product as $key => $value) {
+            if($value->price*$promotion[0]->percent < $value->value*0.3 || 
+                $value->price*$promotion[0]->percent > $value->value*1.5)
+                DB::table('products')->where('id', $value->id)->update(['promotionID' => $promotion[0]->id]);
+        }
+
+        // dd($product);    
+        Session::put('message','Add promotion to product successfully!');
+        return \redirect()->action([AdminController::class, 'all_product']);
     }
 
-    public function show_prod_promo(Request $request){
-        return 0;
+    public function order_management(){
+
+        return view('product::admin.order_management');
     }
 }

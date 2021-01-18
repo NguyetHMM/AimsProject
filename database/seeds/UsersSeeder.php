@@ -15,6 +15,13 @@ class UsersSeeder extends Seeder
     {
         $faker =  Faker::create();
         $users = [];
+        $users[] = [
+            'name' => 'AdminSeeder',
+            'email' => 'admin@gmail.com',
+            'password' => 'admin1234',
+            'username' => 'admin',
+            'roleID' => 1
+        ];
         for($index=0;$index<10;$index++){
             $users[] = [
                 'name' => $faker->name,
