@@ -18,7 +18,9 @@ Route::prefix('payment')->group(function() {
     //Route::get('/checkout','PaymenController@show')->name('show');
     //Route::post('/checkout','PaymentController@authenticate');
     //Route::get('/autocomplete', 'AutocompleteController@index');
-   Route::post('/fetch', 'PaymentController@fetch')->name('payment.fetch');
+    Route::post('/select_delivery', 'PaymentController@select_delivery')->name('payment.select_delivery');
+
+//    Route::post('/fetch', 'PaymentController@fetch')->name('payment.fetch');
 });
 // Route::get('/', function () {
 //     return view('payment:in');

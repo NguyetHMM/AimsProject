@@ -14,7 +14,30 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('payment::checkout');
+        $citys=DB::table('tbl_tinhthanhpho')->orderBy('matp','ASC')->get();
+        return view('payment::checkout')->with(compact('citys'));
+    }
+    public function select_delivery(Request $request){
+        $data=$request->all();
+        if($data['action']){
+            $output = '';
+            if($data['action']=="city"){
+                $select_province=DB::table('tbl_quanhuyen')->where('matp',$data['ma_id'])->orderBy('maqh','ASC')->get();
+                $output.='<option>--Provence--</option>';
+                foreach($select_province as $key => $province){
+                    $output.='<option value="'.$province->maqh.'">'.$province->name_quanhuyen.'</option>';
+
+                }
+            }else{
+                $select_wards=DB::table('tbl_xaphuongthitran')->where('maqh',$data['ma_id'])->orderBy('xaid','ASC')->get();
+                $output.='<option>--Wards--</option>';
+                foreach($select_wards as $key => $wards){
+                    $output.='<option value="'.$wards->xaid.'">'.$wards->name_xa.'</option>';
+
+                }
+            }
+        }
+        echo $output;
     }
     public function fetch(Request $request)
     {

@@ -348,33 +348,35 @@
                                     <div class="single-checkout-box">
                                         <textarea name="message" placeholder="Message*"></textarea>
                                     </div>
-                                    {{-- <div class="single-checkout-box select-option mt--40">
-                                        <select>
-                                            <option>City/Province*</option>
+                                    <form>
+                                        @csrf
+                                        <div class="single-checkout-box">
+                                            <select name="city" id="city" class="single-checkout-box choose city">
+                                                <option value="">--City--</option>
+                                                @foreach($citys as $key => $ci)
+                                                <option value="{{$ci->matp}}">{{$ci->name_city}}</option>
+                                                @endforeach
+                                            </select>
+                                            <input type="text" name="city_address" id="city_address" placeholder="City/Province*">
 
-                                        </select>
-                                        <input type="text" placeholder="District*">
-                                    </div> --}}
-                                    <div class="single-checkout-box">
-                                        <input type="text" name="city_address" id="city_address" placeholder="City/Province*">
-                                        <div id="cityList"></div>
-                                        {{-- <input type="text" name="district" id="district" placeholder="District*"> --}}
-                                    </div>
-                                    {{ csrf_field() }}
-                                    <div class="single-checkout-box">
-                                        {{-- <input type="text" name="city" id="city" placeholder="City/Province*"> --}}
-                                        {{-- <div id="cityList"></div> --}}
-                                        <input type="text" name="district" id="district" placeholder="District*">
-                                    </div>
-                                    {{-- <div id="cityList"></div> --}}
-                                    <div class="single-checkout-box">
-                                        <input type="text" placeholder="Commune*">
-                                        {{-- <input type="text" placeholder="Specific address*"> --}}
-                                    </div>
-                                    <div class="single-checkout-box">
-                                        {{-- <input type="text" placeholder="Commune*"> --}}
-                                        <input type="text" placeholder="Specific address*">
-                                    </div>
+                                        </div>
+
+                                        <div class="single-checkout-box">
+                                            <select name="city" id="province" class="single-checkout-box province choose">
+                                                <option value="">--Province--</option>
+
+                                            </select>
+                                            <input type="text" name="district" id="district" placeholder="District*">
+                                        </div>
+
+                                        <div class="single-checkout-box">
+                                            <select name="wards" id="wards" class="single-checkout-box wards">
+                                                <option value="">--Wards--</option>
+                                            </select>
+                                            <input type="text" placeholder="Commune*">
+                                        </div>
+
+                                    </form>
                                 </div>
                             </div>
                             <!-- End Checkbox Area -->
@@ -601,34 +603,31 @@
     <script src="js/waypoints.min.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.choose').on('change',function(){
+                var action = $(this).attr('id');
+                var ma_id = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                var result = '';
+                if(action == 'city'){
+                    result = 'province';
+                }else{
+                    result = 'wards';
+                }
+                $.ajax({
+                    url:"{{route('payment.select_delivery')}}",
+                    method:"POST",
+                    data:{action:action,ma_id:ma_id,_token:_token},
+                    success:function(data){
+                        $('#'+result).html(data);
+                    }
+                });
+            });
+        })
+    </script>
 
 </body>
 
 </html>
-<script>
-    $(document).ready(function(){
 
-     $('#city_address').keyup(function(){
-            var query = $(this).val();
-            if(query != '')
-            {
-             var _token = $('input[name="_token"]').val();
-             $.ajax({
-              url:"{{ route('payment.fetch') }}",
-              method:"POST",
-              data:{query:query, _token:_token},
-              success:function(data){
-               $('#cityList').fadeIn();
-                        $('#cityList').html(data);
-              }
-             });
-            }
-        });
-
-        $(document).on('click', 'li', function(){
-            $('#city_address').val($(this).text());
-            $('#cityList').fadeOut();
-        });
-
-    });
-</script>
