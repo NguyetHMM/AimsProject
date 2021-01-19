@@ -29,8 +29,17 @@ Route::get('/', function () {
 
 
 Route::get('/all-product',function(){
+    $bookKinds = DB::table('product_kinds')
+    ->where('productCategoryID',3)
+    ->get();
+    $dvdKinds = DB::table('product_kinds')
+    ->where('productCategoryID',2)->get();
+    $cdKinds = DB::table('product_kinds')
+    ->where('productCategoryID',1)->get();
+    $lpKinds = DB::table('product_kinds')
+    ->where('productCategoryID',1)->get();
     $allProduct = DB::table('products')->paginate(12);
 
-    return view('showAllProduct',compact('allProduct'));
+    return view('showAllProduct',compact('allProduct','lpKinds','cdKinds','dvdKinds','bookKinds'));
 })->name('showAllProduct');
 

@@ -277,13 +277,23 @@ class ProductController extends Controller
     }
     public function search(Request $request)
     {
-        $all_product_of_1category = DB::table('products')
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        // dd($request->infoToSearch);
+        $allProduct = DB::table('products')
         ->where('title','like','%'.$request->infoToSearch.'%')
         ->select('products.id','products.title','products.price')
         ->orderBy('products.price')
         ->paginate(8);
-        // dd($all_product_of_1category);
-        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        // dd($allProduct);
+        return view('showAllProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','allProduct'));
     }
 
     public function filterFollowPrice(Request $request){
