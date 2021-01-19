@@ -2,7 +2,7 @@
 @section('content')
 
 <!-- Start Product Details -->
-<section class="htc__product__details pt--120 pb--100 bg__white">
+<section class="htc__product__details bg__white">
     <div class="container">
         <div class="row">
             @if ($message = Session::get('error'))
@@ -35,7 +35,7 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @endif
-            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
                 <div class="product__details__container">
                     <div class="product__big__images">
                         <div class="portfolio-full-image tab-content">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 smt-30 xmt-30">
+            <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 smt-30 xmt-30">
                 <div class="htc__product__details__inner">
                     @foreach ($detailForProduct as $key)
                     <div class="pro__detl__title">
