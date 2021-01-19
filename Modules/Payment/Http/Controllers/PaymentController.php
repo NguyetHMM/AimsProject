@@ -6,6 +6,10 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Contracts\Session\Session as SessionSession;
+use Symfony\Component\HttpFoundation\Session\Session as HttpFoundationSessionSession;
+use Illuminate\Support\Facades\Session;
 class PaymentController extends Controller
 {
     /**
@@ -15,7 +19,19 @@ class PaymentController extends Controller
     public function index()
     {
         $citys=DB::table('tbl_tinhthanhpho')->orderBy('matp','ASC')->get();
+        $money=DB::table('');
         return view('payment::checkout')->with(compact('citys'));
+    }
+    public function select_delivery_done(Request $request){
+        $data=$request->all();
+        if($data['matp']){
+            $fee_ship=DB::table('feeship')->where('fee_matp',$data['matp'])->where('fee_maqh',$data['maqh'])->where('fee_maxp',$data['maxp'])->get();
+            foreach($fee_ship as $key => $fee){
+                Session::put('fee',$fee->fee_feeship);
+                Session::save();
+            }
+        }
+
     }
     public function select_delivery(Request $request){
         $data=$request->all();
@@ -117,4 +133,5 @@ class PaymentController extends Controller
     {
         //
     }
+
 }

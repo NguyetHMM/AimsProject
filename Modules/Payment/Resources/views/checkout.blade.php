@@ -355,7 +355,7 @@
                                                 <option value="{{$ci->matp}}">{{$ci->name_city}}</option>
                                                 @endforeach
                                             </select>
-                                            <input type="text" name="city_address" id="city_address" placeholder="City/Province*">
+                                            <input type="text" id="city_address" placeholder="City/Province*" >
 
                                         </div>
 
@@ -364,7 +364,7 @@
                                                 <option value="">--Province--</option>
 
                                             </select>
-                                            <input type="text" name="district" id="district" placeholder="District*">
+                                            <input type="text" value="abc" name="district" id="district" placeholder="District*">
                                         </div>
 
                                         <div class="single-checkout-box">
@@ -373,10 +373,12 @@
                                             </select>
                                             <input type="text" placeholder="Commune*">
                                         </div>
+                                        <input type="button" value="Tính phí vận chuyển"  name="calculate_order"class="btn btn-primary btn-sm calculate_delivery">
 
                                     </form>
                                 </div>
                             </div>
+
                             <!-- End Checkbox Area -->
                             <!-- Start Payment Box -->
                             <div class="payment-form">
@@ -397,17 +399,23 @@
 				                    	<tbody>
 
                                             <tr>
+                                                <?php
+                                                        $fee_shi=0;
+                                                ?>
 				                    			<td colspan="4">&nbsp;</td>
 				                    			<td colspan="2">
 				                    				<table class="table table-condensed total-result">
 				                    					<tr>
 				                    						<td>Tổng</td>
 				                    						<td>1000</td>
-				                    					</tr>
-
+                                                        </tr>
+                                                        <?php
+                                                         //$fee_shi=Session::get('fee');
+                                                        //$fee_shi=$fee_ship->fee_feeship;
+                                                        ?>
 				                    					<tr class="shipping-cost">
 				                    						<td>Phí vận chuyển</td>
-				                    						<td>1000</td>
+				                    						<td>{{Session::get('fee')}}</td>
                                                         </tr>
 
 				                    					<tr>
@@ -624,6 +632,30 @@
             });
         })
     </script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.calculate_delivery').click(function(){
+            var matp = $('.city').val();
+            var maqh = $('.province').val();
+            var maxp = $('.wards').val();
+            var _token = $('input[name="_token"]').val();
+            if(matp==''&& maqh==''&&maxp==''){
+                alert('Làm ơn chọn để tính phí vận chuyển');
+            }else{
+                $.ajax({
+                    url:"{{route('payment.select_delivery_done')}}",
+                    method:"POST",
+                    data:{matp:matp,maqh:maqh,maxp:maxp,_token:_token},
+                    success:function(data){
+                        // $('#'+result).html(data);
+                        location.reload();
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 </body>
 

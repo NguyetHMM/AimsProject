@@ -102,11 +102,17 @@
                                             <input type="hidden" name="product_count" value="{{ $countProduct }}">
                                         </tbody>
                                     </table> --}}
-                                    <div class="wc-proceed-to-checkout">
-                                        <a> <button type="submit"
+                                    {{-- <div class="wc-proceed-to-checkout">
+                                        <a href="{{ Route('welcome') }}"> <button type="submit"
                                                 style="background-color: transparent; border:transparent; height: 40px; ">PROCESS
                                                 TO CHECKOUT</button></a>
+                                    </div> --}}
+                                    <div class="col-md-8 col-sm-7 col-xs-12">
+                                        <div class="buttons-cart">
+                                            <a href="{{ Route('web.payment') }}">PROCESS TO CHECKOUT</a>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
