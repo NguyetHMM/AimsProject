@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::prefix('product')->group(function() {
     Route::get('/a', 'ProductController@index')->middleware('AdminRole')->name('admin-index');
-    Route::get('/ab', 'AdminController@delete_product')->name('delete-p');
+    Route::get('/ab', 'AdminController@delete_product')->middleware('AdminRole')->name('delete-p');
     Route::get('/error','AdminController@error')->name('error');
 
     // show book route
@@ -85,11 +85,14 @@ Route::prefix('product')->group(function() {
 
 
     //Promotion
-    Route::get('/add-promotion','AdminController@add_promotion')->name('add-promotion');
+    Route::get('/add-promotion','AdminController@add_promotion')->middleware('AdminRole')->name('add-promotion');
     Route::post('/save-promotion','AdminController@save_promotion')->name('save-promotion');
-    Route::get('/show-promotion','AdminController@show_promotion')->name('show-promotion');
-    Route::get('/add-promo-to-prod','AdminController@add_promo_to_prod')->name('add-promo-to-prod');
+    
+    Route::get('/show-promotion','AdminController@show_promotion')->middleware('AdminRole')->name('show-promotion');
+    Route::get('/add-promo-to-prod','AdminController@add_promo_to_prod')->middleware('AdminRole')->name('add-promo-to-prod');
+    
+    //
     Route::post('/save-promotion-product','AdminController@save_promo_prod')->name('save-promotion-product');
-    Route::get('/order-management','AdminController@order_management')->name('order-management');
+    Route::get('/order-management','AdminController@order_management')->middleware('AdminRole')->name('order-management');
 
 });
