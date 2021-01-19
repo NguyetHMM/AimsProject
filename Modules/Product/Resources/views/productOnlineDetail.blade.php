@@ -5,11 +5,11 @@
 <section class="htc__product__details bg__white">
     <div class="container">
         <div class="row">
-            @if ($message = Session::get('error'))
-                <div class="alert alert-danger alert-block">
+            @if ($message = Session::get('warning'))
+                {{-- <div class="alert alert-danger alert-block">
                     <button type="button" class="close" data-dismiss="alert">×</button>    
                     <strong>{{ $message }}</strong>
-                </div>
+                </div> --}}
                 <script>
                     Swal.fire({
                         title: 'Bạn phải reset lại giỏ hàng',
@@ -28,6 +28,12 @@
                         }
                     });
                 </script>
+            @endif
+            @if ($message = Session::get('success'))
+                <div class="alert alert-info alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>    
+                    <strong>{{ $message }}</strong>
+                </div>
             @endif
             @if ($message = Session::get('info'))
                 <div class="alert alert-info alert-block">
@@ -104,29 +110,23 @@
                         </div>
 
                     </ul>
-                    <form id='myform' method='POST' action='{{Route('addToCart')}}'>
+                    <form id='myform' method='POST' action='{{Route('addToCartOnline')}}'>
                         {{ csrf_field() }}
                         <div class="product-action-wrap">
                             <div class="prodict-statas"><span>Quantity :</span></div>
                             <div class="product-quantity">
 
                                 <div class="product-quantity">
-                                    <input class="cart-plus-minus-box" type="number" min="1" name="qtybutton" value="1">
+                                    <input class="cart-plus-minus-box" type="number" min="1" id="qtybutton" name="qtybutton" value="1">
                                     <input type="hidden" name="product_id" value="{{$key->id}}">
                                 </div>
 
                             </div>
                         </div>
                         <div class="pro__dtl__btn">
-                            @if (Auth::user())
                             <button class="buy__now__btn" type="submit"
                                 style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px ">BUY
                                 NOW</button>
-                            @else
-                            <button class="buy__now__btn"><a href="{{Route('login')}}"
-                                    style="background-color: transparent; border:0.5px solid #252525; height: 40px; padding:0 30px">BUY
-                                    NOW</a></button>
-                            @endif
                         </div>
                     </form>
                     @endforeach
@@ -135,5 +135,12 @@
         </div>
     </div>
 </section>
+<script>
+    $( document ).ready(function() {
+        document.getElementById("qtybutton").disabled = true;
+    });
+    
+</script>
+
 <!-- End Product Details -->
 @endsection
