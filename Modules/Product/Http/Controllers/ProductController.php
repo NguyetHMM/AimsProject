@@ -139,18 +139,38 @@ class ProductController extends Controller
 
     public function showBook()
     {
-        $all_product_of_1category = DB::table('products')
-        ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+
+        $all_product_of_1category = DB::table('products_product_kinds')
+        ->join('products','products_product_kinds.productID','=','products.id')
         ->where('products.productCategoryID',3)
-        ->select('products.id','products.title','products.price')
+        ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
         ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProductFollowCate',compact('all_product_of_1category','lpKinds','cdKinds','dvdKinds','bookKinds'));
     }
 
     public function showCDs()
     {
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+
         $all_product_of_1category = DB::table('products')
         ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
         ->where('products.productCategoryID',1)
@@ -158,11 +178,21 @@ class ProductController extends Controller
         ->orderBy('products.price')
         ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProductFollowCate',compact('all_product_of_1category','lpKinds','cdKinds','dvdKinds','bookKinds'));
     }
 
     public function showDVDs()
     {
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+
         $all_product_of_1category = DB::table('products')
         ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
         ->where('products.productCategoryID',2)
@@ -170,10 +200,20 @@ class ProductController extends Controller
         ->orderBy('products.price')
         ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProductFollowCate',compact('all_product_of_1category','lpKinds','cdKinds','dvdKinds','bookKinds'));
     }
 
     public function showLPs(){
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+
         $all_product_of_1category = DB::table('products')
         ->leftjoin('product_categories','products.productCategoryID','=','product_categories.id')
         ->where('products.productCategoryID',4)
@@ -181,7 +221,7 @@ class ProductController extends Controller
         ->orderBy('products.price')
         ->paginate(8);
         // dd($all_product_of_1category);
-        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProductFollowCate',compact('all_product_of_1category','lpKinds','cdKinds','dvdKinds','bookKinds'));
     }
 
     public function searchInShowProduct(Request $request){
@@ -211,15 +251,49 @@ class ProductController extends Controller
         // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
         return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'));
     }
+    public function searchInShowProduct2(Request $request){
+        $nameSearch = $request->nameProduct;
+    
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+
+        $all_product_of_1category = DB::table('products_product_kinds')
+        ->join('products','products_product_kinds.productID','=','products.id')
+        // ->where('products.productTypeID',1)
+        ->where('products.title','like','%'.$nameSearch.'%')
+        ->select('products.id','products.title','products.price','productKindID')
+        ->orderBy('products.price')
+        ->paginate(8);
+        // dd($all_product_of_1category);
+        // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        return view('product::showProductFollowCate',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category'));
+    }
     public function search(Request $request)
     {
-        $all_product_of_1category = DB::table('products')
+        $bookKinds = DB::table('product_kinds')
+        ->where('productCategoryID',3)
+        ->get();
+        $dvdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',2)->get();
+        $cdKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        $lpKinds = DB::table('product_kinds')
+        ->where('productCategoryID',1)->get();
+        // dd($request->infoToSearch);
+        $allProduct = DB::table('products')
         ->where('title','like','%'.$request->infoToSearch.'%')
         ->select('products.id','products.title','products.price')
         ->orderBy('products.price')
         ->paginate(8);
-        // dd($all_product_of_1category);
-        return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
+        // dd($allProduct);
+        return view('showAllProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','allProduct'));
     }
 
     public function filterFollowPrice(Request $request){
