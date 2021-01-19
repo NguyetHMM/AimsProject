@@ -856,7 +856,62 @@ class AdminController extends Controller
     }
 
     public function order_management(){
+        $orders = DB::table('orders')
+        ->join('users', 'orders.userID','=','users.id')
+        ->join('order_states', 'orders.stateID','=','order_states.id')
+        ->select('orders.*', 'users.name as user_name','order_states.name as state_name')
+        ->orderBy('id','desc')->get();
+        // dd($orders);
+        return view('product::admin.order_management')->with([
+            'orders' => $orders
+        ]);
+    }
 
-        return view('product::admin.order_management');
+    public function orderDetails(Request $request)
+    {
+        $products = DB::table('order_details')
+            ->where('orderID', $request->orderID)
+            ->get();
+        $order = DB::table('orders')
+            ->join('users','orders.userID','=','users.id')->join('order_states','orders.stateID','=','order_states.id')
+            ->where('orders.id', $request->orderID)->select('users.name', 'order_states.name as stateName','order_states.id')
+            ->get();
+        $ship_fee = DB::table('orders')
+                    ->where('id', $request->orderID)
+                    ->select('shipfee')
+                    ->get();
+        // dd($order);
+        return view('product::admin.showDetailOrder', [
+            'products' => $products,
+            'ship_fee' => $ship_fee[0]->shipfee,
+            'name' => $order[0]
+        ]);
+    }
+
+    public function cancel(Request $request)
+    {   
+        $id = $request->id;
+        // Get state --> validate change state
+        $order = DB::table('orders')
+                    ->join('order_states', 'orders.stateID', '=', 'order_states.id')
+                    ->select('orders.*', 'order_states.name')
+                    ->where("orders.id", $id)->get();
+        if($order[0]->name === "Đang giao dịch"){
+            $state = DB::table('order_states')
+                ->where('name', 'Đã hủy')
+                ->get();
+            DB::table('orders')
+                    ->where("orders.id", $id)
+                    ->update([
+                        'stateID' => $state[0]->id
+                    ]);
+            // Success
+            return \response()->json([
+                'data' => "Đã Huỷ",
+            ], 200);
+        }else{
+            return \response()->json([
+            ], 403);
+        }
     }
 }

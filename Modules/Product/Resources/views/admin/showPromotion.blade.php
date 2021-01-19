@@ -56,32 +56,3 @@
 </div>
 @endsection
 
-<script src="{{asset('Admin/vendor/jquery/jquery.min.js')}}"></script>
-
-<script>
-    // $(document).ready(() => {
-    //     $('.delete').click((e) => {
-    //         var ids = [];
-            
-    //         $('.123:checked').each(function(){
-    //             if ( $(this).val() ) {
-    //                 ids.push ($(this).val());
-    //             }
-    //         });
-
-    //         $.ajax({
-    //            url: "{{route('delete-p')}}",
-    //            method: "get",
-    //            data:{
-    //                 id: ids,
-    //            },
-    //            success: 
-    //                 (res) =>{
-    //                     res.data.forEach(element => {
-    //                     $('.product_show_'+ element).fadeOut(1000);
-    //                 })
-    //            }
-    //         });
-    //     });
-    // })
-</script>

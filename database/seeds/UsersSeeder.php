@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
         $users[] = [
             'name' => 'AdminSeeder',
             'email' => 'admin@gmail.com',
-            'password' => 'admin1234',
+            'password' => bcrypt('admin1234'),
             'username' => 'admin',
             'roleID' => 1
         ];
