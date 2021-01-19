@@ -73,10 +73,12 @@ class AdminController extends Controller
         $books['category'] = $request->book_category;
         DB::table('books')->insert($books);
         
+        
         $admin_active = array();
         $admin_active['userID'] = Auth::user()->id;
         $admin_active['productID'] = $product_id->id;
         $admin_active['description'] = 'Add';
+        $admin_active['timeCreated'] = now();
         DB::table('admin_activities')->insert($admin_active);
 
         Session::put('message','Add product successfully!');
@@ -128,10 +130,12 @@ class AdminController extends Controller
         $books['category'] = $request->book_category;
         DB::table('books')->insert($books);
 
+        
         $admin_active = array();
         $admin_active['userID'] = Auth::user()->id;
         $admin_active['productID'] = $product_id->id;
         $admin_active['description'] = 'Add';
+        $admin_active['timeCreated'] = now();
         DB::table('admin_activities')->insert($admin_active);
         // dd($books);
         Session::put('message','Add product successfully!');
@@ -187,10 +191,12 @@ class AdminController extends Controller
         $dvds['runtime'] = $request->runtime;
         DB::table('dvds')->insert($dvds);
 
+        
         $admin_active = array();
         $admin_active['userID'] = Auth::user()->id;
         $admin_active['productID'] = $product_id->id;
         $admin_active['description'] = 'Add';
+        $admin_active['timeCreated'] = now();
         DB::table('admin_activities')->insert($admin_active);
         // dd($physical_products);
         Session::put('message','Add product successfully!');
@@ -235,10 +241,12 @@ class AdminController extends Controller
         $dvds['runtime'] = $request->runtime;
         DB::table('dvds')->insert($dvds);
 
+        
         $admin_active = array();
         $admin_active['userID'] = Auth::user()->id;
         $admin_active['productID'] = $product_id->id;
         $admin_active['description'] = 'Add';
+        $admin_active['timeCreated'] = now();
         DB::table('admin_activities')->insert($admin_active);
         // dd($physical_products);
         Session::put('message','Add product successfully!');
@@ -306,10 +314,12 @@ class AdminController extends Controller
         }
         DB::table('cd_lp_track')->insert($tracks);
 
+        
         $admin_active = array();
         $admin_active['userID'] = Auth::user()->id;
         $admin_active['productID'] = $product_id->id;
         $admin_active['description'] = 'Add';
+        $admin_active['timeCreated'] = now();
         DB::table('admin_activities')->insert($admin_active);
         // dd($tracks);
         Session::put('message','Add product successfully!');
@@ -365,10 +375,12 @@ class AdminController extends Controller
         }
         DB::table('cd_lp_track')->insert($tracks);
 
+        
         $admin_active = array();
         $admin_active['userID'] = Auth::user()->id;
         $admin_active['productID'] = $product_id->id;
         $admin_active['description'] = 'Add';
+        $admin_active['timeCreated'] = now();
         DB::table('admin_activities')->insert($admin_active);
         // dd($tracks);
         Session::put('message','Add product successfully!');
@@ -436,10 +448,12 @@ class AdminController extends Controller
         }
         DB::table('cd_lp_track')->insert($tracks);
 
+        
         $admin_active = array();
         $admin_active['userID'] = Auth::user()->id;
         $admin_active['productID'] = $product_id->id;
         $admin_active['description'] = 'Add';
+        $admin_active['timeCreated'] = now();
         DB::table('admin_activities')->insert($admin_active);
         // dd($tracks);
         Session::put('message','Add product successfully!');
@@ -495,10 +509,12 @@ class AdminController extends Controller
         }
         DB::table('cd_lp_track')->insert($tracks);
 
+        
         $admin_active = array();
         $admin_active['userID'] = Auth::user()->id;
         $admin_active['productID'] = $product_id->id;
         $admin_active['description'] = 'Add';
+        $admin_active['timeCreated'] = now();
         DB::table('admin_activities')->insert($admin_active);
         // dd($tracks);
         Session::put('message','Add product successfully!');
@@ -668,7 +684,8 @@ class AdminController extends Controller
             $admin[] = [
                 'userID' => Auth::user()->id,
                 'productID' => $request->id[$i],
-                'description' => 'Delete'
+                'description' => 'Delete',
+                'timeCreated' => now()
             ];
             DB::table('admin_activities')->where('id', $request->id[$i])->insert($admin);
         }
@@ -770,7 +787,8 @@ class AdminController extends Controller
         $admin_active[] = [
             'userID' => Auth::user()->id,
             'productID' => $product_id,
-            'description' => 'Update'
+            'description' => 'Update',
+            'timeCreated' => now()
         ];
         DB::table('admin_activities')->insert($admin_active);
 
