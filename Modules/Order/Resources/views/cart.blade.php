@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('content')
+    <?php $productTypeID = $product_details[0]->productTypeID?>
     <div class="ht__bradcaump__area"
         style="background: rgba(0, 0, 0, 0) url({{ asset('images/slider/bg/5.jpg') }}) no-repeat scroll center center / cover ;">
         <div class="ht__bradcaump__wrap">
@@ -143,4 +144,13 @@
         }
 
     </script>
+    <script type="text/javascript">
+         $(document).ready(function () {
+            var val = "<?php echo $productTypeID ?>";
+            console.log(val);
+            if(val != 2){
+                $('input').attr('disabled', 'disabled');
+            }
+         });
+      </script>
 @endsection

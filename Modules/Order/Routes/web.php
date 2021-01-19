@@ -20,7 +20,8 @@ Route::prefix('order')->group(function() {
     Route::post('/cart','OrderController@storeCart');
     Route::get('/cart-reset','OrderController@resetCart')->name('resetCart');
 
-    Route::post('/show-cart','OrderController@addToCart')->name('addToCart');
+    Route::post('/show-cart','OrderController@addToCart')->middleware('UserRole')->name('addToCart');
+    Route::post('show-cart-online','OrderController@addToCartOnline')->middleware('UserRole')->name('addToCartOnline');
     Route::get('/deleteFromCart/{productID}','OrderController@deleteFromCart')->name('deleteFromCart');
     Route::get('/deniedAddToCart','OrderController@deniedAddToCart')->name('deniedAddToCart');
 
