@@ -5,10 +5,11 @@
     <div class="portfolio-grid-area bg__white">
         <div class="row">
             <div class="container">
+                
                 @include('layout.catagory')
                 <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
                     <div class="portfolio-menu-active mb--50" style="margin-left: 2%;">
-                        <form class="form-inline" action="{{Route('searchInShowProduct')}}" method="post">
+                        <form class="form-inline" action="{{Route('searchInShowProduct2')}}" method="post">
                             {{csrf_field()}}
                             {{-- <div class="form-group" style="float:left;">
                                 <label for="formControlRange">Range Price</label>
@@ -29,7 +30,7 @@
                                 <input type="text" class="form-control" id="nameProduct" name="nameProduct" placeholder="Enter a product's name">
                             </div>
                             {{-- @dd($all_product_of_1category) --}}
-                            <input type="hidden" name="productKindID" id="productKindID" value="{{$productKindID}}">
+                            {{-- <input type="hidden" name="productKindID" id="productKindID" value="{{$productKindID}}"> --}}
                             <button type="submit" class="btn btn-primary mb-2">Search Now</button>
                         </form>
                     </div>

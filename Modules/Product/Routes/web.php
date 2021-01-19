@@ -40,6 +40,7 @@ Route::prefix('product')->group(function() {
     // search route
     Route::post('/search','ProductController@search')->name('search');
     Route::post('/search-product','ProductController@searchInShowProduct')->name('searchInShowProduct');
+    Route::post('/serach-product-2','ProductController@searchInShowProduct2')->name('searchInShowProduct2');
     // filter product
     Route::get('/filter','ProductController@filterFollowPrice')->name('filterPrice');
 
