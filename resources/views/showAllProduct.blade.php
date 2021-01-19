@@ -2,14 +2,16 @@
 
 @section('content')
 <div class="wrapper fixed__footer">
-    <div class="portfolio-grid-area bg__white pt--130 pb--100">
+    @include('layout.catagory')
+    <div class="portfolio-grid-area bg__white">
         <div class="container">
-            <div class="portfolio-menu-active mb--50 text-center">
-                <form class="form-inline">
+            <div class="portfolio-menu-active mb--50">
+                <form class="form-inline"  style="margin-left: 23.8%;" action="{{Route('search')}}" method="post">
                     {{-- <div class="form-group" style="float:left;">
                         <label for="formControlRange">Range Price</label>
                         <input type="range" class="form-control-range" id="formControlRange">
                     </div> --}}
+                    {{csrf_field()}}
                     <div class="form-group mb-2">
                         <select name="filter-box" id="filter-follow-sub" class="select-container form-control">
                             <option name="price" id="price" value="0">--- Price ---</option>
@@ -22,15 +24,15 @@
                     </div>
                     <div class="form-group mx-sm-3 mb-2">
                         <label for="inputPassword2" class="sr-only">Name Product</label>
-                        <input type="text" class="form-control" id="nameProduct" placeholder="Enter a product's name">
+                        <input type="text" class="form-control" name="infoToSearch" id="nameProduct" placeholder="Enter a product's name">
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">Search Now</button>
                 </form>
             </div>
-            <div class="portfolio-style">
+            <div class="portfolio-style col-md-9">
                 <div class="row-mb-5" id="main-show">
                     @foreach ($allProduct as $key => $product)
-                    <div class="col-md-3 col-sm-3 col-xs-6 grid-item cat2 cat3">
+                    <div class="col-md-3 col-sm-3 col-xs-6 grid-item cat2 cat3" style="height: 350px">
                         <div class="single-portfolio-card mb--30">
                             <div class="">
                                 <a href="{{URL::to('product/product-detail/'.$product->id)}}">
