@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Auth;
 use Closure;
 
 class UserRole
@@ -15,6 +15,11 @@ class UserRole
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(Auth::check()){
+            return $next($request);
+        } else {
+            // abort(403);
+            return \redirect()->route('welcome')->with('message',"Bạn phải đăng nhập để thực hiện chức năng này");
+        }
     }
 }
