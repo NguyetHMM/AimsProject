@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-
+<div class="body__overlay"></div>
     <div class="wrapper fixed__footer">
         <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/2.jpg) no-repeat scroll center center / cover ;">
             <div class="ht__bradcaump__wrap">
@@ -31,7 +31,9 @@
                                 <h2 class="section-title-3">Billing details</h2>
                                 <div class="checkout-form-inner">
                                     <div class="single-checkout-box">
+                                        {{-- //<label class="single-checkout-box">chon ten</label> --}}
                                         <input type="text" placeholder="First Name*">
+
                                         <input type="text" placeholder="Last Name*">
                                     </div>
                                     <div class="single-checkout-box">
@@ -40,8 +42,12 @@
                                     </div>
                                     <div class="single-checkout-box">
                                         <textarea name="message" placeholder="Message*"></textarea>
+                                        <input type="button" value="Xác nhận thông tin"  name="calculae_order"class="btn btn-primary btn-sm ">
+                                        <br>
                                     </div>
-                                    <input type="button" value="Xác nhận thông tin"  name="calculae_order"class="btn btn-primary btn-sm ">
+
+                                    {{-- <input type="button" value="Xác nhận thông tin"  name="calculae_order"class="btn btn-primary btn-sm "> --}}
+                                    <br>
                                     <form>
                                         @csrf
                                         <div class="single-checkout-box">
@@ -60,7 +66,7 @@
                                                 <option value="">--Province--</option>
 
                                             </select>
-                                            <input type="text" value="abc" name="district" id="district" placeholder="District*">
+                                            <input type="text"  name="district" id="district" placeholder="District*">
                                         </div>
 
                                         <div class="single-checkout-box">
@@ -96,6 +102,7 @@
                                             $countProduct = 0;
                                             $totalOrder = 0;
                                             $totalOrder1=0;
+                                            $fee2=0;
                                             $fee1=Session::get('fee');
                                             $cost1=0;
                                             ?>
@@ -131,6 +138,14 @@
                                             @endforeach
                                             <input type="hidden" name="product_count" value="{{ $countProduct }}">
                                         </tbody>
+                                        <br>
+                                        <label>Mã giảm giá</label>
+                                        <div class="single-checkout-box">
+                                            <input type="text" placeholder="Phone*">
+                                            <input type="button" value="OK" class="btn btn-primary btn-sm code_giam">
+                                        </div>
+
+                                        <br>
 				                    	<tbody>
 
                                             <tr>
@@ -145,7 +160,10 @@
                                                         {{-- echo {{$countProduct}} --}}
 				                    					<tr>
 				                    						<td>Tổng</td>
-				                    						<td class="total-order">{{$totalOrder}}</td>
+                                                            <td class="total-order">{{$totalOrder}}</td>
+                                                            <?php
+                                                            $total=$totalOrder
+                                                            ?>
                                                         </tr>
                                                         <?php
                                                          //$fee_shi=Session::get('fee');
@@ -153,7 +171,7 @@
                                                         ?>
 				                    					<tr class="shipping-cost">
 				                    						<td>Phí vận chuyển</td>
-				                    						<td>{{Session::get('fee')}}</td>
+				                    						<td class="fee_change">{{$fee2}}</td>
                                                         </tr>
                                                         <?php
 
@@ -235,11 +253,14 @@
     });
 </script>
 
+
 <script type="text/javascript">
     $(document).ready(function() {
         $(':input[type="number"]').click(function() {
             var totalOrder = 0;
             var totalOrder1=0;
+            var code = $('.code_giam').val();
+            var fee2=0;
             var product_number = '<?php echo $countProduct; ?>';
             var ship = parseInt('<?php echo $fee1; ?>');
 
@@ -249,10 +270,15 @@
                 $('#cost-product' + i).html(numeral(price).format());
                 totalOrder += price;
             }
+            if(totalOrder>3000000){
+                ship=0;
+            }
+            fee2=ship;
             totalOrder1=totalOrder+ship;
+
             $('.total-order').html(numeral(totalOrder).format());
             $('.cost1').html(numeral(totalOrder1).format());
-            //x$('.ship_p').html(numeral(ship1).format());
+            $('.fee_change').html(numeral(fee2).format());
         });
     });
     window.onload = function() {
@@ -261,6 +287,7 @@
         var product_number = '<?php echo $countProduct; ?>';
        // var ship = '<?php echo $fee1; ?>';
        var ship = parseInt('<?php echo $fee1; ?>');
+       var fee2=0;
         for (var i = 0; i < product_number; i++) {
             let price = parseInt($('.number_select' + i).val()) *
                 parseInt($('#product-price' + i).html());
@@ -268,15 +295,20 @@
             totalOrder += price;
 
         }
+        if(totalOrder>3000000){
+            ship=0;
+        }
+        fee2=ship;
         totalOrder1=totalOrder+ship;
         //let cost1=totalOrder+parseInt($('#ship_p').val())
         $('.total-order').html(numeral(totalOrder).format());
         $('.cost1').html(numeral(totalOrder1).format());
-        //$('.cost1').html(numeral(cost1).format());
+        $('.fee_change').html(numeral(fee2).format());
 
     }
 
 </script>
+
 @endsection
 
 
