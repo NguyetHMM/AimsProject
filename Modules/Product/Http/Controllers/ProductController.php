@@ -356,14 +356,14 @@ class ProductController extends Controller
                                     <img src="%s " alt="" />
                                     </a>
                                 </div>
-                                <div class="portfolio-title portfolio-card-title text-center">
+                                <div class="portfolio-title portfolio-card-title text-center" style="height: auto">
     
                                     <h4><a
                                             href="%s.%d">%s</a>
                                     </h4>
                                     <span>Price :</span>
                                     <span>
-                                        %f $
+                                        %d $
                                     </span>
                                 </div>
                             </div>
