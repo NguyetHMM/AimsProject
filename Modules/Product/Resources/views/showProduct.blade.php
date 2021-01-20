@@ -89,3 +89,27 @@
     </div>
 </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#filter-follow-sub').on('change',() =>{
+            var rangePrice = $("#filter-follow-sub option:selected").val();
+            var all_product = {{!! json_encode($all_product_of_1category->toArray()) !!}};
+            //console.log(all_product['data'][1]['id']);
+            $.ajax({
+                url:"{{route('filterPrice')}}",
+                type:"get",
+                data:{
+                    'rangePrice': rangePrice,
+                    'all_product': all_product,
+                },
+                success:function(data) {
+                    //console.log(data.products);
+                    console.log(data.producthtml);
+                    document.getElementById("main-show").style.display = "none";
+                    document.getElementById("main-show2").innerHTML = data.producthtml;
+                }
+            });
+        })
+    });
+</script>

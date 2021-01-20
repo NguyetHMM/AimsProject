@@ -346,43 +346,38 @@ class ProductController extends Controller
             }
             $countProduct = count($products);
             if($countProduct != 0){
-                $image = "'images/portfolio/equal/1.jpg'";
+                $image = 'https://img1.od-cdn.com/ImageType-400/0111-1/8BE/FE7/3D/%7B8BEFE73D-9E68-4B56-A46F-7D7C9F8E87D1%7DImg400.jpg';
                 for($i=0;$i<count($products); $i++){
                     $html .= sprintf('
                         <div class="col-md-3 col-sm-3 col-xs-6 grid-item cat2 cat3">
                             <div class="single-portfolio-card mb--30">
                                 <div class="">
-                                    <a href="{{URL::to(%s.%d}}">
-                                    <img src="{{asset(%s)}}" alt="" />
+                                    <a href="%s/%d">
+                                    <img src="%s " alt="" />
                                     </a>
                                 </div>
                                 <div class="portfolio-title portfolio-card-title text-center">
     
                                     <h4><a
-                                            href="{{URL::to(%s.%d)}}">%s</a>
+                                            href="%s.%d">%s</a>
                                     </h4>
                                     <span>Price :</span>
                                     <span>
-                                        <script>
-                                            function number(n) {
-                                                return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, %s) + %s;
-                                            }
-                                            document.write(number(%.2f));
-                                        </script>
+                                        %f $
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        ',"'product/product-detail/'",$products[$i]['id'],$image, "'product/product-detail/'",$products[$i]['id'], $products[$i]['title'],"'$1,'", "' $'",$products[$i]['price']);
+                        ',"product-detail",$products[$i]['id'],$image, "'product/product-detail/'",$products[$i]['id'], $products[$i]['title'],$products[$i]['price']);
                     // $html = sprintf('%d',$products[$i]['id']);
                 }
             } else {
-                $html = sprintf('kokokokokoko');
+                $html = sprintf('Ko có sản phẩm ');
             }
             
             
             return response()->json([
-                'success' => "Nộp bài thành công!",
+                'success' => "",
                 'products' => $products,
                 'producthtml' => $html,
                 'count' => $countProduct,

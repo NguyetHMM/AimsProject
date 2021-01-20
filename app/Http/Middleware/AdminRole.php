@@ -16,11 +16,7 @@ class AdminRole
      */
     public function handle($request, Closure $next)
     {   
-        if(!Auth::check()){
-            return \redirect()->route('welcome')->with('message',"Vui lòng đăng nhập để thực hiện chức năng này!");
-        }
-        // dd(Auth::user()->roleID);
-        else if(Auth::user()->roleID == 1){
+        if(Auth::user()->roleID == 1){
             return $next($request);
         } else {
             // abort(403);

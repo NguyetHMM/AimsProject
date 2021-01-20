@@ -36,7 +36,7 @@ class OrderController extends Controller
                 array_push($max_quantity, $a[0]->quantity);
                 
             }
-            // dd($max_quantity);
+            dd($max_quantity);
         }
         return view('order::cart', compact('product_details','max_quantity'));
     }

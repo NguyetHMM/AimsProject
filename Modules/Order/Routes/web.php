@@ -16,7 +16,7 @@ Route::prefix('order')->group(function() {
 
     Route::get('/', 'OrderController@index');
 
-    Route::get('/cart','OrderController@cart')->middleware('AdminRole')->name('cart');
+    Route::get('/cart','OrderController@cart')->middleware('UserRole')->name('cart');
     Route::post('/cart','OrderController@storeCart');
     Route::get('/cart-reset','OrderController@resetCart')->name('resetCart');
 

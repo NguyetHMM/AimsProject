@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    @if(isset($product_details[0]))
+    @if(count($product_details)>0)
     <?php $productTypeID = $product_details[0]->productTypeID?>
     <div class="cart-main-area ptb--120 bg__white">
         <div class="container">

@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::prefix('product')->group(function() {
-    Route::get('/a', 'ProductController@index')->middleware('AdminRole')->name('admin-index');
-    Route::get('/ab', 'AdminController@delete_product')->middleware('AdminRole')->name('delete-p');
+    Route::get('/a', 'ProductController@index')->middleware(['AdminRole','UserRole'])->name('admin-index');
+    Route::get('/ab', 'AdminController@delete_product')->middleware(['AdminRole','UserRole'])->name('delete-p');
     Route::get('/error','AdminController@error')->name('error');
 
     // show book route
