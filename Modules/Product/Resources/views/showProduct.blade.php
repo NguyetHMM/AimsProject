@@ -8,7 +8,7 @@
                 @include('layout.catagory')
                 <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
                     <div class="portfolio-menu-active mb--50" style="margin-left: 2%;">
-                        <form class="form-inline" action="{{Route('searchInShowProduct')}}" method="post">
+                        <form class="form-inline" action="{{Route('searchInShowProduct')}}" method="get">
                             {{csrf_field()}}
                             {{-- <div class="form-group" style="float:left;">
                                 <label for="formControlRange">Range Price</label>
@@ -33,6 +33,13 @@
                             <button type="submit" class="btn btn-primary mb-2">Search Now</button>
                         </form>
                     </div>
+                    @if($errors->any())
+                        <div class="alert alert-danger col-md-8">
+                                @foreach ($errors->all() as $error)
+                                    <p><b>{{$error}}</p>
+                                @endforeach
+                        </div>
+                    @endif
                     <div class="portfolio-style">
                         <div class="row-mb-5" id="main-show">
                             @foreach ($all_product_of_1category as $key => $product)
@@ -82,27 +89,3 @@
     </div>
 </div>
 @endsection
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#filter-follow-sub').on('change',() =>{
-            var rangePrice = $("#filter-follow-sub option:selected").val();
-            var all_product = {!! json_encode($all_product_of_1category->toArray()) !!};
-            //console.log(all_product['data'][1]['id']);
-            $.ajax({
-                url:"{{route('filterPrice')}}",
-                type:"get",
-                data:{
-                    'rangePrice': rangePrice,
-                    'all_product': all_product,
-                },
-                success:function(data) {
-                    //console.log(data.products);
-                    console.log(data.producthtml);
-                    document.getElementById("main-show").style.display = "none";
-                    document.getElementById("main-show2").innerHTML = data.producthtml;
-                }
-            });
-        })
-    });
-</script>

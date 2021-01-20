@@ -9,7 +9,7 @@
                 @include('layout.catagory')
                 <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
                     <div class="portfolio-menu-active mb--50" style="margin-left: 2%;">
-                        <form class="form-inline" action="{{Route('searchInShowProduct2')}}" method="post">
+                        <form class="form-inline" action="{{Route('searchInShowProduct2')}}" method="get">
                             {{csrf_field()}}
                             {{-- <div class="form-group" style="float:left;">
                                 <label for="formControlRange">Range Price</label>
@@ -34,6 +34,13 @@
                             <button type="submit" class="btn btn-primary mb-2">Search Now</button>
                         </form>
                     </div>
+                    @if($errors->any())
+                        <div class="alert alert-danger col-md-8">
+                                @foreach ($errors->all() as $error)
+                                    <p><b>{{$error}}</p>
+                                @endforeach
+                        </div>
+                    @endif
                     <div class="portfolio-style">
                         <div class="row-mb-5" id="main-show">
                             @foreach ($all_product_of_1category as $key => $product)

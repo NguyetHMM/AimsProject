@@ -38,9 +38,9 @@ Route::prefix('product')->group(function() {
     Route::get('/lps','ProductController@showLPs')->name('showLPs');
 
     // search route
-    Route::post('/search','ProductController@search')->name('search');
-    Route::post('/search-product','ProductController@searchInShowProduct')->name('searchInShowProduct');
-    Route::post('/serach-product-2','ProductController@searchInShowProduct2')->name('searchInShowProduct2');
+    Route::get('/search','ProductController@search')->name('search');
+    Route::get('/search-product','ProductController@searchInShowProduct')->name('searchInShowProduct');
+    Route::get('/serach-product-2','ProductController@searchInShowProduct2')->name('searchInShowProduct2');
     // filter product
     Route::get('/filter','ProductController@filterFollowPrice')->name('filterPrice');
 

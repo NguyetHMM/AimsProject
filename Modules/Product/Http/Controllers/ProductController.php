@@ -108,7 +108,8 @@ class ProductController extends Controller
         ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
         ->paginate(8);
-        // dd($all_product_of_1category);
+
+        // dd($productKindID);
         // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
         return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'));
     }
@@ -225,10 +226,10 @@ class ProductController extends Controller
     }
 
     public function searchInShowProduct(Request $request){
-        // dd($request->nameProduct);
+        // dd($request->all());
         $nameSearch = $request->nameProduct;
         $productKindID = $request->productKindID;
-
+        // dd($productKindID);
         $bookKinds = DB::table('product_kinds')
         ->where('productCategoryID',3)
         ->get();
@@ -247,6 +248,9 @@ class ProductController extends Controller
         ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
         ->paginate(8);
+
+        if(!isset($all_product_of_1category[0]))
+            return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'))->withErrors('Không tìm thấy sản phẩm');
         // dd($all_product_of_1category);
         // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
         return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'));
@@ -271,6 +275,9 @@ class ProductController extends Controller
         ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
         ->paginate(8);
+        if(!isset($all_product_of_1category[0]))
+            return view('product::showProductFollowCate',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category'))->withErrors('Không tìm thấy sản phẩm');
+        
         // dd($all_product_of_1category);
         // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
         return view('product::showProductFollowCate',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category'));
@@ -279,20 +286,21 @@ class ProductController extends Controller
     {
         $bookKinds = DB::table('product_kinds')
         ->where('productCategoryID',3)
-        ->get();
+        ->paginate(8);
         $dvdKinds = DB::table('product_kinds')
-        ->where('productCategoryID',2)->get();
+        ->where('productCategoryID',2)->paginate(8);
         $cdKinds = DB::table('product_kinds')
-        ->where('productCategoryID',1)->get();
+        ->where('productCategoryID',1)->paginate(8);
         $lpKinds = DB::table('product_kinds')
-        ->where('productCategoryID',1)->get();
+        ->where('productCategoryID',1)->paginate(8);
         // dd($request->infoToSearch);
         $allProduct = DB::table('products')
         ->where('title','like','%'.$request->infoToSearch.'%')
         ->select('products.id','products.title','products.price')
         ->orderBy('products.price')
         ->paginate(8);
-        // dd($allProduct);
+        if(!isset($allProduct[0]))
+            return view('showAllProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','allProduct'))->withErrors('Không tìm thấy sản phẩm');
         return view('showAllProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','allProduct'));
     }
 

@@ -680,7 +680,7 @@ class AdminController extends Controller
     
     public function delete_product(Request $request){
         for($i = 0; $i < count($request->id); $i++){
-            DB::table('products')->where('id', $request->id[$i])->delete();
+            // DB::table('products')->where('id', $request->id[$i])->delete();
             // $admin[] = [
             //     'userID' => Auth::user()->id,
             //     'productID' => $request->id[$i],
@@ -688,6 +688,7 @@ class AdminController extends Controller
             //     'timeCreated' => now()
             // ];
             // DB::table('admin_activities')->where('id', $request->id[$i])->insert($admin);
+            // echo $request->id[$i];
         }
         return response()->json([
             'data' => $request->id,

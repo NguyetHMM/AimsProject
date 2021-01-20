@@ -6,7 +6,7 @@
     <div class="portfolio-grid-area bg__white">
         <div class="container">
             <div class="portfolio-menu-active mb--50">
-                <form class="form-inline"  style="margin-left: 23.8%;" action="{{Route('search')}}" method="post">
+                <form class="form-inline"  style="margin-left: 23.8%;" action="{{Route('search')}}" method="get">
                     {{-- <div class="form-group" style="float:left;">
                         <label for="formControlRange">Range Price</label>
                         <input type="range" class="form-control-range" id="formControlRange">
@@ -29,6 +29,13 @@
                     <button type="submit" class="btn btn-primary mb-2">Search Now</button>
                 </form>
             </div>
+            @if($errors->any())
+                <div class="alert alert-danger col-md-8">
+                        @foreach ($errors->all() as $error)
+                            <p><b>{{$error}}</p>
+                        @endforeach
+                </div>
+            @endif
             <div class="portfolio-style col-md-9">
                 <div class="row-mb-5" id="main-show">
                     @foreach ($allProduct as $key => $product)

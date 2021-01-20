@@ -49,7 +49,7 @@
                     <div class="row" >
                         <div class="col-md-12" >
                             <div class="search__inner">
-                                <form action="{{Route('search')}}" method="post">
+                                <form action="{{Route('search')}}" method="get">
                                 {{ csrf_field() }}
                                     <input placeholder="Search here... " name="infoToSearch" type="text">
                                     <button type="submit"></button>
