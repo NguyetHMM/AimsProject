@@ -17,7 +17,7 @@
                         <th>Order date</th>
                         <th>Ship fee ($)</th>
                         <th>Show</th>
-                        <th>Cancel</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -29,7 +29,7 @@
                         <th>Order date</th>
                         <th>Ship fee ($)</th>
                         <th>Show</th>
-                        <th>Cancel</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -48,12 +48,19 @@
                         <td>{{date("d-m-Y", strtotime($value->orderDate))}}</td>
                         <td>{{$value->shipfee}}</td>
                         <td><a href="{{ route('orderDetail', ['orderID' => $value->id])}}" style="text-decoration: underline">Show details</a></td>
-                        @if ($value->stateID == 1)
+                        {{-- @if ($value->stateID == 1)
                             <td><button type="button" class="btn btn-danger btn-circle" onclick="cancel({{ $value->id }})"><i class="fas fa-trash"></i></button></td>
                         @else
                             <td><button type="button" class="btn btn-danger btn-circle" disabled><i class="fas fa-trash"></i></button></td>
-                        @endif
-                        
+                        @endif --}}
+                        <td><button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton" style="">
+                            <button class="dropdown-item btn btn-success" onclick="complete({{ $value->id }})">Hoàn thành</button>
+                            <button class="dropdown-item btn btn-danger" onclick="cancel({{ $value->id }})">Hủy</button>
+                        </div>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -96,6 +103,48 @@
                         error: (response) => {
                             Swal.fire(
                                 'Cancelled Error!',
+                                '',
+                                'error'
+                            )
+                        }
+                    });
+                });
+            }
+        })
+    }
+
+    function complete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(document).ready(() => {
+                    $.ajax({
+                        url: "{{ route('completeOrder') }}",
+                        method: "get",
+                        data: {
+                            id: id,
+                        },
+                        success: (response) => {
+                            $(".state-" + id).html(response.data);
+                            $(".state-" + id).removeClass("alert-primary");
+                            $(".state-" + id).addClass("alert-success");
+                            console.log(response);
+                            Swal.fire(
+                                'Completed Succesfully!',
+                                '',
+                                'success'
+                            )
+                        },
+                        error: (response) => {
+                            Swal.fire(
+                                'Complete Error!',
                                 '',
                                 'error'
                             )

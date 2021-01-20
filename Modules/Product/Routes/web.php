@@ -97,5 +97,6 @@ Route::prefix('product')->group(function() {
     Route::get('/order-management','AdminController@order_management')->middleware('AdminRole')->name('order-management');
     Route::get('/orderDetails/{orderID}', 'AdminController@orderDetails')->name('orderDetail');
     Route::get('/cancelOrder', 'AdminController@cancel')->name('cancelOrder');
+    Route::get('/completeOrder', 'AdminController@complete')->name('completeOrder');
 
 });

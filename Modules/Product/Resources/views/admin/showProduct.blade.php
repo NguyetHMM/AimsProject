@@ -81,7 +81,7 @@
                     ids.push ($(this).val());
                 }
             });
-
+            console.log(ids);
             $.ajax({
                url: "{{route('delete-p')}}",
                method: "get",
@@ -90,8 +90,10 @@
                },
                success: 
                     (res) =>{
+                        console.log(res.data);
                         res.data.forEach(element => {
                         $('.product_show_'+ element).fadeOut(1000);
+
                     })
                }
             });

@@ -1,7 +1,7 @@
 @extends('layout.main')
 
-@section('content')
-    <?php $productTypeID = $product_details[0]->productTypeID?>
+@section('content') 
+
     <div class="ht__bradcaump__area"
         style="background: rgba(0, 0, 0, 0) url({{ asset('images/slider/bg/5.jpg') }}) no-repeat scroll center center / cover ;">
         <div class="ht__bradcaump__wrap">
@@ -21,6 +21,8 @@
             </div>
         </div>
     </div>
+    @if(isset($product_details[0]))
+    <?php $productTypeID = $product_details[0]->productTypeID?>
     <div class="cart-main-area ptb--120 bg__white">
         <div class="container">
             <div class="row">
@@ -64,7 +66,7 @@
                                                     id="{{ 'product-price' . $key }}">{{ $item->price }}</span></td>
                                             <td class="product-quantity"><input type="number" value="{{ $item->quantity }}"
                                                     class="{{ 'number_select' . $key }}" min="1"
-                                                    name="{{ 'number_select' . $key }}" /></td>
+                                                    name="{{ 'number_select' . $key }}" max="{{$max_quantity[$key]}}" required/></td>
                                             <input type="hidden" name="{{ 'hidden_product' . $key }}"
                                                 value="{{ $item->id }}">
                                             <td class="product-subtotal" id="{{ 'cost-product' . $key }}">{{ $total }}</td>
@@ -152,5 +154,12 @@
                 $('input').attr('disabled', 'disabled');
             }
          });
-      </script>
+    </script>
+    @else
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-danger">Giỏ hàng của bạn đang trống, hãy trở về <a href="{{route('welcome')}}">trang chủ</a> để tiếp tục mua sắm</div>
+        </div>
+    </div>
+    @endif
 @endsection

@@ -681,13 +681,13 @@ class AdminController extends Controller
     public function delete_product(Request $request){
         for($i = 0; $i < count($request->id); $i++){
             DB::table('products')->where('id', $request->id[$i])->delete();
-            $admin[] = [
-                'userID' => Auth::user()->id,
-                'productID' => $request->id[$i],
-                'description' => 'Delete',
-                'timeCreated' => now()
-            ];
-            DB::table('admin_activities')->where('id', $request->id[$i])->insert($admin);
+            // $admin[] = [
+            //     'userID' => Auth::user()->id,
+            //     'productID' => $request->id[$i],
+            //     'description' => 'Delete',
+            //     'timeCreated' => now()
+            // ];
+            // DB::table('admin_activities')->where('id', $request->id[$i])->insert($admin);
         }
         return response()->json([
             'data' => $request->id,
@@ -908,6 +908,33 @@ class AdminController extends Controller
             // Success
             return \response()->json([
                 'data' => "Đã Huỷ",
+            ], 200);
+        }else{
+            return \response()->json([
+            ], 403);
+        }
+    }
+
+    public function complete(Request $request)
+    {   
+        $id = $request->id;
+        // Get state --> validate change state
+        $order = DB::table('orders')
+                    ->join('order_states', 'orders.stateID', '=', 'order_states.id')
+                    ->select('orders.*', 'order_states.name')
+                    ->where("orders.id", $id)->get();
+        if($order[0]->name === "Đang giao dịch"){
+            $state = DB::table('order_states')
+                ->where('name', 'Đã thành công')
+                ->get();
+            DB::table('orders')
+                    ->where("orders.id", $id)
+                    ->update([
+                        'stateID' => $state[0]->id
+                    ]);
+            // Success
+            return \response()->json([
+                'data' => "Đã thành công",
             ], 200);
         }else{
             return \response()->json([

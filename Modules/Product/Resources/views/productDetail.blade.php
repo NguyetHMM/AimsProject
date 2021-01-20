@@ -132,7 +132,7 @@
                             <div class="product-quantity">
 
                                 <div class="product-quantity">
-                                    <input class="cart-plus-minus-box" type="number" min="1" name="qtybutton" value="1">
+                                    <input class="cart-plus-minus-box" type="number" min="1" name="qtybutton" value="1" required>
                                     <input type="hidden" name="product_id" value="{{$key->id}}">
                                 </div>
 

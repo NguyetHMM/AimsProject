@@ -29,8 +29,16 @@ class OrderController extends Controller
         ->join('cart_details','products.id','=','cart_details.productID')
         ->where('userID', Auth::user()->id)
         ->get();
-        // dd($product_details);
-        return view('order::cart', compact('product_details'));
+        $max_quantity = array();
+        if($product_details[0]->productTypeID == 2){
+            foreach ($product_details as $key => $value) {
+                $a = DB::table('physical_products')->where('productID', $value->id)->get();
+                array_push($max_quantity, $a[0]->quantity);
+                
+            }
+            // dd($max_quantity);
+        }
+        return view('order::cart', compact('product_details','max_quantity'));
     }
     public function storeCart(Request $request)
     {
@@ -60,7 +68,11 @@ class OrderController extends Controller
         ->join('cart_details','products.id','=','cart_details.productID')
         ->where('userID', Auth::user()->id)
         ->get();
-        $add = DB::table('products')->where('id','=',$request->product_id)->get();
+        
+        $add = DB::table('products')->where('id',$request->product_id)->get();
+        // dd($add);
+
+        // check kiểu sản phẩm ở trong giỏ hàng
         foreach($product_details as $value){
             if($value->productTypeID != $add[0]->productTypeID){
                 return \redirect()->action([OrderController::class, 'deniedAddToCart']);
@@ -71,6 +83,7 @@ class OrderController extends Controller
         ->where('productID',$request->product_id)
         ->select('quantity')->get();
         // dd($qtyInWareHouse[0]->quantity);
+
         if($qtyInWareHouse[0]->quantity < $request->qtybutton){
             return back()->with('error','Số lượng vượt quá số lượng hàng còn lại trong kho');
         } else {
@@ -78,7 +91,7 @@ class OrderController extends Controller
                 if($value->id == $request->product_id){
                     $select = DB::table('cart_Details')
                     ->where('productID',$value->id)->select('quantity')->get();
-                    $toUpdate = $select[0]->quantity+1;
+                    $toUpdate = $select[0]->quantity+$request->qtybutton;
                     DB::table('cart_Details')
                     ->where('productID',$value->id)
                     ->update(['quantity' => $toUpdate]);
