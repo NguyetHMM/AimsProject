@@ -96,14 +96,14 @@
 
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="company">Message</label>
-                                        <textarea name="message"
+                                        <label for="company">Description</label>
+                                        <textarea name="description" required
                                             style="background: white; border: 1px solid #ccc"></textarea>
                                     </div>
                                 </div>
 
-                                <input type="hidden" name="sub-total" id="set-sub-total" value="0">
-                                <input type="hidden" name="ship-fee" id="set-ship-fee" value="0">
+                                <input type="hidden" name="sub_total" id="set-sub-total" value="0">
+                                <input type="hidden" name="ship_fee" id="set-ship-fee" value="0">
 
                                 <div class="col-sm-12 text-center">
                                     <button type="submit" class="btn btn-template-main"><i class="fa fa-save"></i> Buy

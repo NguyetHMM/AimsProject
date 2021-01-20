@@ -85,9 +85,42 @@ class PaymentController extends Controller
             'name' => 'required | string',
             'phone' => 'required | numeric',
             'cities' => 'required',
-            'district' => 'required'
+            'district' => 'required',
+            'description' => 'required'
         ]);
-        dd($request->all());
+        // dd($request->all());
+        DB::table('address')
+            ->insert([
+                'userID' => Auth::id(),
+                'cityID' => $request->cities,
+                'districtID' => $request->district,
+                'description' => $request->description,
+            ]);
+        $address = DB::table('address')->get()->max();
+        DB::table('orders')
+            ->insert([
+                'userID' => Auth::id(),
+                'stateID' => 1,
+                'addressID' => $address->id,
+                'orderDate' => now(),
+                'shipfee' => $request->ship_fee
+            ]);
+        $order = DB::table('orders')->get()->max();
+        $products = DB::table('cart_details')->where('userID', Auth::id())->get();
+        foreach ($products as $key => $value) {
+            $p = DB::table('products')->where('id', $value->productID)->first();
+            DB::table('order_details')->insert([
+                'orderID' => $order->id,
+                'productID' => $value->productID,
+                'quantity' => $value->quantity,
+                'price' => $p->price,
+                'productName' => $p->title
+            ]);
+        }
+        DB::table('cart_details')
+            ->where('userID', Auth::id())
+            ->delete();
+        return \redirect()->route('orderHistory');
     }
 
     /**
