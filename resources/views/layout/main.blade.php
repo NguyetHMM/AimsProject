@@ -38,11 +38,11 @@
     
     <style>
         ::placeholder {
-            color: white !important;
+            color: white ;
         }
 
         :-ms-input-placeholder {
-            color: white !important
+            color: white;
         }
 
         ::-ms-input-placeholder {

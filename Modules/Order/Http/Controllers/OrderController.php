@@ -50,7 +50,7 @@ class OrderController extends Controller
             $data['quantity']=$request['number_select'.$i];
             DB::table('cart_details')->where(['productID' => $data['productID'],'userID' => $data['userID']])->update($data);
         }
-        return redirect()->action([OrderController::class, 'cart']);
+        return redirect()->route('checkout');
 
     }
 
