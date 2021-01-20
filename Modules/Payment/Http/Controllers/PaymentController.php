@@ -47,7 +47,7 @@ class PaymentController extends Controller
             'district' => 'required',
             'description' => 'required'
         ]);
-        // dd($request->all());
+        // dd(Auth::id());
         DB::table('address')
             ->insert([
                 'userID' => Auth::id(),

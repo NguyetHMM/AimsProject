@@ -37,6 +37,11 @@ class OrderController extends Controller
                     array_push($max_quantity, $a[0]->quantity);
                     
                 }
+            }else{
+                foreach ($product_details as $key => $value) {
+                    $a = DB::table('online_products')->where('productID', $value->id)->get();
+                    array_push($max_quantity, 1);
+                }
             }
         }
         return view('order::cart', compact('product_details','max_quantity'));
