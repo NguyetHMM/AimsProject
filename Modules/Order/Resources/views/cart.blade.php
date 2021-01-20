@@ -93,18 +93,6 @@
                                 <div class="cart_totals">
                                     <h2>Cart Totals</h2><br>
                                     <h2 class=" amount total-order">{{ $totalOrder }}</h2>
-                                    {{-- <table>
-                                        <tbody>
-                                            <tr class="order-total">
-                                                <th>Subtotal</th>
-                                                <td>
-                                                    <strong><span
-                                                            class="amount total-order">{{ $totalOrder }}</span></strong>
-                                                </td>
-                                            </tr>
-                                            <input type="hidden" name="product_count" value="{{ $countProduct }}">
-                                        </tbody>
-                                    </table> --}}
                                     <div class="wc-proceed-to-checkout">
                                         <a> <button type="submit"
                                                 style="background-color: transparent; border:transparent; height: 40px; ">PROCESS
