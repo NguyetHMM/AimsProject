@@ -30,13 +30,14 @@ class OrderController extends Controller
         ->where('userID', Auth::user()->id)
         ->get();
         $max_quantity = array();
-        if($product_details[0]->productTypeID == 2){
-            foreach ($product_details as $key => $value) {
-                $a = DB::table('physical_products')->where('productID', $value->id)->get();
-                array_push($max_quantity, $a[0]->quantity);
-                
+        if(count($product_details) > 0){
+            if($product_details[0]->productTypeID == 2){
+                foreach ($product_details as $key => $value) {
+                    $a = DB::table('physical_products')->where('productID', $value->id)->get();
+                    array_push($max_quantity, $a[0]->quantity);
+                    
+                }
             }
-            // dd($max_quantity);
         }
         return view('order::cart', compact('product_details','max_quantity'));
     }
