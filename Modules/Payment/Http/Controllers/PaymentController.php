@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Auth;
 class PaymentController extends Controller
 {
     /**
@@ -59,9 +60,34 @@ class PaymentController extends Controller
      */
     public function show()
     {
-       // $data = DB::table('order_detail')->where('order_id',1)->get();
-        return view('payment::checkout');//->with('products', $data);//->with('products', $data_product);
-        /*return view('payment::show');*/
+        $cities = DB::table('cities')->get();
+        $districts = DB::table('districts')->get();
+        $products = DB::table('cart_details')
+            ->join('products', 'cart_details.productID', '=', 'products.id')
+            ->join('users', 'cart_details.userID', '=', 'users.id')
+            ->join('physical_products', 'physical_products.productID', '=', 'cart_details.productID')
+            ->where('cart_details.userID', Auth::id())
+            ->select('products.*', 'users.*', 'physical_products.*', 'cart_details.quantity as cart_quantity')
+            ->get();
+        $ship_fee = 0;
+        // dd($products);
+        return view('payment::checkout', [
+            'cities' => $cities,
+            'districts' => $districts,
+            'products' => $products,
+            'ship_fee' => $ship_fee
+        ]);
+    }
+
+    public function checkout(Request $request)
+    {
+        $request->validate([
+            'name' => 'required | string',
+            'phone' => 'required | numeric',
+            'cities' => 'required',
+            'district' => 'required'
+        ]);
+        dd($request->all());
     }
 
     /**
