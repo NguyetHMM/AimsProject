@@ -186,7 +186,9 @@
                 <textarea class="form-control" name="content" id="content" rows="4" style="resize: none" required>{{$type->content}}</textarea>
             </div>
             @endif
-
+            @php
+                if($name == 'CD' || $name == "LP") $name = 'cdlp'
+            @endphp
             <a href="{{route('all'.strtolower($name))}}" id="add" class="btn btn-info"><i class="fas fa-arrow-left"></i></a>
             <button type="submit" id="add" class="btn btn-info"><i class="far fa-save"></i></button>
             

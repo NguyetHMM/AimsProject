@@ -17,47 +17,6 @@ class PaymentController extends Controller
     {
         return view('payment::checkout');
     }
-    public function fetch(Request $request)
-    {
-     if($request->get('query'))
-     {
-      $query = $request->get('query');
-      $data = DB::table('address_payment')
-        ->where('city_address', 'LIKE', "%{$query}%")
-        ->get();
-      $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
-      foreach($data as $row)
-      {
-       $output .= '<li><a href="#">'.$row->city_address.'</a></li>';
-      }
-      $output .= '</ul>';
-      echo $output;
-     }
-    }
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('payment::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function show()
     {
         $cities = DB::table('cities')->get();
@@ -85,9 +44,45 @@ class PaymentController extends Controller
             'name' => 'required | string',
             'phone' => 'required | numeric',
             'cities' => 'required',
-            'district' => 'required'
+            'district' => 'required',
+            'description' => 'required'
         ]);
-        dd($request->all());
+        // dd($request->all());
+        DB::table('address')
+            ->insert([
+                'userID' => Auth::id(),
+                'cityID' => $request->cities,
+                'districtID' => $request->district,
+                'description' => $request->description,
+            ]);
+        $address = DB::table('address')->get()->max();
+        DB::table('orders')
+            ->insert([
+                'userID' => Auth::id(),
+                'stateID' => 1,
+                'addressID' => $address->id,
+                'orderDate' => now(),
+                'shipfee' => $request->ship_fee
+            ]);
+        $order = DB::table('orders')->get()->max();
+        $products = DB::table('cart_details')->where('userID', Auth::id())->get();
+        foreach ($products as $key => $value) {
+            $p = DB::table('products')->where('id', $value->productID)->first();
+            DB::table('order_details')->insert([
+                'orderID' => $order->id,
+                'productID' => $value->productID,
+                'quantity' => $value->quantity,
+                'price' => $p->price,
+                'productName' => $p->title
+            ]);
+            $quantity = DB::table('physical_products')->where('productID', $value->productID)->first();
+            DB::table('physical_products')->where('productID', $value->productID)->update(['quantity' => $quantity->quantity - $value->quantity]);
+        }
+        DB::table('cart_details')
+            ->where('userID', Auth::id())
+            ->delete();
+        
+        return \redirect()->route('orderHistory');
     }
 
     /**
