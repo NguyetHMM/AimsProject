@@ -942,4 +942,17 @@ class AdminController extends Controller
             ], 403);
         }
     }
+
+    public function admin_active()
+    {   
+        $admin = DB::table('admin_activities')
+        ->join('users','admin_activities.userID','=','users.id')
+        ->join('products','admin_activities.productID','=','products.id')
+        ->select('admin_activities.*','users.name','products.title')
+        ->get();
+        // dd($admin);
+        return view('product::admin.admin_activities')->with([
+            'admin' => $admin
+        ]);
+    }
 }

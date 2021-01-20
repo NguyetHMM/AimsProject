@@ -172,6 +172,21 @@
                     <span>Order</span>
                 </a>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Admin action
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('admin-active')}}">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>History action</span>
+                </a>
+            </li>
             
             <hr class="sidebar-divider">
 

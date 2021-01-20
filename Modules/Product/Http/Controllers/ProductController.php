@@ -103,13 +103,14 @@ class ProductController extends Controller
         
         $all_product_of_1category = DB::table('products_product_kinds')
         ->join('products','products_product_kinds.productID','=','products.id')
+        ->leftjoin('promotions','products.promotionID','=','promotions.id')
         ->where('products_product_kinds.productKindID',$productKind_id)
         ->where('products.productTypeID',2)
-        ->select('products.id','products.title','products.price','productKindID')
+        ->select('products.id','products.title','products.price','productKindID','promotions.percent','promotions.start_time','promotions.end_time')
         ->orderBy('products.price')
-        ->paginate(8);
+        ->paginate(20);
 
-        // dd($productKindID);
+        // dd(isset($all_product_of_1category[0]->percent));
         // return view('product::showProduct')->with('all_product_of_1category',$all_product_of_1category);
         return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'));
     }
@@ -155,7 +156,7 @@ class ProductController extends Controller
         ->where('products.productCategoryID',3)
         ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
-        ->paginate(8);
+        ->paginate(20);
         // dd($all_product_of_1category);
         return view('product::showProductFollowCate',compact('all_product_of_1category','lpKinds','cdKinds','dvdKinds','bookKinds'));
     }
@@ -177,7 +178,7 @@ class ProductController extends Controller
         ->where('products.productCategoryID',1)
         ->select('products.id','products.title','products.price')
         ->orderBy('products.price')
-        ->paginate(8);
+        ->paginate(20);
         // dd($all_product_of_1category);
         return view('product::showProductFollowCate',compact('all_product_of_1category','lpKinds','cdKinds','dvdKinds','bookKinds'));
     }
@@ -199,7 +200,7 @@ class ProductController extends Controller
         ->where('products.productCategoryID',2)
         ->select('products.id','products.title','products.price')
         ->orderBy('products.price')
-        ->paginate(8);
+        ->paginate(20);
         // dd($all_product_of_1category);
         return view('product::showProductFollowCate',compact('all_product_of_1category','lpKinds','cdKinds','dvdKinds','bookKinds'));
     }
@@ -220,7 +221,7 @@ class ProductController extends Controller
         ->where('products.productCategoryID',4)
         ->select('products.id','products.title','products.price')
         ->orderBy('products.price')
-        ->paginate(8);
+        ->paginate(20);
         // dd($all_product_of_1category);
         return view('product::showProductFollowCate',compact('all_product_of_1category','lpKinds','cdKinds','dvdKinds','bookKinds'));
     }
@@ -247,7 +248,7 @@ class ProductController extends Controller
         ->where('products.title','like','%'.$nameSearch.'%')
         ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
-        ->paginate(8);
+        ->paginate(20);
 
         if(!isset($all_product_of_1category[0]))
             return view('product::showProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category','productKindID'))->withErrors('Không tìm thấy sản phẩm');
@@ -274,7 +275,7 @@ class ProductController extends Controller
         ->where('products.title','like','%'.$nameSearch.'%')
         ->select('products.id','products.title','products.price','productKindID')
         ->orderBy('products.price')
-        ->paginate(8);
+        ->paginate(20);
         if(!isset($all_product_of_1category[0]))
             return view('product::showProductFollowCate',compact('bookKinds','dvdKinds','cdKinds','lpKinds','all_product_of_1category'))->withErrors('Không tìm thấy sản phẩm');
         
@@ -286,19 +287,19 @@ class ProductController extends Controller
     {
         $bookKinds = DB::table('product_kinds')
         ->where('productCategoryID',3)
-        ->paginate(8);
+        ->paginate(20);
         $dvdKinds = DB::table('product_kinds')
-        ->where('productCategoryID',2)->paginate(8);
+        ->where('productCategoryID',2)->paginate(20);
         $cdKinds = DB::table('product_kinds')
-        ->where('productCategoryID',1)->paginate(8);
+        ->where('productCategoryID',1)->paginate(20);
         $lpKinds = DB::table('product_kinds')
-        ->where('productCategoryID',1)->paginate(8);
+        ->where('productCategoryID',1)->paginate(20);
         // dd($request->infoToSearch);
         $allProduct = DB::table('products')
         ->where('title','like','%'.$request->infoToSearch.'%')
         ->select('products.id','products.title','products.price')
         ->orderBy('products.price')
-        ->paginate(8);
+        ->paginate(20);
         if(!isset($allProduct[0]))
             return view('showAllProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','allProduct'))->withErrors('Không tìm thấy sản phẩm');
         return view('showAllProduct',compact('bookKinds','dvdKinds','cdKinds','lpKinds','allProduct'));
@@ -357,7 +358,7 @@ class ProductController extends Controller
                                     </a>
                                 </div>
                                 <div class="portfolio-title portfolio-card-title text-center" style="height: auto">
-    
+
                                     <h4><a
                                             href="%s.%d">%s</a>
                                     </h4>
@@ -372,7 +373,7 @@ class ProductController extends Controller
                     // $html = sprintf('%d',$products[$i]['id']);
                 }
             } else {
-                $html = sprintf('Ko có sản phẩm ');
+                $html = sprintf('<span class="alert alert-danger">Ko có sản phẩm</span> ');
             }
             
             

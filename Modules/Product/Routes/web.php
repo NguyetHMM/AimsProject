@@ -99,4 +99,6 @@ Route::prefix('product')->group(function() {
     Route::get('/cancelOrder', 'AdminController@cancel')->middleware(['UserRole','AdminRole'])->name('cancelOrder');
     Route::get('/completeOrder', 'AdminController@complete')->middleware(['UserRole','AdminRole'])->name('completeOrder');
 
+    Route::get('/adminActive','AdminController@admin_active')->middleware(['UserRole','AdminRole'])->name('admin-active');
+
 });

@@ -60,6 +60,7 @@
                                         <h4><a
                                                 href="{{URL::to('product/product-detail/'.$product->id)}}">{{$product->title}}</a>
                                         </h4>
+                                        @if(!isset($product->percent))
                                         <span>Price :</span>
                                         <span>
                                             <script>
@@ -69,6 +70,23 @@
                                                 document.write(number({{ $product-> price}}));
                                             </script>
                                         </span>
+                                        @else
+                                        <span>Price :</span>
+                                        <span style="text-decoration: line-through;"><script>
+                                                function number(n) {
+                                                    return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + ' $';
+                                                }
+                                                document.write(number({{ $product->price}}));
+                                            </script></span>
+                                        <span>
+                                            <script>
+                                                function number(n) {
+                                                    return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + ' $';
+                                                }
+                                                document.write(number({{ $product->price*((100-$product->percent)/100) }}));
+                                            </script>
+                                        </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +112,7 @@
     $(document).ready(function() {
         $('#filter-follow-sub').on('change',() =>{
             var rangePrice = $("#filter-follow-sub option:selected").val();
-            var all_product = {{!! json_encode($all_product_of_1category->toArray()) !!}};
+            var all_product = {!! json_encode($all_product_of_1category->toArray()) !!};
             //console.log(all_product['data'][1]['id']);
             $.ajax({
                 url:"{{route('filterPrice')}}",
